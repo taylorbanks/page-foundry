@@ -1,26 +1,17 @@
 # page-foundry
 
-> page-foundry is an open-source Claude Code skill: a gated pipeline that turns one product brief into one finished marketing page, in your own voice, built so it does not read or look AI-made.
+> An open-source Claude Code skill that turns one brief into a finished marketing page (homepage, landing page, or sales page) that does not read or look AI-made.
 
-It runs every homepage, landing page, and sales page through seven build phases (preflight, intake, message architecture, page spec, copy, design, build) and eight ship gates (conversion audit, voice scan, accessibility, performance, render review, AI discovery, measurement, integrity). A page that fails a gate does not ship. Copy is written in the owner's voice and checked by a standard-library Python scanner whose rules live in an editable file. The integrity gate forbids fabricated testimonials, logos, and numbers.
-
-## Built with page-foundry
-
-- CyberProBono, free security incident response: https://cyberprobono.com
-- EatPagosa, a local dining guide: https://eatpagosa.com/about
-- StreamPatron, open-source Plex access management: https://streampatron.org
+page-foundry is an orchestrator. One command runs the best marketing and design skills in order (positioning, customer research, conversion, copywriting, design), gates the result against eight ship gates, and outputs static HTML you own or a design-handoff package for any tool. When a companion skill is missing it uses a weaker built-in fallback and reports the run as partial. The voice gate catches AI language patterns, not just AI words; the integrity gate refuses fabricated proof and staged demos.
 
 ## Links
 
-- Homepage: https://taylorbanks.github.io/page-foundry/
-- Source: https://github.com/taylorbanks/page-foundry
-- Directory listing: https://skills.sh/taylorbanks/page-foundry
+- [Homepage](https://taylorbanks.github.io/page-foundry/)
+- [Source](https://github.com/taylorbanks/page-foundry)
 
 ## Facts
 
 - Built by: Taylor Banks
-- Platform: Claude Code skill (also a Claude Code plugin, or a .skill upload on claude.ai)
-- Install: npx skills add taylorbanks/page-foundry
-- Pricing: free, MIT licensed, open source
-- Data handling: the one executable is a standard-library Python voice scanner with no network access and no subprocess calls
-- Version: v2.6.0
+- Platform: Claude Code skill (skills CLI, Claude Code plugin, claude.ai upload)
+- Pricing: free, MIT licensed
+- Data handling: ships one standard-library Python scanner; no network, no subprocess, no dependencies

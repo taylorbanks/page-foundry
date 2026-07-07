@@ -1,0 +1,81 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>page-foundry — Broadsheet</title>
+<style>
+:root{
+  --paper:#f4f0e6; --ink:#1a1a17; --red:#c1361f; --rule:#cfc7b3; --muted:#6b6355; --panel:#faf7ef;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0} html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.5;
+  background-image:radial-gradient(rgba(0,0,0,.015) 1px,transparent 1px);background-size:3px 3px;}
+.wrap{max-width:70rem;margin:0 auto;padding:0 2rem}
+/* masthead */
+.mast{border-bottom:3px double var(--ink);padding:1rem 0 .5rem}
+.mast__top{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--sans);
+  font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.mast__name{font-family:var(--serif);font-weight:800;font-size:clamp(2rem,6vw,3.4rem);letter-spacing:-.02em;
+  text-align:center;margin:.3rem 0 .1rem;line-height:1}
+.mast__rule{display:flex;justify-content:space-between;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  padding:.25rem 0;font-family:var(--sans);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+/* hero */
+.hero{display:grid;grid-template-columns:1.55fr .95fr;gap:2.4rem;padding:2.4rem 0;border-bottom:1px solid var(--rule)}
+@media(max-width:52rem){.hero{grid-template-columns:1fr}}
+.kicker{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:700}
+h1{font-size:clamp(2.6rem,6.2vw,4.3rem);line-height:1.02;letter-spacing:-.015em;margin:.5rem 0 0;font-weight:800;text-wrap:balance}
+.hero__sub{font-size:1.18rem;margin-top:1.1rem;max-width:32ch;color:#2a2822}
+.hero__sub .dc{float:left;font-size:3.1rem;line-height:.72;padding:.12em .08em 0 0;font-weight:800}
+.hero__aside{border-left:1px solid var(--rule);padding-left:1.6rem}
+.hero__aside p{font-size:.9rem;color:var(--muted);font-style:italic;margin-bottom:1rem}
+.box{border:1px solid var(--ink);background:var(--panel)}
+.box__h{background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:.62rem;letter-spacing:.16em;
+  text-transform:uppercase;padding:.4rem .7rem}
+.cmd{display:flex;align-items:center;justify-content:space-between;gap:.6rem;font-family:var(--mono);font-size:.82rem;padding:.7rem .8rem}
+.cmd b{font-weight:400} .cmd .cp{font-family:var(--sans);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--ink);padding:.2rem .45rem;color:var(--ink)}
+.star{display:inline-block;margin-top:.8rem;font-family:var(--sans);font-size:.82rem;color:var(--ink);border-bottom:2px solid var(--red)}
+.meta{font-family:var(--sans);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:1.1rem}
+/* plates */
+.plates{padding:2rem 0 3rem}
+.plates__h{font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  border-bottom:1px solid var(--ink);padding-bottom:.4rem;display:flex;justify-content:space-between}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1.3rem}
+@media(max-width:52rem){.grid{grid-template-columns:1fr}}
+.plate figure{margin:0;border:1px solid var(--ink);background:#fff}
+.plate img{display:block;width:100%;height:9.5rem;object-fit:cover;object-position:top;filter:saturate(.96)}
+.plate figcaption{font-family:var(--sans);font-size:.78rem;padding:.55rem .6rem;border-top:1px solid var(--ink)}
+.plate .fig{color:var(--red);font-weight:700;font-size:.62rem;letter-spacing:.08em}
+.plate b{font-weight:700}
+</style></head>
+<body><div class="wrap">
+  <header class="mast">
+    <div class="mast__top"><span>An open-source page foundry</span><span>MIT · v2.8 · Est. 2026</span></div>
+    <div class="mast__name">Page Foundry</div>
+    <div class="mast__rule"><span>Homepages · Landing pages · Sales pages</span><span>One brief in · One page out</span></div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <span class="kicker">The orchestrator</span>
+      <h1>A whole marketing team on every page you ship.</h1>
+      <p class="hero__sub"><span class="dc">O</span>ne command runs the best marketing and design skills in order, gates the result, and hands back a page in your voice that does not read or look AI-made. Keep the static HTML, or take the design package to any tool.</p>
+      <p class="meta">This page was built by page-foundry. That is the demo.</p>
+    </div>
+    <aside class="hero__aside">
+      <p>Install in one line. Star it if it earns it.</p>
+      <div class="box"><div class="box__h">Terminal</div>
+        <div class="cmd"><b>npx skills add taylorbanks/page-foundry</b><span class="cp">copy</span></div></div>
+      <a class="star" href="#">★ Star on GitHub</a>
+      <p class="meta">One stdlib script · No deps · No network</p>
+    </aside>
+  </section>
+
+  <section class="plates">
+    <div class="plates__h"><span>Real pages, built with page-foundry</span><span>They look nothing alike</span></div>
+    <div class="grid">
+      <div class="plate"><figure><img src="assets/eatpagosa.png" alt="EatPagosa"><figcaption><span class="fig">FIG. 1</span><br><b>EatPagosa.</b> A local dining guide.</figcaption></figure></div>
+      <div class="plate"><figure><img src="assets/cyberprobono.png" alt="CyberProBono"><figcaption><span class="fig">FIG. 2</span><br><b>CyberProBono.</b> Free incident response for small business.</figcaption></figure></div>
+      <div class="plate"><figure><img src="assets/streampatron.png" alt="StreamPatron"><figcaption><span class="fig">FIG. 3</span><br><b>StreamPatron.</b> Share your media server with people you trust.</figcaption></figure></div>
+    </div>
+  </section>
+</div></body></html>

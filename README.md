@@ -14,8 +14,8 @@ page-foundry fixes the process, not the sentence. The same voice across fifty pa
 
 - **A page that converts by method, not luck.** Structure and copy follow conversion research: one clear action, message matched to the traffic, proof sitting next to every claim. The finished page is scored against the MECLABS Conversion Sequence before it ships.
 - **One voice across everything.** Your writing rules live in a file that a scanner enforces, so page forty sounds like page one. No drift, no re-explaining your brand every time.
-- **Output that does not read or look AI-made.** A voice scan rejects the vocabulary that marks machine-written copy; the design phase rejects the visual defaults (the purple gradient, the three identical icon cards, the stock blobs) that make an AI page obvious in a glance.
-- **Proof stays honest.** It will not invent a testimonial, a logo, a download count, or a statistic. If your proof is thin, it builds the page around what is real and tells you what to go collect.
+- **Output that does not read or look AI-made.** A voice scan rejects both the vocabulary and the language patterns that mark machine-written copy, including the negative parallelism and forced rule-of-three a word list cannot catch; the design phase rejects the visual defaults (the purple gradient, the identical icon-card row) that give an AI page away at a glance.
+- **Nothing on the page is faked.** It will not invent a testimonial, a logo, a download count, or a statistic, and it will not stage a demo of the product doing something it did not actually do. If your proof is thin, it builds the page around what is real and tells you what to go collect.
 - **Accessible and fast, checked not promised.** Contrast, keyboard access, semantic markup, a page-weight budget, and a load target are gates the page has to clear, not good intentions.
 - **A page you own.** Static HTML you host anywhere, or a clean copy-and-design package for a design tool. You are not locked into a platform.
 
@@ -31,7 +31,7 @@ Three ways to run it:
 
 ## How it gets that quality
 
-page-foundry is an orchestrator. It does not reinvent marketing; it runs the best skills that already exist, in the right order, and refuses to ship what does not pass. Positioning, copy, conversion, and psychology come from a proven marketing skill set. Design direction comes from real design guidelines, not a model's guess at "modern." Every page then runs a set of checks that a page failing on voice, conversion, accessibility, honesty, or performance cannot get past. That last part is the point: the tests exist so that "an AI wrote it" never shows.
+page-foundry is an orchestrator. It does not reinvent marketing; it invokes the best skills that already exist, in the right order, and refuses to ship what does not pass. Positioning, copy, conversion, and psychology come from a proven marketing skill set. Design direction comes from real design guidelines, not a model's guess at "modern." When a skill it relies on is not installed, it uses a weaker built-in fallback and tells you the run is partial, rather than pretending. Every page then runs checks that a page failing on voice, conversion, accessibility, honesty, or performance cannot get past, so "an AI wrote it" never shows.
 
 ## Install
 
@@ -54,6 +54,7 @@ These projects do the heavy lifting. page-foundry does the sequencing and the ch
 - [marketingskills](https://github.com/coreyhaines31/marketingskills) by [Corey Haines](https://www.corey.co): the product-marketing, copywriting, CRO, customer-research, pricing, and psychology skills that do the marketing work.
 - [Anthropic's skills](https://github.com/anthropics/skills): frontend-design, the reason the output does not look like every AI page; theme-factory; web-artifacts-builder; and skill-creator, used to build this one.
 - [web-design-guidelines](https://github.com/vercel-labs/agent-skills) by Vercel Labs: the accessibility, typography, and UX rules the design phase and the render check follow.
+- [humanizer](https://github.com/blader/humanizer) by blader: the Wikipedia "Signs of AI writing" pattern set behind the copy pattern pass.
 - [gstack](https://github.com/garrytan/gstack) by Garry Tan: design consultation, the variant shotgun behind explore mode, and visual review.
 - [Remotion](https://www.remotion.dev): hero demo clips and motion, when a page earns them.
 - The [MECLABS Institute](https://meclabs.com) Conversion Sequence heuristic: the scoring behind the conversion check.
@@ -61,7 +62,7 @@ These projects do the heavy lifting. page-foundry does the sequencing and the ch
 
 ## Security
 
-Skills run with your agent's permissions. page-foundry ships one executable: `scripts/voice_scan.py`, standard-library Python, no network, no subprocess, no dependencies. Read it before you install. The skill installs companions only from the pinned sources in its table, only with your approval, never from search results. See SECURITY.md for reporting. Written by a security practitioner who assumes you will not take any of that on faith.
+Skills run with your agent's permissions. page-foundry ships one executable: `scripts/voice_scan.py`, standard-library Python, no network, no subprocess, no dependencies. Read it before you install. The skill installs companions only from the pinned sources in its table, only with your approval, never from search results. See SECURITY.md for reporting. page-foundry is built by a security practitioner who assumes you will not take any of that on faith.
 
 ## License
 
