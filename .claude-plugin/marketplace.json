@@ -1,0 +1,11 @@
+{
+  "name": "page-foundry",
+  "owner": { "name": "Taylor Banks" },
+  "plugins": [
+    {
+      "name": "page-foundry",
+      "source": "./skills/page-foundry",
+      "description": "Gated pipeline for product homepages, landing pages, and sales pages: brief in, converting page or design handoff out."
+    }
+  ]
+}
