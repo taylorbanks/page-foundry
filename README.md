@@ -1,48 +1,67 @@
 # page-foundry
 
-A gated pipeline for product homepages, landing pages, and sales pages. One brief in; one shipped page out, or a complete copy-and-design handoff package for a design tool. Built for people who ship many pages across many products and want every one converting, accessible, fast, honest, and in their own voice.
+**Every product you ship needs a page, and every page has to convert.** page-foundry turns one brief into a finished homepage, landing page, or sales page: researched, written in your voice, fast, accessible, and honest. Not a page that looks like every other AI page. A page that performs.
 
-## Why it exists
+One command puts a marketer, a copywriter, a conversion specialist, and a designer on every page you build, then checks the result so slop cannot ship.
 
-Agents write pages fine. Without structure they will not: hold one voice across fifty pages, apply conversion research instead of guesswork, refuse to invent testimonials, catch copy that quietly disqualifies qualified buyers, or stop a page from shipping because a contrast ratio failed. page-foundry is that structure. Every gate in it exists because a real page failed without it.
+## The problem it solves
 
-## What it does
+You ship a lot of pages. New product, new landing page, new launch, new course. An agent will write each one, and each one comes out a little different: a different voice, a different structure, conversion by guesswork, and the same generic look every other AI is producing right now. Some of those pages will quietly talk a qualified buyer out of buying. None of them will stop themselves from inventing a testimonial you never got.
 
-Seven phases with hard gates between them. Preflight detects companion skills across every install channel (skills CLI, Claude Code plugins, project and global directories), checks them for updates, and installs or updates only with your approval, only from pinned sources. Intake produces a durable product-marketing brief per product; a PRD is source material, never the brief. Then message architecture, a page spec against one of eight archetypes, copy under a mechanical voice gate whose rules live in an editable file, design direction with persistent per-property tokens, and build or handoff.
+page-foundry fixes the process, not the sentence. The same voice across fifty pages. Conversion decisions from published research instead of taste. Copy a real buyer would believe. And a hard line against fabricated proof.
 
-Eight ship gates follow: conversion audit (MECLABS-scored, with a red-team read per buyer entry state), voice scan at zero tolerance, accessibility, performance, render review, AI discovery (schema, llms.txt), measurement, and integrity: no fabricated proof, ever. Every run writes to a per-property log that the next run reads; open items and learnings carry forward, and conversion data must change a decision or the run says why it did not.
+## What you get
 
-Archetypes: oss-project, saas-homepage, campaign-landing, mobile-app, course-sales, membership-community, newsletter-capture, personal-home, plus a mapper with composition rules for pages that straddle. Modes: `build` (ships static HTML), `explore` (contrasting design variants first, pick, then build), `handoff` (a verbatim-copy-protected package for Claude Design or any design tool, with acceptance criteria).
+- **A page that converts by method, not luck.** Structure and copy follow conversion research: one clear action, message matched to the traffic, proof sitting next to every claim. The finished page is scored against the MECLABS Conversion Sequence before it ships.
+- **One voice across everything.** Your writing rules live in a file that a scanner enforces, so page forty sounds like page one. No drift, no re-explaining your brand every time.
+- **Output that does not read or look AI-made.** A voice scan rejects the vocabulary that marks machine-written copy; the design phase rejects the visual defaults (the purple gradient, the three identical icon cards, the stock blobs) that make an AI page obvious in a glance.
+- **Proof stays honest.** It will not invent a testimonial, a logo, a download count, or a statistic. If your proof is thin, it builds the page around what is real and tells you what to go collect.
+- **Accessible and fast, checked not promised.** Contrast, keyboard access, semantic markup, a page-weight budget, and a load target are gates the page has to clear, not good intentions.
+- **A page you own.** Static HTML you host anywhere, or a clean copy-and-design package for a design tool. No platform, no lock-in.
+
+## Whatever page you need
+
+Eight page types, each with a structure that fits how that page actually gets bought: open source project, SaaS homepage, campaign landing page, mobile app, course or workshop sales page, membership or community, newsletter signup, personal site. A page that straddles two gets composed from both.
+
+Three ways to run it:
+
+- **build**: one brief in, a finished page out.
+- **explore**: contrasting design directions first; you pick, then it builds the winner.
+- **handoff**: a complete copy-and-design package for Claude Design or any design tool, with acceptance criteria.
+
+## How it gets that quality
+
+page-foundry is an orchestrator. It does not reinvent marketing; it runs the best skills that already exist, in the right order, and refuses to ship what does not pass. Positioning, copy, conversion, and psychology come from a proven marketing skill set. Design direction comes from real design guidelines, not a model's guess at "modern." Every page then runs a set of checks that a page failing on voice, conversion, accessibility, honesty, or performance cannot get past. That last part is the point: the tests exist so that "an AI wrote it" never shows.
 
 ## Install
+
+Star the repo if this is useful to you (it helps other builders find it), then add the skill:
 
 ```bash
 npx skills add taylorbanks/page-foundry
 ```
 
-Or as a Claude Code plugin: `claude plugin marketplace add taylorbanks/page-foundry`, then `claude plugin install page-foundry@page-foundry`. For claude.ai, upload the `.skill` file from the latest release.
+Also available as a Claude Code plugin (`claude plugin marketplace add taylorbanks/page-foundry`, then `claude plugin install page-foundry@page-foundry`), or as a `.skill` upload on claude.ai from the latest release.
 
 ## First run
 
-Run `/page-foundry` with no arguments for orientation. Then say "set up my voice": a short wizard rewrites the voice rules file, which also drives the mechanical scanner, so writing guidance and enforcement cannot drift apart. Until then a neutral default register applies.
+Run `/page-foundry` with no arguments for a quick orientation. Then say "set up my voice": a short wizard writes your voice rules, which also drive the scanner, so your writing guidance and the enforcement can never drift apart. Until then a neutral default applies.
 
 ## Built on
 
-page-foundry is an orchestrator. It exists because these projects do the heavy lifting, and it would be a lesser tool without every one of them:
+These projects do the heavy lifting. page-foundry does the sequencing and the checking, and it is a lesser tool without any of them. All optional at runtime; the skill degrades to built-in condensed rules when they are absent. Install them anyway.
 
-- [marketingskills](https://github.com/coreyhaines31/marketingskills) by [Corey Haines](https://www.corey.co): the product-marketing context architecture this skill's brief format is compatible with, plus the copywriting, CRO, customer-research, pricing, and psychology skills that power Phases 0 through 3 and the conversion gate.
-- [Anthropic's skills](https://github.com/anthropics/skills): frontend-design, the design philosophy behind Phase 4 and the reason output does not look like every AI page; theme-factory; web-artifacts-builder; and skill-creator, which was used to build this skill.
-- [web-design-guidelines](https://github.com/vercel-labs/agent-skills) by Vercel Labs: the accessibility, typography, imagery, and UX rule set wired into the design phase and the render gate.
+- [marketingskills](https://github.com/coreyhaines31/marketingskills) by [Corey Haines](https://www.corey.co): the product-marketing, copywriting, CRO, customer-research, pricing, and psychology skills that do the marketing work.
+- [Anthropic's skills](https://github.com/anthropics/skills): frontend-design, the reason the output does not look like every AI page; theme-factory; web-artifacts-builder; and skill-creator, used to build this one.
+- [web-design-guidelines](https://github.com/vercel-labs/agent-skills) by Vercel Labs: the accessibility, typography, and UX rules the design phase and the render check follow.
 - [gstack](https://github.com/garrytan/gstack) by Garry Tan: design consultation, the variant shotgun behind explore mode, and visual review.
-- [Remotion](https://www.remotion.dev): hero demo clips and motion assets in Phases 2 and 5.
-- The [MECLABS Institute](https://meclabs.com) Conversion Sequence heuristic: the scoring rubric inside the conversion gate.
-- The [skills CLI and skills.sh](https://skills.sh) by Vercel: the distribution rails this repo ships on.
-
-All of these are optional at runtime; the skill degrades to condensed built-in rules when they are absent. They are foundational in every other sense. Install them.
+- [Remotion](https://www.remotion.dev): hero demo clips and motion, when a page earns them.
+- The [MECLABS Institute](https://meclabs.com) Conversion Sequence heuristic: the scoring behind the conversion check.
+- The [skills CLI and skills.sh](https://skills.sh) by Vercel: the rails this ships on.
 
 ## Security
 
-Skills execute with your agent's permissions. Read SKILL.md and `scripts/voice_scan.py` before installing; the script is standard-library Python, no network calls, no subprocesses, no dependencies. The skill installs companions only from the pinned sources named in its table, only with your explicit approval, never from search results. See SECURITY.md for reporting. Written by a security practitioner who assumes you will not take any of that on faith.
+Skills run with your agent's permissions. page-foundry ships one executable: `scripts/voice_scan.py`, standard-library Python, no network, no subprocess, no dependencies. Read it before you install. The skill installs companions only from the pinned sources in its table, only with your approval, never from search results. See SECURITY.md for reporting. Written by a security practitioner who assumes you will not take any of that on faith.
 
 ## License
 
