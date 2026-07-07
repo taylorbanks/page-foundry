@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.9 (2026-07-07)
+- Voice gate catches two structural tells the 2.7 patterns missed: three-verb-clause runs ("runs X, gates Y, and hands Z") via a new `scan:patterns` regex, and parallel-list uniformity (a prose run of fragments that all open with a present-tense verb) via a new structural check in voice_scan.py that splits on tag gaps and sentence ends. Both WARN-level
+- The humanizer pass is now a hard Gate 2 sub-check, not a suggestion: the humanizer skill must be invoked on the final copy, its rewrites applied, and recorded on a new `humanizer` line in the gate report. A scanner PASS with no humanizer pass is an incomplete Gate 2. Structural uniformity spread across separate DOM elements (a labeled roster where every item opens the same way) is beyond regex; only a semantic read catches it
+- Recorded from a real miss: the skill's own new homepage passed the scanner but still read as AI in a roster ("Finds... / Pulls... / Structures...") and two three-verb runs, which the owner caught. The regex now catches the three-verb runs mechanically, and the humanizer hard-gate covers the roster
+
 ## v2.8 (2026-07-07)
 - Orchestration doctrine made explicit and enforced. page-foundry is an orchestrator; the phases now INVOKE each companion skill as the primary path (handing it the phase's inputs, using its output), and fall back to the reference-file condensed rules only when the companion is missing or declined. Every fallback is flagged to the user and recorded on a new `degraded` line in the gate report and run log, so a run missing load-bearing companions reads as the partial execution it is
 - Rewrote every phase to name, invoke, and gate its companions instead of the old soft "if installed, apply here": product-marketing (Phase 0 brief), customer-research + marketing-psychology (Phase 1), cro plus pricing/competitors/aso/launch/lead-magnets/popups/signup (Phase 2), copywriting + copy-editing (Phase 3), frontend-design + web-design-guidelines + theme-factory (Phase 4), web-artifacts-builder + gstack /design-html (Phase 5), cro + web-design-guidelines + ai-seo + schema + analytics + gstack /design-review //qa (Phase 6)

@@ -170,6 +170,8 @@ Patterns to kill on sight (from Wikipedia's "Signs of AI writing" and the seo-au
 - **Superficial -ing tack-ons.** A comma followed by "highlighting / underscoring / showcasing / reflecting..." that adds fake depth. Cut it.
 - **False ranges.** "from X to Y" where X and Y are not on a scale. List the things instead.
 - **Terse noun-pair fragments.** "Seven phases, eight gates." A punchy fragment pairing two counts. Make it a sentence.
+- **Three parallel verb-clauses.** "It runs the skills, gates the result, and hands back a page." Three present-tense verb clauses in a row read as generated. Break the rhythm: two sentences, or vary the verbs and shapes. (Caught by the `three parallel verb-clauses` regex.)
+- **Parallel-list uniformity.** A list where every item opens the same way ("Finds... / Pulls... / Structures... / Writes..."). Uniform openings across a set read as machine-made even when each item is fine alone. Vary the grammatical shape item to item. (The scanner flags a plain prose run of these; a list spread across separate DOM elements with labels is beyond regex, which is why the humanizer pass is a hard gate, not a suggestion.)
 
 <!-- scan:patterns -->
 # AI language patterns, WARN-level. Format: NAME|||REGEX (case-insensitive). Reviewed and fixed in Phase 3.
@@ -180,6 +182,7 @@ copula avoidance|||\b(serves|stands|functions|acts) as (a |an |the )
 authority trope|||\b(the point is|what really matters|the real question is|the heart of the matter|the deeper point)\b
 significance inflation|||\b(marks|marking|represents|signals) a (pivotal|key|defining|turning|significant) (moment|point|shift|role)\b
 superficial -ing|||,\s+(highlighting|underscoring|emphasizing|showcasing|reflecting|symbolizing|ensuring|fostering|cultivating)\b
+three parallel verb-clauses|||\b[a-z]+s\b[^,.;:!?]{2,60},\s+[a-z]+s\b[^,.;:!?]{2,60},\s+(?:and|then)\s+[a-z]+s\b
 <!-- /scan:patterns -->
 
 ## Replacement strategy

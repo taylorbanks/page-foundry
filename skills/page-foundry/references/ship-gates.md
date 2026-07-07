@@ -18,7 +18,7 @@ Handoff mode: gates 1, 2, and 8 run before the package is delivered; gates 3, 4,
 ## Gate 2: Voice
 
 - [ ] `python3 scripts/voice_scan.py <files>` returns zero FAILs (banned phrases, em/en dashes in prose).
-- [ ] Pattern pass done: every `AI language pattern` WARN resolved, and the humanizer skill (or the voice.md pattern checklist) run on the copy. No negative parallelism ("not X, it's Y"), forced rule of three, copula avoidance ("serves as"), tailing negation ("no X, no Y"), significance inflation, or authority trope survives. Passing the word scan is not enough.
+- [ ] Pattern pass done: every `AI language pattern` WARN resolved (negative parallelism "not X, it's Y", copula avoidance "serves as", tailing negation "no X, no Y", significance inflation, authority trope, three-verb-clause runs, parallel-list uniformity). **The humanizer skill was invoked on the final copy, its rewrites applied, and that is recorded on the `humanizer` line below.** The scanner passing is necessary but not sufficient: structural uniformity across separate elements (a parallel roster) is beyond regex, so a scanner PASS with no humanizer pass is an incomplete Gate 2, not a clean one.
 - [ ] Read-aloud pass done: no sentence the owner would not say to a client across a table.
 - [ ] No fabricated specificity: every number, name, and quote traces to the proof inventory.
 
@@ -211,6 +211,8 @@ Omit `endDate` and `offers` fields you cannot fill with real values; never inven
 | AI discovery | PASS | schema valid, llms.txt present |
 | Measurement | PASS | {conversion event, UTM, analytics or declined} |
 | Integrity | PASS | {n} TK items resolved/cut |
+
+Humanizer: {invoked on final copy — yes/no; one line on what it changed (e.g. "broke two three-verb runs, varied a 6-item roster"), or "not run" which makes Gate 2 incomplete}
 
 Degraded phases: {any phase that ran on a reference-file fallback because its companion was missing or declined, named with the companion it lacked; "none, all companions present" otherwise. A degraded run is a partial execution, and the owner is told which skill would improve it.}
 

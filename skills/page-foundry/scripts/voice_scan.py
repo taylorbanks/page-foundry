@@ -136,6 +136,43 @@ def word_hit(phrase, lowline):
     return re.search(r"(?<![\w-])" + re.escape(phrase) + r"(?![\w-])", lowline)
 
 
+VERB_FIRST = re.compile(r"^[A-Z][a-z]{2,}(?:es|s)\b")  # Finds, Pulls, Structures, Runs, Gives
+
+
+def scan_structural(copy):
+    """Flag parallel-list uniformity that per-line regex cannot see: 3+ consecutive
+    short fragments that open with the same word-class (a present-tense verb), the
+    'Finds... / Pulls... / Structures...' cadence that reads as generated. Splits the
+    stripped copy on tag gaps (2+ spaces) and sentence ends so a prose list surfaces.
+    WARN-level, and honest about its limit: when a list is spread across separate DOM
+    elements with a label between each item, the opener is not the fragment's first
+    word and this misses it. That case is why the humanizer pass is a hard Gate 2
+    sub-check, not a suggestion."""
+    warns, frags = [], []
+    for i, line in enumerate(copy.splitlines(), 1):
+        for seg in re.split(r"\s{2,}|(?<=[.!?])\s+", line):
+            seg = seg.strip()
+            if seg:
+                frags.append((i, seg))
+    run = []
+
+    def flush(r):
+        if len(r) >= 3:
+            openers = ", ".join('"%s"' % s.split()[0] for _, s in r[:4])
+            warns.append((r[0][0],
+                          "parallel-list uniformity (%d fragments open with a present-tense verb: %s)"
+                          % (len(r), openers), r[0][1][:80]))
+
+    for ln, seg in frags:
+        if len(seg.split()) <= 9 and VERB_FIRST.match(seg):
+            run.append((ln, seg))
+        else:
+            flush(run)
+            run = []
+    flush(run)
+    return warns
+
+
 def scan_file(path, banned, judgment, patterns, cfg):
     fails, warns = [], []
     raw = path.read_text(encoding="utf-8", errors="replace")
@@ -156,6 +193,7 @@ def scan_file(path, banned, judgment, patterns, cfg):
                                  (EN_DASH, "en_dash", "en dash in prose (use 'to' for ranges)")):
             if dash in line and cfg.get(key) != "off":
                 (fails if cfg.get(key) == "fail" else warns).append((i, label, ctx))
+    warns += scan_structural(copy)
     bangs = copy.count("!")
     if bangs > cfg.get("max_exclamations", 1):
         fails.append((0, f"{bangs} exclamation points (max {cfg.get('max_exclamations', 1)} per page)", ""))
