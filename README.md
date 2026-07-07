@@ -5,7 +5,7 @@
 ### A whole marketing team on every page you ship.
 
 [![npm](https://img.shields.io/npm/v/page-foundry?style=flat-square&color=ff3b1d&labelColor=0a0a0a&label=npm)](https://www.npmjs.com/package/page-foundry)
-[![release](https://img.shields.io/github/v/release/taylorbanks/page-foundry?style=flat-square&color=0a0a0a&labelColor=0a0a0a&label=release)](https://github.com/taylorbanks/page-foundry/releases)
+[![release](https://img.shields.io/github/v/release/taylorbanks/page-foundry?style=flat-square&color=0a0a0a&labelColor=0a0a0a&label=release&cacheSeconds=3600)](https://github.com/taylorbanks/page-foundry/releases)
 [![license](https://img.shields.io/badge/license-MIT-0a0a0a?style=flat-square&labelColor=0a0a0a)](LICENSE)
 [![dependencies](https://img.shields.io/badge/dependencies-0-ff3b1d?style=flat-square&labelColor=0a0a0a)](package.json)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-skill-ff3b1d?style=flat-square&labelColor=0a0a0a)](https://github.com/taylorbanks/page-foundry)
