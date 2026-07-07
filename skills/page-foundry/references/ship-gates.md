@@ -17,7 +17,8 @@ Handoff mode: gates 1, 2, and 8 run before the package is delivered; gates 3, 4,
 
 ## Gate 2: Voice
 
-- [ ] `python3 scripts/voice_scan.py <files>` returns zero hits (banned phrases, em/en dashes in prose).
+- [ ] `python3 scripts/voice_scan.py <files>` returns zero FAILs (banned phrases, em/en dashes in prose).
+- [ ] Pattern pass done: every `AI language pattern` WARN resolved, and the humanizer skill (or the voice.md pattern checklist) run on the copy. No negative parallelism ("not X, it's Y"), forced rule of three, copula avoidance ("serves as"), tailing negation ("no X, no Y"), significance inflation, or authority trope survives. Passing the word scan is not enough.
 - [ ] Read-aloud pass done: no sentence the owner would not say to a client across a table.
 - [ ] No fabricated specificity: every number, name, and quote traces to the proof inventory.
 
@@ -68,6 +69,7 @@ Note: Google does not consume `llms.txt`; it helps ChatGPT, Claude, and Perplexi
 ## Gate 8: Integrity
 
 - [ ] Zero fabricated testimonials, logos, counts, or statistics.
+- [ ] Zero fabricated technical artifacts or staged scenarios: (a) every command, terminal output, code snippet, config, and file path is real and runnable exactly as shown, or removed; and (b) every terminal, screenshot, console, or UI depicts a real action the user takes and real output they see. Real data in a styled card (the page's own gate report) is fine; a terminal of a script the user never runs is not, even if the script is real. A demo of the product is held to this.
 - [ ] All `[TK]` placeholders resolved: filled with real material, or the section cut.
 - [ ] Any urgency element (deadline, cap) verified real with the user.
 - [ ] Security/privacy claims substantiated by the brief.

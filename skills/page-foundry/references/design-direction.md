@@ -29,6 +29,7 @@ Reject these defaults regardless of direction (this extends the frontend-design 
 - Abstract blob illustrations, isometric people, stock photos of meetings.
 - Emoji as section markers.
 - AI-generated hero imagery that depicts nothing real about the product. Real screenshots, real terminal output, real diagrams, real photography only.
+- Any staged reconstruction of the product in use: a hand-built terminal, a mocked screenshot, or a console showing output that was not actually produced, or that shows an action the user never takes (an internal script the pipeline runs, not the user). This is a fabrication even when it looks real and the underlying command exists; it fails the integrity gate. Show a real artifact of real use (the actual page it built, a real screenshot of a real property, the output the user actually receives), or describe the thing in words. Real data in a clearly-labeled card (a real gate report) is fine; a reenactment is not.
 
 ## Marketing-page specifics
 

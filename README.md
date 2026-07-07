@@ -17,7 +17,7 @@ page-foundry fixes the process, not the sentence. The same voice across fifty pa
 - **Output that does not read or look AI-made.** A voice scan rejects the vocabulary that marks machine-written copy; the design phase rejects the visual defaults (the purple gradient, the three identical icon cards, the stock blobs) that make an AI page obvious in a glance.
 - **Proof stays honest.** It will not invent a testimonial, a logo, a download count, or a statistic. If your proof is thin, it builds the page around what is real and tells you what to go collect.
 - **Accessible and fast, checked not promised.** Contrast, keyboard access, semantic markup, a page-weight budget, and a load target are gates the page has to clear, not good intentions.
-- **A page you own.** Static HTML you host anywhere, or a clean copy-and-design package for a design tool. No platform, no lock-in.
+- **A page you own.** Static HTML you host anywhere, or a clean copy-and-design package for a design tool. You are not locked into a platform.
 
 ## Whatever page you need
 

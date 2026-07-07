@@ -85,6 +85,7 @@ Example invocations:
 | product-marketing | coreyhaines31/marketingskills | `npx skills add coreyhaines31/marketingskills --skill product-marketing` | 0 |
 | customer-research, marketing-psychology | coreyhaines31/marketingskills | same pattern, `--skill <name>` | 1 |
 | copywriting, copy-editing | coreyhaines31/marketingskills | same pattern | 3 |
+| humanizer | blader/humanizer (GitHub) | `git clone https://github.com/blader/humanizer.git ~/.claude/skills/humanizer` | 3 (AI pattern pass) |
 | cro | coreyhaines31/marketingskills | same pattern | 2, 6 |
 | pricing, competitors, aso | coreyhaines31/marketingskills | same pattern | 2 (archetype-dependent) |
 | launch, lead-magnets, popups, signup | coreyhaines31/marketingskills | same pattern, `--skill <name>` | 2, 3 (archetype-dependent: launch and campaign pages, newsletter and gated offers, exit/scroll popups when in scope, signup-flow copy) |
@@ -148,7 +149,8 @@ Goal: full page copy, in the owner's voice, passing the voice scan.
 
 1. Read `references/voice.md` first. If its config block still says `owner: default`, or the user asks to set up or change the voice, run the Voice wizard (below) before writing.
 2. Headline first: draft at least 6 candidates, score each against the budget, message match, and specificity, then present the top 3 with one line of reasoning each and pick (ask only in interactive runs). Then write the rest section by section against the spec. Use the copywriting skill if installed.
-3. Run `python3 scripts/voice_scan.py <draft files>`. The script reads its rules from `references/voice.md`, so wizard changes take effect immediately. Fix every FAIL; review every WARN. Zero FAILs is the bar.
+3. Run `python3 scripts/voice_scan.py <draft files>`. The script reads its rules from `references/voice.md`, so wizard changes take effect immediately. Fix every FAIL; zero FAILs is the bar.
+   Then the **pattern pass** (do not skip it): the word scan catches vocabulary, not grammar, and the most common reason a page passes the word scan yet still reads as AI is a language pattern. Resolve every `AI language pattern` WARN the scanner flags (negative parallelism "not X, it's Y"; copula avoidance "serves as"; tailing negation "no X, no Y"; authority tropes; significance inflation), and run the **humanizer skill** on the draft (or work the AI-language-pattern checklist in `references/voice.md`) to catch the structural tells regex misses: forced rule of three, superficial -ing tack-ons, false ranges, terse noun-pair fragments. A page is not voice-clean until both the words and the patterns are clean.
 4. One editing pass that only cuts. Every sentence survives the question: what does the reader lose if this dies? If nothing, it dies.
 5. Red-team read: adopt one skeptical reader per segment x entry state from the brief and walk the draft as each of them. Every reader must reach the CTA; a qualified reader concluding "not for me" is a defect (conversion rule 10). Fix bounce points now; the same check re-runs at the gates.
 
@@ -211,6 +213,7 @@ The log is memory, not a receipt. Phase 0 reads it and treats two fields as bind
 These override everything else in this skill:
 
 - Never invent testimonials, customer names, logos, star counts, download numbers, or statistics. If the proof inventory is thin, build the page around the proof that exists and tell the user what proof to go collect.
+- Never fabricate technical artifacts or usage scenarios. Two rules, and the second is the one that is easy to miss. First: every command, terminal output, code snippet, config, API response, or file path shown must be real and runnable exactly as shown, or it does not go on the page. Second: never stage a terminal, screenshot, console, or UI that depicts an action the user does not take or output they never see, even when the underlying command or data is real. An internal component the user never runs (a build script, a linter, a scanner the pipeline calls) does not get shown as the user running it. To show the product working, show a real artifact of real use, the actual page it built, a real screenshot, the output the user actually receives, not a reconstruction of one. Real data presented in a styled card (the page's own gate report) is fine; a terminal of a script the user never runs is a staged scenario and fails this rule. A demo of the product itself is held to all of this, and a staged demo is the same class of failure as a fake testimonial.
 - Never make claims about security, privacy, or compliance that the brief does not substantiate.
 - Honest urgency only. Deadlines, caps, and limited seats appear only when they are real.
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.7 (2026-07-07)
+- Integrity gate now forbids fabricated technical artifacts AND staged scenarios: (a) every command, output, code, config, and path shown must be real and runnable exactly as shown; and (b) no terminal, screenshot, or UI may depict an action the user never takes or output they never see, even when the underlying command is real (an internal scanner the pipeline runs does not get shown as a user typing it). Real data in a styled card is fine; a reconstructed demo is not. Closes the hole where the gate only guarded fabricated proof and let both an invented command and, on the fix attempt, a staged voice-scan terminal onto the skill's own homepage
+- Voice gate now catches AI language patterns, not just words. voice_scan.py reads a new scan:patterns block (regex, WARN-level) and flags negative parallelism ("not X, it's Y"), copula avoidance ("serves as"), tailing negation ("no X, no Y"), authority tropes, significance inflation, and superficial -ing tack-ons. voice.md documents the full pattern list from Wikipedia's "Signs of AI writing"
+- Phase 3 adds a mandatory pattern pass: resolve every AI-language-pattern WARN and run the humanizer skill (blader/humanizer) on the draft. Passing the word scan alone is no longer enough
+- Companion table adds humanizer for the pattern pass; ship-gates Gate 2 (pattern pass) and Gate 8 (technical fabrication) updated to match
+- Recorded from a real failure: the skill's own homepage shipped a fabricated "page-foundry voice scan" command and several AI language patterns the word-only gate could not catch. Both classes are now caught by the skill, not just fixed by hand
+
 ## v2.6 (2026-07-07)
 - Reference-file reconciliation against the current companion versions (marketingskills 2.3.0, Anthropic frontend-design/theme-factory, vercel-labs web-design-guidelines), with a provenance stamp added to every reference file so future drift is detectable. No contradictions were found; the drift was gaps and staleness:
   - voice.md: added ~30 owner-independent AI-slop terms and phrases the scanner was missing (optimize, utilize, facilitate, comprehensive, "at its core", "that being said", "it's worth noting", "a plethora of", and more) from the seo-audit ai-writing-detection list that copywriting itself defers to; banned list grew 73 to 103

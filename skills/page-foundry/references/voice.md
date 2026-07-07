@@ -155,6 +155,33 @@ vital
 enhance
 <!-- /scan:judgment-words -->
 
+## AI language patterns
+
+A word list catches vocabulary; it cannot catch grammar. The tells that most give AI writing away are structural, so the gate checks patterns too. These fire as WARN; the copywriter reviews and rewrites each in Phase 3. The `scan:patterns` block below is the machine-readable subset; the Phase 3 pattern pass and the humanizer skill catch the rest that a regex cannot.
+
+Patterns to kill on sight (from Wikipedia's "Signs of AI writing" and the seo-audit ai-writing-detection list):
+
+- **Negative parallelism.** "It's not just X, it's Y." "Not only X but also Y." State the positive claim once.
+- **Tailing negation fragments.** A sentence ending in a tacked-on "no guessing," "no wasted motion," "not a hunch." Write it as a real clause or cut it.
+- **Copula avoidance.** "serves as," "stands as," "functions as," "acts as a." Use "is" or "are."
+- **Forced rule of three.** Three parallel items or adjectives grouped to sound comprehensive. Use two, or four, or a plain sentence.
+- **Authority tropes.** "the point is," "at its core," "what really matters," "the real question is." Drop the ceremony and state the point.
+- **Significance inflation.** "marks a pivotal moment," "represents a shift," "a testament to." Describe what happened, not its importance.
+- **Superficial -ing tack-ons.** A comma followed by "highlighting / underscoring / showcasing / reflecting..." that adds fake depth. Cut it.
+- **False ranges.** "from X to Y" where X and Y are not on a scale. List the things instead.
+- **Terse noun-pair fragments.** "Seven phases, eight gates." A punchy fragment pairing two counts. Make it a sentence.
+
+<!-- scan:patterns -->
+# AI language patterns, WARN-level. Format: NAME|||REGEX (case-insensitive). Reviewed and fixed in Phase 3.
+negative parallelism|||\bit'?s not (just |merely |simply |only )?[^.,;:]{1,45}[,;:]\s*it'?s\b
+negative parallelism|||\bnot only\b[^.]{1,50}\bbut\b
+tailing negation|||[.;:]\s*no [a-z]{3,},\s*no [a-z]{3,}
+copula avoidance|||\b(serves|stands|functions|acts) as (a |an |the )
+authority trope|||\b(the point is|what really matters|the real question is|the heart of the matter|the deeper point)\b
+significance inflation|||\b(marks|marking|represents|signals) a (pivotal|key|defining|turning|significant) (moment|point|shift|role)\b
+superficial -ing|||,\s+(highlighting|underscoring|emphasizing|showcasing|reflecting|symbolizing|ensuring|fostering|cultivating)\b
+<!-- /scan:patterns -->
+
 ## Replacement strategy
 
 Do not synonym-swap a banned word; that produces the same sentence in a cheaper suit. Restructure around the concrete fact the sentence was gesturing at:

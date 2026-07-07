@@ -7,6 +7,9 @@ Rules live in references/voice.md, NOT in this script. The script parses:
                                            or an integer)
   <!-- scan:banned-phrases --> ... <!-- /scan:banned-phrases -->   one per line, FAIL
   <!-- scan:judgment-words --> ... <!-- /scan:judgment-words -->   one per line, WARN
+  <!-- scan:patterns --> ... <!-- /scan:patterns -->               NAME|||REGEX per line, WARN
+                                           (AI language patterns: negative parallelism,
+                                           copula avoidance, tailing negation, etc.)
 
 Edit voice.md (or run the Voice wizard) and the scanner follows automatically.
 A minimal built-in fallback applies only if voice.md cannot be found.
@@ -61,6 +64,30 @@ def parse_block(text, name):
     return items
 
 
+def parse_patterns(text):
+    """Parse the scan:patterns block. Each line is NAME|||REGEX (case-insensitive).
+    Emits WARN, not FAIL: language patterns are heuristic and need a human read, but
+    the scanner surfaces them so 'not X, it's Y', copula-dodging, and the like cannot
+    slip past a word-only gate. Lines starting with # are comments."""
+    m = re.search(r"<!--\s*scan:patterns\s*-->(.*?)<!--\s*/scan:patterns\s*-->",
+                  text, flags=re.S)
+    if not m:
+        return []
+    pats = []
+    for line in m.group(1).splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        name, sep, rx = line.partition("|||")
+        if not sep:
+            name, rx = "ai pattern", name
+        try:
+            pats.append((name.strip(), re.compile(rx.strip(), re.I)))
+        except re.error:
+            pass
+    return pats
+
+
 def parse_config(text):
     cfg = dict(FALLBACK["config"])
     m = re.search(r"<!--\s*voice-config(.*?)-->", text, flags=re.S)
@@ -83,11 +110,12 @@ def load_rules(cli_path):
     path = find_rules_file(cli_path)
     if not path or not path.is_file():
         print("note: voice.md not found; using minimal built-in fallback rules", file=sys.stderr)
-        return FALLBACK["banned"], FALLBACK["judgment"], dict(FALLBACK["config"]), None
+        return FALLBACK["banned"], FALLBACK["judgment"], [], dict(FALLBACK["config"]), None
     text = path.read_text(encoding="utf-8", errors="replace")
     banned = parse_block(text, "banned-phrases") or FALLBACK["banned"]
     judgment = parse_block(text, "judgment-words")
-    return banned, judgment, parse_config(text), path
+    patterns = parse_patterns(text)
+    return banned, judgment, patterns, parse_config(text), path
 
 
 def strip_to_copy(text, suffix):
@@ -108,7 +136,7 @@ def word_hit(phrase, lowline):
     return re.search(r"(?<![\w-])" + re.escape(phrase) + r"(?![\w-])", lowline)
 
 
-def scan_file(path, banned, judgment, cfg):
+def scan_file(path, banned, judgment, patterns, cfg):
     fails, warns = [], []
     raw = path.read_text(encoding="utf-8", errors="replace")
     copy = strip_to_copy(raw, path.suffix.lower())
@@ -121,6 +149,9 @@ def scan_file(path, banned, judgment, cfg):
         for word in judgment:
             if word_hit(word, low):
                 warns.append((i, f"judgment word (figurative use is banned): '{word}'", ctx))
+        for name, rx in patterns:
+            if rx.search(line):
+                warns.append((i, f"AI language pattern ({name})", ctx))
         for dash, key, label in ((EM_DASH, "em_dash", "em dash in prose"),
                                  (EN_DASH, "en_dash", "en dash in prose (use 'to' for ranges)")):
             if dash in line and cfg.get(key) != "off":
@@ -158,12 +189,12 @@ def main(argv):
     if not args:
         print(__doc__)
         return 2
-    banned, judgment, cfg, src = load_rules(rules_path)
+    banned, judgment, patterns, cfg, src = load_rules(rules_path)
     print(f"rules: {src if src else 'built-in fallback'} "
-          f"({len(banned)} banned, {len(judgment)} judgment)")
+          f"({len(banned)} banned, {len(judgment)} judgment, {len(patterns)} patterns)")
     total_fail = 0
     for f in collect(args):
-        fails, warns = scan_file(f, banned, judgment, cfg)
+        fails, warns = scan_file(f, banned, judgment, patterns, cfg)
         if not fails and not warns:
             print(f"PASS  {f}")
             continue
