@@ -91,6 +91,35 @@ take it to the next level
 at the end of the day
 digital landscape
 threat landscape
+optimize
+optimise
+utilize
+utilise
+facilitate
+comprehensive
+groundbreaking
+bolster
+underscore
+unveil
+nuanced
+multifaceted
+intricate
+paramount
+# AI openers, transitions, and closers
+at its core
+that being said
+it's worth noting that
+it is worth noting that
+this begs the question
+in conclusion
+to sum up
+in essence
+with that in mind
+imagine a world where
+a myriad of
+a plethora of
+shed light on
+pave the way for
 # Empty marketing phrases
 no fluff
 no hype
@@ -105,6 +134,8 @@ trusted by thousands
 arguably
 essentially
 basically
+ultimately
+undoubtedly
 simply put
 needless to say
 it goes without saying
@@ -121,6 +152,7 @@ journey
 ecosystem
 intuitive
 vital
+enhance
 <!-- /scan:judgment-words -->
 
 ## Replacement strategy
@@ -136,3 +168,7 @@ If no concrete fact exists to anchor the sentence, the sentence was decoration. 
 ## Voice check, beyond the scan
 
 After the mechanical scan passes, read the page top to bottom once and ask of each section: would the owner say this sentence out loud to a client across a table? If it would sound like a brochure, rewrite it as the spoken version.
+
+---
+
+_Provenance: banned and judgment lists reconciled 2026-07-07 against marketingskills 2.3.0 (copywriting, copy-editing) and the seo-audit ai-writing-detection list, which copywriting itself defers to. Re-reconcile when those companions change; keep this list a superset of the AI-writing-detection vocabulary._

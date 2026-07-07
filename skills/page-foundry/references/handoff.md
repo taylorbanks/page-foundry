@@ -76,3 +76,7 @@ Run AFTER the built asset comes back (request the HTML or a deployed URL):
 - Gates 3, 4, 5 in full.
 
 A handoff is not done at package delivery; it is done when the returned asset passes the post-build gates.
+
+---
+
+_Provenance: page-foundry-native (no direct companion source). The Claude Design capability description reflects Anthropic Labs as of 2026-07; re-verify it if the tool's inputs or outputs change. Gate references stay in sync with ship-gates.md and design-direction.md._

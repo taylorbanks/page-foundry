@@ -21,15 +21,17 @@ Handoff mode: gates 1, 2, and 8 run before the package is delivered; gates 3, 4,
 - [ ] Read-aloud pass done: no sentence the owner would not say to a client across a table.
 - [ ] No fabricated specificity: every number, name, and quote traces to the proof inventory.
 
-## Gate 3: Accessibility (WCAG 2.1 AA spot checks)
+## Gate 3: Accessibility (WCAG 2.2 AA spot checks)
 
 - [ ] One `h1`; heading levels do not skip.
-- [ ] Landmarks present (`nav`, `main`, `footer`); links and buttons are real `a`/`button` elements.
-- [ ] Text contrast 4.5:1 (3:1 for large text); CTA buttons included.
-- [ ] Visible keyboard focus on all interactive elements; logical tab order.
-- [ ] Every informative image has real alt text; decorative images have empty alt.
-- [ ] No content conveyed by color alone; `prefers-reduced-motion` respected.
-- [ ] Form inputs have programmatic labels.
+- [ ] Landmarks present (`nav`, `main`, `footer`); links and buttons are real `a`/`button` elements; icon-only controls carry an `aria-label`.
+- [ ] Text contrast 4.5:1 (3:1 for large text and UI components); CTA buttons included.
+- [ ] Visible keyboard focus on all interactive elements (`:focus-visible`), logical tab order, and focus never obscured (WCAG 2.2 SC 2.4.11).
+- [ ] Touch targets at least 24x24px (WCAG 2.2 SC 2.5.8); 44px preferred for primary actions.
+- [ ] Every informative image has real alt text and explicit `width`/`height` (CLS); decorative images have empty alt.
+- [ ] No content conveyed by color alone; `prefers-reduced-motion` respected; motion animates only `transform`/`opacity`, never `transition: all`.
+- [ ] Form inputs have programmatic labels plus correct `type`/`inputmode`/`autocomplete`; async status changes use `aria-live`.
+- [ ] If the page has auth, no step forces a memory or transcription test with no easier alternative (WCAG 2.2 SC 3.3.8).
 
 ## Gate 4: Performance
 
@@ -48,9 +50,14 @@ Handoff mode: gates 1, 2, and 8 run before the package is delivered; gates 3, 4,
 
 - [ ] JSON-LD schema present and valid for the archetype (templates below).
 - [ ] `llms.txt` present at the site root (template below).
-- [ ] `<title>` and meta description written to the same standard as page copy (voice rules apply).
+- [ ] `robots.txt` does not `Disallow` the AI crawlers that drive citations: `GPTBot`, `ChatGPT-User`, `PerplexityBot`, `ClaudeBot`, `anthropic-ai`, `Google-Extended`, `Bingbot`. Blocking one loses that engine's citation; only `CCBot` is safe to block. An AI-discovery gate that passes while `ClaudeBot` is disallowed is a false pass.
+- [ ] Page copy is machine-extractable: the primary answer sits in a self-contained 40 to 60 word block near the top, key facts are in real text (not baked into images), and comparisons/FAQs use plain markup.
+- [ ] For archetypes with public pricing (saas-homepage, course-sales, membership-community), a machine-readable `/pricing.md` (or `/pricing.txt`) is present for agentic buyers.
+- [ ] `<title>` and meta description written to the same standard as page copy (voice rules apply), and short enough not to truncate.
 - [ ] Open Graph + Twitter card meta complete, with a real OG image (1200x630).
 - [ ] Canonical URL set; favicon present.
+
+Note: Google does not consume `llms.txt`; it helps ChatGPT, Claude, and Perplexity. Keep it, and do not rely on it for Google.
 
 ## Gate 7: Measurement
 
@@ -159,6 +166,34 @@ Omit `aggregateRating` entirely unless the numbers are real and public.
 
 FAQ schema must mirror the visible page content exactly; do not add schema-only Q&A.
 
+**course-sales / membership-community / dated webinar campaign-landing** (`Event`; use for a page selling a scheduled cohort, workshop, or live event):
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "{Event}",
+  "description": "{factual one-liner}",
+  "startDate": "{ISO 8601, e.g. 2026-09-01T17:00-07:00}",
+  "endDate": "{ISO 8601}",
+  "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": { "@type": "VirtualLocation", "url": "{join or info url}" },
+  "organizer": { "@type": "Organization", "name": "{Company}", "url": "{url}" },
+  "offers": {
+    "@type": "Offer",
+    "price": "{price}",
+    "priceCurrency": "USD",
+    "url": "{registration url}",
+    "availability": "https://schema.org/InStock"
+  }
+}
+```
+
+Omit `endDate` and `offers` fields you cannot fill with real values; never invent a date, price, or seat count.
+
+**homepage / personal-home** (optional, add alongside the primary type): a `WebSite` with `potentialAction` SearchAction when the site has search, and a standalone `Organization` (name, url, logo, sameAs social links) so the brand resolves as an entity.
+
 ### Gate report format
 
 ```
@@ -177,3 +212,7 @@ FAQ schema must mirror the visible page content exactly; do not add schema-only 
 
 Open items for the owner: {real proof to collect, urgency to verify, etc.}
 ```
+
+---
+
+_Provenance: reconciled 2026-07-07 against marketingskills 2.3.0 (ai-seo, schema, cro) and web-design-guidelines (vercel-labs, live ruleset). JSON-LD templates verified current against schema.org; accessibility bumped to WCAG 2.2 AA. The MECLABS heuristic is external (rubric in conversion-rules.md), not from the cro companion. Re-reconcile when those companions or the schema.org / WCAG baselines change._

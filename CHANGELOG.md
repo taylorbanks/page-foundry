@@ -1,5 +1,16 @@
 # Changelog
 
+## v2.6 (2026-07-07)
+- Reference-file reconciliation against the current companion versions (marketingskills 2.3.0, Anthropic frontend-design/theme-factory, vercel-labs web-design-guidelines), with a provenance stamp added to every reference file so future drift is detectable. No contradictions were found; the drift was gaps and staleness:
+  - voice.md: added ~30 owner-independent AI-slop terms and phrases the scanner was missing (optimize, utilize, facilitate, comprehensive, "at its core", "that being said", "it's worth noting", "a plethora of", and more) from the seo-audit ai-writing-detection list that copywriting itself defers to; banned list grew 73 to 103
+  - conversion-rules.md: refreshed the 2026 benchmarks; added an objection-handling rule, form field-count thresholds and mechanics, and a pricing-psychology section
+  - design-direction.md: corrected the theme-factory description (a theming toolkit, not a persistence layer), added the web-design-guidelines mechanics (focus-visible, text-wrap balance, image CLS, safe-area, transform/opacity motion) with an authoritative-when-installed pointer, restored "or vermilion", added the big-stat-gradient hero to the anti-slop list
+  - ship-gates.md: Gate 3 bumped to WCAG 2.2 AA (target size, focus-not-obscured, accessible auth) plus the web-design-guidelines UI checks; Gate 6 added the robots.txt AI-crawler allowlist, a /pricing.md check, and content-extractability; added an Event JSON-LD template and a WebSite+Organization note
+  - archetypes.md: added an integrations section and a sales-led/enterprise B2B variant; grounded the form field-cost numbers
+- Companion table: added analytics (measurement gate), and launch, lead-magnets, popups, signup (archetype-dependent planning and copy). content-strategy was evaluated and deliberately excluded (editorial/topic planning, not single-page)
+- Discoverability: the frontmatter description now carries the real search queries people use ("build a landing page for my SaaS", "my landing page is not converting"), and a "When to use this skill" section was added, so the skill surfaces for people searching the ecosystem for a page-building tool
+- TESTS 13-14 (AI-crawler gate, expanded voice scan)
+
 ## v2.5.1 (2026-07-06)
 - READMEs rewritten as marketing copy: lead with what the skill produces (high-converting, voice-consistent pages that do not read or look AI-made) instead of its internal phases and gates
 - SKILL.md description shortened from 965 to ~500 characters: fixes the meta description / og:description truncation, keeps the auto-invocation triggers, and moves the skill into the length band where skills.sh renders its generated summary. The summary itself is skills.sh's own async job, not a repo field

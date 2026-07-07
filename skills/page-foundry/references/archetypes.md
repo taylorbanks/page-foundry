@@ -61,6 +61,10 @@ Conversion goal: trial signup, demo booking, or waitlist. Pick one as primary.
 
 Navigation: yes, standard. Footer: full.
 
+**Optional sections** (add when they carry a real buying factor, do not pad): an **integrations / works-with-your-stack** strip (real logos of the tools it connects to) placed after feature storytelling, since "does it fit my stack" is a common SaaS objection; and a **built-for / use cases** self-identification block ("For marketers who...", "For engineers who...") when the product serves distinct personas who need to see themselves.
+
+**Sales-led / enterprise variant.** For a B2B page aimed at a buying committee rather than self-serve, compose saas-homepage with: use-cases by role or department, a dedicated **security and compliance** section (not folded into the FAQ), the integrations strip, and an **ROI / value** section; replace the pricing teaser with "talk to sales" only when pricing is genuinely quote-based, and make the primary CTA a demo or contact rather than a trial. Record the variant and every borrowed section in the spec so the gates audit the right rules.
+
 ---
 
 ## campaign-landing
@@ -89,7 +93,7 @@ Section sequence (long-form sales structure; compress for simple lead magnets):
 10. **FAQ.** The final objections, including the awkward ones (time commitment, refunds, "is this for me if...").
 11. **Final CTA block.** Promise, proof element, button.
 
-Forms: minimum viable fields. Every field added must justify itself against the conversion data in conversion-rules.md.
+Forms: minimum viable fields (3 is the baseline; 4 to 6 costs roughly 10 to 25 percent of completions, 7 or more costs 25 to 50 percent). Every field added must justify itself against the conversion data in conversion-rules.md; past a few fields, prefer a multi-step form with a progress indicator.
 
 ---
 
@@ -187,3 +191,7 @@ Conversion goal: one primary next action. Pick it deliberately: book a call, sub
 6. **Contact.** Direct and simple. State response expectations honestly.
 
 Navigation: minimal (Work, Writing, Contact). This archetype tolerates the most aesthetic risk on the whole list; the page is the person, and a distinctive direction (see design-direction.md) does more work here than anywhere else.
+
+---
+
+_Provenance: reconciled 2026-07-07 against marketingskills 2.3.0 (copywriting page templates, cro, product-marketing). The archetype structures are page-foundry's own opinionated superset; the integrations, built-for, and enterprise/B2B patterns were added from copywriting's copy-frameworks. Re-reconcile when those companions change._

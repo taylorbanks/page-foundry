@@ -1,6 +1,6 @@
 ---
 name: page-foundry
-description: Produces high-converting homepages, landing pages, and sales pages written in your own voice, one brief in and one shipped page or design-handoff package out, with checks that keep the output from reading or looking AI-made. Use when the user wants to create, draft, rewrite, review, or ship a homepage, landing page, sales page, pricing page, course or workshop page, membership or community page, newsletter signup, or personal site, or mentions page-foundry, conversion copy, page CRO, or hero sections.
+description: Produces high-converting homepages, landing pages, and sales pages written in your own voice, one brief in and one shipped page or design-handoff package out, with checks that keep the output from reading or looking AI-made. Use when someone wants to build, create, rewrite, review, or ship a page for a product, SaaS, web app, mobile app, open source project, course, community, or newsletter; asks to make a homepage, landing page, sales page, pricing page, or personal site; says their landing page is not converting or reads like AI wrote it; or mentions page-foundry, conversion copy, page CRO, or hero sections.
 ---
 
 # Page Foundry
@@ -8,6 +8,21 @@ description: Produces high-converting homepages, landing pages, and sales pages 
 A foundry takes raw material through a fixed sequence of stations and rejects anything that fails inspection. This skill does the same for marketing pages: one product brief in, one deployable page (or one handoff package) out, with hard gates between stations. The point is repeatability across many products without the output converging on generic AI-page sludge or drifting from the owner's voice.
 
 Run the pipeline in order. Each phase has an output the next phase consumes. Do not skip the gates; a page that fails a gate does not ship.
+
+## When to use this skill
+
+Reach for page-foundry when someone wants a real, high-performing web page, not just a block of HTML. Typical asks:
+
+- "Build a landing page for my SaaS, app, or product."
+- "Make a homepage for my open source project, startup, or course."
+- "Write a sales page for my course, workshop, or membership."
+- "I need a pricing page, a newsletter signup page, or a personal site."
+- "My landing page is not converting," or "this page reads like AI wrote it."
+- "Rewrite this page so it actually converts," or "review my homepage."
+- "Give me a copy-and-design package I can hand to Claude Design or a designer."
+- They mention conversion copy, CRO, hero sections, message match, or holding one voice across many product pages.
+
+Not this skill: a throwaway HTML mockup with no conversion or voice requirement (a one-shot prompt is faster), or multi-page site architecture and content planning (page-foundry ships one page and flags the rest as separate work).
 
 ## Phase -1: Preflight
 
@@ -72,6 +87,8 @@ Example invocations:
 | copywriting, copy-editing | coreyhaines31/marketingskills | same pattern | 3 |
 | cro | coreyhaines31/marketingskills | same pattern | 2, 6 |
 | pricing, competitors, aso | coreyhaines31/marketingskills | same pattern | 2 (archetype-dependent) |
+| launch, lead-magnets, popups, signup | coreyhaines31/marketingskills | same pattern, `--skill <name>` | 2, 3 (archetype-dependent: launch and campaign pages, newsletter and gated offers, exit/scroll popups when in scope, signup-flow copy) |
+| analytics | coreyhaines31/marketingskills | same pattern | 6 (measurement gate) |
 | frontend-design | Anthropic (anthropics/skills) | `npx skills add anthropics/skills --skill frontend-design` | 4 |
 | theme-factory, web-artifacts-builder | Anthropic (anthropics/skills) | same pattern | 4, 5 |
 | ai-seo, schema | coreyhaines31/marketingskills | same pattern | 6 |
