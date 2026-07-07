@@ -97,7 +97,15 @@ Example invocations:
 | remotion (official Remotion skill) | remotion-dev (confirm exact repo via `npx skills find remotion --owner remotion-dev`) | per find result | 2, 5 (motion assets) |
 | gstack (`/design-consultation`, `/design-shotgun`, `/design-html`, `/plan-design-review`, `/design-review`, `/qa`) | garrytan/gstack | per gstack README (installs to `~/.claude/skills/gstack/`) | 2, 4, 5, 6 |
 
-Every companion is optional; the reference files contain condensed versions of the load-bearing rules.
+### Orchestration doctrine (how companions are used)
+
+page-foundry is an orchestrator. Its reference files are a fallback, not the plan. In every phase that names a companion skill, follow this without exception:
+
+1. **Invoke the companion as the primary path.** Actually call the skill, hand it the phase's inputs (the brief, the spec, the copy draft, the tokens, whatever that phase works on), and use its output as the phase's work product. When a companion is available you do not read its reference file and do the work yourself; the companion is more capable than the condensed rules, and skipping it is the main reason two runs of this skill differ in quality.
+2. **Fall back only when the companion cannot be invoked** (declined at the Phase -1 stop, not installed, or it errors). Then, and only then, use the condensed rules in the phase's named reference file.
+3. **Flag every fallback.** Any phase that runs on a reference file because its companion was missing or declined is a DEGRADED phase. Say so in that phase ("running Phase N without <companion>; using the built-in condensed rules, which are weaker"), and record it on the gate report's `degraded` line. A run missing load-bearing companions is a partial execution, and the user is told which skill would have made it better.
+
+The reference files are the floor, so the skill still produces something when a companion is absent. The companion, when present, is the standard.
 
 ### gstack integration notes
 
@@ -115,7 +123,7 @@ Division of authority: gstack owns visual exploration and engineering review; pa
 Goal: one durable context file per product. Everything downstream reads it.
 
 1. Look for an existing context file at `.agents/product-marketing.md` or `.claude/product-marketing.md` (per product, or in the product's repo), and for `foundry-log.md` from prior runs. Read both if found. The log's `open items` and `learnings` are binding inputs (see the log format in Phase 6), not background reading: restate them at the top of this run's plan so the user sees they carried forward.
-2. If absent, draft the brief from every available source first (attached PRD or spec, the conversation, the repo README, any existing site), then interview the user with `assets/brief-template.md` for only what those sources rarely contain: the buyer's verbatim language, entry states per segment, traffic source, the proof inventory, and claims that cannot be made. One round of questions. A PRD never substitutes for the brief; it feeds it.
+2. If absent, build the brief. **Invoke the product-marketing skill as the primary path**: hand it the product, the repo README, any PRD or spec, the existing site, and the conversation, and let it produce the structured `.agents/product-marketing.md` (positioning, ICP, differentiation, competitive frame, proof inventory). Then interview the user for only what it cannot infer: the buyer's verbatim language, entry states per segment, traffic source, the real proof inventory, and claims that cannot be made. One round of questions; a PRD feeds the brief, it never replaces it. If product-marketing is not available, draft the brief yourself from `assets/brief-template.md`, tell the user Phase 0 ran without it, and mark the phase degraded.
 3. Write the completed brief to `.agents/product-marketing.md` in the product's project directory (or alongside the page output if there is no repo).
 
 Do not proceed on a guessed brief. A page built on an assumed audience or an assumed offer is rework, not progress.
@@ -131,24 +139,24 @@ From the brief, produce a short message architecture document (under a page):
 - Objection map: the top 3 to 5 reasons this exact buyer says no, each paired with the proof or copy move that answers it. Include, per segment, the "this doesn't apply to me" objection: the reason a qualified buyer in a GOOD starting position concludes the product isn't for them.
 - Proof inventory: every real testimonial, metric, named user, star count, certification, or credential available. Mark anything missing as `[TK: description]`. Never fabricate proof; see Integrity rules.
 
-If customer-research and marketing-psychology are installed, apply them here. Either way, write claims in the buyer's language, not the builder's.
+**Invoke customer-research** on every input the brief points to (reviews, interview transcripts, support tickets, competitor reviews, Reddit or forum sources, any voice-of-customer material) to surface the buyer's verbatim language and the real objections; write the message hierarchy and objection map in the words it returns, not the builder's. **Invoke marketing-psychology** to choose the persuasion levers that fit this buyer and offer (anchoring, loss aversion, social proof placement, commitment and consistency) and apply them to the claim order and the objection answers. If either is missing, derive the message architecture from the brief alone, mark Phase 1 degraded, and tell the user the objection map and buyer language are weaker without customer-research and the persuasion sequencing is weaker without marketing-psychology.
 
 ## Phase 2: Page spec
 
 Goal: a section-by-section blueprint, with conversion rules applied before a word of final copy is written.
 
 1. **Pick the archetype.** Read the archetype mapper at the top of `references/archetypes.md`. Current archetypes: `oss-project`, `saas-homepage`, `campaign-landing`, `mobile-app`, `course-sales`, `membership-community`, `newsletter-capture`, `personal-home`. If the page maps cleanly, follow that spec exactly. If it straddles two, use the mapper's composition rules. If nothing fits, build a custom spec from the shared rules, and tell the user that is what is happening.
-2. Read `references/conversion-rules.md` and apply the hard rules: 5-second hero test, single primary CTA, headline budget, proof adjacency, message match, mobile-first ordering.
+2. **Invoke the cro skill as the primary path**: hand it the archetype, the message architecture, and the draft section list, and use its output to structure the spec for conversion (5-second hero, single primary CTA, headline budget, proof adjacency, message match, mobile-first ordering, objection handling). `references/conversion-rules.md` is the fallback when cro is absent; using it marks Phase 2 degraded. Also invoke the archetype-specific companions on the sections that call for them: **pricing** for a pricing block, **competitors** for a comparison or alternative page, **aso** for a mobile-app page's store alignment, **launch** for a launch or campaign page, and **lead-magnets / popups / signup** where the spec includes those. Any that is needed but missing is noted as degraded.
 3. Output the spec as a numbered section list, each with: purpose, the claim it carries (from Phase 1), the proof element placed beside it, the CTA treatment if any, and any motion asset (hero demo clip, animation) with its justification. Motion is a cost in weight and attention; it must earn its slot, either by user request or because showing the product moving is the claim.
 
-Get user sign-off on the spec before writing copy. If gstack is present, this is the moment to offer `/plan-design-review`.
+Get user sign-off on the spec before writing copy. When gstack is present, invoke `/plan-design-review` on the spec here; its inline mockups catch structural problems before copy is written.
 
 ## Phase 3: Copy
 
 Goal: full page copy, in the owner's voice, passing the voice scan.
 
 1. Read `references/voice.md` first. If its config block still says `owner: default`, or the user asks to set up or change the voice, run the Voice wizard (below) before writing.
-2. Headline first: draft at least 6 candidates, score each against the budget, message match, and specificity, then present the top 3 with one line of reasoning each and pick (ask only in interactive runs). Then write the rest section by section against the spec. Use the copywriting skill if installed.
+2. Headline first: draft at least 6 candidates, score each against the budget, message match, and specificity, then present the top 3 with one line of reasoning each and pick (ask only in interactive runs). **Invoke the copywriting skill to write the body**, section by section against the spec and the message architecture; it does the writing. Then **invoke copy-editing** to tighten what it produced. For archetype-specific copy, invoke the matching companion on that section (**signup** for a registration flow, **popups** for an exit or scroll offer, **launch** for a launch page, **lead-magnets** for a gated offer). If copywriting is absent, write the copy yourself against the spec and `references/voice.md`, and mark Phase 3 degraded.
 3. Run `python3 scripts/voice_scan.py <draft files>`. The script reads its rules from `references/voice.md`, so wizard changes take effect immediately. Fix every FAIL; zero FAILs is the bar.
    Then the **pattern pass** (do not skip it): the word scan catches vocabulary, not grammar, and the most common reason a page passes the word scan yet still reads as AI is a language pattern. Resolve every `AI language pattern` WARN the scanner flags (negative parallelism "not X, it's Y"; copula avoidance "serves as"; tailing negation "no X, no Y"; authority tropes; significance inflation), and run the **humanizer skill** on the draft (or work the AI-language-pattern checklist in `references/voice.md`) to catch the structural tells regex misses: forced rule of three, superficial -ing tack-ons, false ranges, terse noun-pair fragments. A page is not voice-clean until both the words and the patterns are clean.
 4. One editing pass that only cuts. Every sentence survives the question: what does the reader lose if this dies? If nothing, it dies.
@@ -167,14 +175,14 @@ Run when: the user says anything like "set up my voice", "update the voice", "th
 
 Goal: a committed aesthetic and a token set, chosen for this property, before any markup.
 
-1. Read `references/design-direction.md` for per-property direction guidance and the anti-slop list. If web-design-guidelines is installed, load its rules alongside: on accessibility, typography, imagery, and interaction mechanics it is authoritative; on marketing-page structure, conversion, and anti-slop calls, this skill wins.
-2. Token source priority: existing brand assets from the brief, then gstack `DESIGN.md`, then theme-factory theme, then a new token plan via the frontend-design skill process (palette as named hex values, display plus body pairing, layout concept, one signature element, critique against the generic default before building). Offer `/design-shotgun` when direction is genuinely undecided.
+1. **Invoke web-design-guidelines** and treat it as authoritative on accessibility, typography, imagery, and interaction mechanics. `references/design-direction.md` carries the marketing-page and anti-slop layer (this skill wins on structure, conversion, and anti-slop calls) and is the fallback for the mechanics when web-design-guidelines is absent, which marks the design degraded.
+2. **Invoke the frontend-design skill to produce the token plan** (palette as named hex values, display plus body pairing, layout concept, one signature element, and a critique against the generic default before building); use its output as the design direction. Token source priority when they exist: brand assets from the brief, then gstack `DESIGN.md` (from `/design-consultation`), then a **theme-factory** theme, then frontend-design's plan. If frontend-design is absent, build the token plan yourself from `references/design-direction.md` and mark Phase 4 degraded. When direction is genuinely undecided and gstack is present, invoke `/design-shotgun`.
 3. **Explore mode:** produce the stated number of variants (default 3), each a complete committed direction (token plan + static hero mockup), deliberately contrasting along real axes (light/dark, editorial/brutalist, type-led/visual-led), never three flavors of the same idea. Present them, wait for the pick, then proceed as build mode with the winner. With gstack, `/design-shotgun` replaces this step and its comparison board handles the pick.
 4. Persist the winning tokens (theme-factory, or `theme.css` with custom properties). One property, one theme, many pages.
 
 ## Phase 5: Build (build mode) or Handoff (handoff mode)
 
-**Build mode.** Default to static HTML and CSS in a single file plus `theme.css`. Vanilla JS only for small interactions. Reach for web-artifacts-builder or gstack `/design-html` when the page needs more. Requirements regardless of stack:
+**Build mode.** Default to static HTML and CSS in a single file plus `theme.css`, hand-built to the requirements below. Vanilla JS only for small interactions. When the page needs more than a single static file (state, routing, components), **invoke web-artifacts-builder** or gstack **/design-html** to build it rather than hand-rolling it. Requirements regardless of stack:
 
 - Semantic HTML: one `h1`, ordered headings, `nav`/`main`/`section`/`footer` landmarks, real `button` and `a` elements.
 - Mobile-first CSS; fully usable at 390px before desktop styling.
@@ -189,7 +197,7 @@ Goal: a committed aesthetic and a token set, chosen for this property, before an
 
 ## Phase 6: Ship gates
 
-Read `references/ship-gates.md` and run the full checklist (in handoff mode, run the pre-handoff subset now and the rest when the built asset comes back). Summary: conversion audit with MECLABS score, voice scan at zero FAILs, WCAG 2.1 AA spot checks, performance budget, schema + llms.txt + meta, integrity. Use the cro skill and gstack `/design-review` + `/qa` here if installed.
+Read `references/ship-gates.md` and run the full checklist (in handoff mode, run the pre-handoff subset now and the rest when the built asset comes back). Summary: conversion audit with MECLABS score, voice scan at zero FAILs plus the pattern pass, WCAG 2.2 AA spot checks, performance budget, schema + llms.txt + robots + meta, measurement, integrity. **Invoke the companion that owns each gate as the primary path**: **cro** for the conversion audit and MECLABS score, **web-design-guidelines** for the accessibility and render review, **ai-seo** for the AI-discovery gate (robots.txt crawler allowlist, content extractability, llms.txt), **schema** for the JSON-LD, and **analytics** for the measurement gate. Add gstack **/design-review** and **/qa** as extra checks. Any gate run on the `references/ship-gates.md` fallback because its companion was missing is marked degraded in the report. The voice scan (Gate 2) and integrity (Gate 8) are always page-foundry's own and are never waived by a companion.
 
 Report results as a pass/fail table with the MECLABS score. A failed gate means fix and re-run, not ship with a caveat.
 
@@ -201,6 +209,7 @@ Close every run by appending a record to `foundry-log.md` beside the page output
 - meclabs: C={n} (M{n} V{n} I{n} F{n} A{n})
 - gates: {pass/fail/N-A summary}
 - companions: {active this run, with versions where known}
+- degraded: {phases that ran on a reference-file fallback because a companion was missing or declined, each with the companion it lacked; "none" if every phase used its companion}
 - open items: {unresolved, one per line}
 - conversion data: {added later by the user; visits, signups, rate, source}
 - learnings: {one line per lesson worth carrying forward}

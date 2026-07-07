@@ -212,6 +212,8 @@ Omit `endDate` and `offers` fields you cannot fill with real values; never inven
 | Measurement | PASS | {conversion event, UTM, analytics or declined} |
 | Integrity | PASS | {n} TK items resolved/cut |
 
+Degraded phases: {any phase that ran on a reference-file fallback because its companion was missing or declined, named with the companion it lacked; "none, all companions present" otherwise. A degraded run is a partial execution, and the owner is told which skill would improve it.}
+
 Open items for the owner: {real proof to collect, urgency to verify, etc.}
 ```
 
