@@ -8,3 +8,5 @@ CLAUDE.md
 .agents/
 skills-lock.json
 .agents.archived-*/
+node_modules/
+*.tgz

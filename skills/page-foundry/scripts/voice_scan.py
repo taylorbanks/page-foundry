@@ -129,6 +129,8 @@ def strip_to_copy(text, suffix):
         text = re.sub(r"```.*?```", " ", text, flags=re.S)
         text = re.sub(r"`[^`]*`", " ", text)
         text = re.sub(r"<!--.*?-->", " ", text, flags=re.S)
+        text = re.sub(r"!\[[^\]]*\]\([^)]*\)", " ", text)  # markdown images / shields.io badges
+        text = re.sub(r"<[^>]+>", " ", text)               # inline HTML used for README layout
     return text
 
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.9.1 (2026-07-07)
+- npm distribution: `npx page-foundry install` now installs the skill. A root package.json (unscoped name, files whitelist, zero deps, no postinstall hook) plus bin/page-foundry.js, a dependency-free no-network installer (install/update/uninstall/where; flags --project/--agents/--dir/--with-commands/--dry-run/--force). It preserves a customized voice.md across updates and guards uninstall to real page-foundry directories
+- voice_scan.py strips markdown images and inline HTML from `.md` before scanning, so a README with shields.io badges and a centered header scans clean instead of false-flagging badge `!` as exclamation points
+- README rebuilt: centered header, brand-colored badges, a hero of the live page, the four install channels
+
 ## v2.9 (2026-07-07)
 - Voice gate catches two structural tells the 2.7 patterns missed: three-verb-clause runs ("runs X, gates Y, and hands Z") via a new `scan:patterns` regex, and parallel-list uniformity (a prose run of fragments that all open with a present-tense verb) via a new structural check in voice_scan.py that splits on tag gaps and sentence ends. Both WARN-level
 - The humanizer pass is now a hard Gate 2 sub-check, not a suggestion: the humanizer skill must be invoked on the final copy, its rewrites applied, and recorded on a new `humanizer` line in the gate report. A scanner PASS with no humanizer pass is an incomplete Gate 2. Structural uniformity spread across separate DOM elements (a labeled roster where every item opens the same way) is beyond regex; only a semantic read catches it

@@ -1,0 +1,45 @@
+{
+  "name": "page-foundry",
+  "version": "2.9.1",
+  "description": "A gated pipeline for product homepages, landing pages, and sales pages. An orchestrator Claude Code skill. Install it with: npx page-foundry install",
+  "bin": {
+    "page-foundry": "bin/page-foundry.js"
+  },
+  "files": [
+    "bin/",
+    "skills/page-foundry/",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "author": "Taylor Banks",
+  "homepage": "https://taylorbanks.github.io/page-foundry/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taylorbanks/page-foundry.git"
+  },
+  "bugs": {
+    "url": "https://github.com/taylorbanks/page-foundry/issues"
+  },
+  "keywords": [
+    "claude-code",
+    "claude",
+    "skill",
+    "agent-skill",
+    "landing-page",
+    "homepage",
+    "sales-page",
+    "conversion",
+    "copywriting",
+    "cro",
+    "marketing",
+    "page-builder"
+  ],
+  "scripts": {
+    "test": "node bin/page-foundry.js --version && node bin/page-foundry.js where"
+  }
+}
