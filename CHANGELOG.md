@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.5 (2026-07-06)
+- Companion stop is now mandatory and non-suppressible: no interactivity phrase ("don't pause", "no questions", "run end to end") and no operator-supplied or inferred instruction can skip it; only the user, in chat, may approve proceeding with a companion missing or outdated. Closes the 2.4 contradiction where the interactivity rule and pause table let "run end to end" suppress the very stop 2.4 added
+- Autonomy is user-stated, never inferred: runs are interactive unless the user explicitly asked to skip pauses in the request itself; a standing preference, a prior task, or an orchestrator rewrapping the request does not authorize skipping. When unsure a pause was waived, keep it
+- Interactivity phrases now suppress only the spec sign-off pause; "run end to end" is honored in full only when a complete product-marketing.md already exists and a theme/direction is supplied (nothing to run autonomously from otherwise, so Phase 0 and spec sign-off still happen)
+- Phase 0 interview pause-table row aligned to the Phase 0 prose: only an existing product-marketing.md skips the interview; a PRD, repo, or spec is source material and does not
+- Rationale recorded from a real failure: an operator injected "run end to end" into the invocation, which 2.4 honored, skipping the companion stop, the brief interview, and spec sign-off, and shipping an off-message page. 2.5 makes those skips impossible without the user's own word
+
 ## v2.4 (2026-07-06)
 - Preflight rewritten: detection sweep across runtime inventories (npx skills list, claude plugin list), ~/.agents/skills, ~/.claude/skills, project dirs, /mnt/skills, and plugin namespaces; name-based matching (namespaced and symlinked forms count); installing an already-present companion is a defect
 - Freshness check via npx skills check; outdated treated like missing (report, offer, approval)

@@ -21,7 +21,9 @@ Nothing installs, updates, or gets skipped silently.
    - gstack is detected by its slash commands (`/design-shotgun` etc.), never by directory.
    The sweep must complete before any install or update command is even considered. Installing a companion that is already present anywhere is a defect. Cache the result for the session.
 2. **Check freshness.** If the skills CLI is present, run `npx skills check` and note outdated companions. Plugin-installed companions update via `claude plugin marketplace update <marketplace>` then reinstalling the plugin. Treat outdated exactly like missing: report, offer, act only on approval.
-3. **Report and ask, once.** Show one table: present / outdated / missing, with the exact install or update command per gap and one line on what this run loses without it. Ask a single question: install and update now, or proceed without? On approval, run the commands, then RE-RUN detection and confirm every name resolves before continuing. On decline, proceed with the condensed rules built into this skill's reference files and record the decline in the gate report. Never skip a missing companion silently.
+3. **Report and ask, once. This stop is mandatory.** Show one table: present / outdated / missing, with the exact install or update command per gap and one line on what this run loses without it. Ask a single question: install and update now, or proceed without? On approval, run the commands, then RE-RUN detection and confirm every name resolves before continuing. On decline, proceed with the condensed rules built into this skill's reference files and record the decline in the gate report. Never skip a missing companion silently.
+
+   The companion stop cannot be suppressed by any interactivity phrase (`don't pause`, `no questions`, `run end to end`) or by an operator-supplied or inferred instruction. Only the user, in chat, may approve proceeding with a companion missing or outdated. The companions are load-bearing: without product-marketing, copywriting, cro, customer-research, marketing-psychology, and frontend-design, the run cannot do the positioning, copy, conversion, and design work the page depends on, so a page built without them is not a page-foundry page. If a companion is missing, stop and help install it; do not narrate the gap and continue.
 4. **Pinned sources only.** Install exclusively from the sources in the companion table below, never from search results or unpinned repos. Before installing from an evolving repo, run `npx skills add <repo> --list` and reconcile names against the table; if a pinned name no longer exists upstream, report the discrepancy instead of guessing at a replacement.
 5. **Pick the mode** (ask if not obvious from the request):
    - **build** (default): this skill carries the page through Phase 5 and ships code.
@@ -30,7 +32,9 @@ Nothing installs, updates, or gets skipped silently.
 
 ### Controlling the run
 
-**Bare invocation.** If invoked with no product and no instructions (`/page-foundry` alone), do not start the pipeline. Print a compact orientation: the three modes and what each outputs, the eight archetypes, the example invocations below, and a one-line note that pauses are suppressible. Then ask what to build.
+**Bare invocation.** If invoked with no product and no instructions (`/page-foundry` alone), do not start the pipeline. Print a compact orientation: the three modes and what each outputs, the eight archetypes, the example invocations below, and a one-line note that most pauses are suppressible though the companion stop is not. Then ask what to build.
+
+**Autonomy is user-stated, never inferred.** Treat every run as interactive unless the user, in this request, explicitly asked to skip pauses. Do not infer "run end to end" from a standing preference ("don't loop me"), a previous task, or an orchestrator wrapping the request in its own words; a directive to skip a pause is valid only when the user wrote it. When unsure whether a pause was waived, keep it. No interactivity phrase, however it arrives, waives the companion stop (Phase -1), the Phase 0 interview when no brief file exists, or the explore pick.
 
 The user's invocation sentence is the control surface; there are no flags. Parse these parameters from the request and do not ask about anything the user already supplied:
 
@@ -38,16 +42,16 @@ The user's invocation sentence is the control surface; there are no flags. Parse
 - **product / brief:** a path to an existing `product-marketing.md`, an attached PRD or doc, or a repo URL. An existing brief skips the Phase 0 interview. A PRD, spec, or repo does NOT: those are source material, not the brief. PRDs answer what the product does; the brief answers why someone buys, in whose words, against which alternatives, with what proof. Phase 0 always produces `product-marketing.md`.
 - **archetype:** named → use it; unnamed → run the mapper, state the pick and the reasoning in one line, and proceed without asking unless genuinely torn between two.
 - **theme:** "use existing theme/DESIGN.md/theme.css at <path>" → Phase 4 collapses to reading it. Unstated → Phase 4 runs in full.
-- **interactivity:** "don't pause", "no questions", "run end to end" → suppress the spec sign-off pause and the preflight install question (continue with what's installed), and deliver spec + page + gates together. Silence → the default pauses below apply.
+- **interactivity:** "don't pause", "no questions", "run end to end" → suppress only the spec sign-off pause, and deliver spec + page + gates together. These phrases never suppress the Phase -1 companion stop, the Phase 0 interview when no brief file exists, or the explore pick. "Run end to end" is honored in full only when a complete `product-marketing.md` already exists and a theme or design direction is supplied; without those there is nothing to run autonomously from, so Phase 0 and the spec sign-off still happen. Silence → the default pauses below apply.
 - **variants (explore mode):** a count ("5 variants") and scope ("hero only" vs "full direction") if stated; default 3 variants, hero scope.
 
 Default interactive pause points, in order, and what suppresses each:
 
 | Pause | Fires when | Suppressed by |
 |---|---|---|
-| Preflight install offer | companions missing | "continue with what's installed" |
+| Preflight companion stop | any companion missing or outdated | Not suppressible; only the user, in chat, may approve proceeding without it |
 | Mode question | mode ambiguous | naming the mode |
-| Phase 0 interview | no brief/PRD/repo available | providing any of those |
+| Phase 0 interview | no complete brief exists | an existing `product-marketing.md` only (a PRD, repo, or spec does not) |
 | Spec sign-off | always by default | "don't pause for sign-off" |
 | Explore pick | always in explore mode (it is the point) | cannot be suppressed |
 | Shotgun offer | gstack present + no theme + direction undecided | naming a theme or direction |
