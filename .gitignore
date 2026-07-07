@@ -2,3 +2,8 @@ taylor-voice.md
 *.skill
 .DS_Store
 CLAUDE.md
+
+# skills CLI / agent install artifacts (appear when install-testing inside the repo)
+.claude/
+.agents/
+skills-lock.json
