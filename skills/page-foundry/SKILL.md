@@ -1,6 +1,6 @@
 ---
 name: page-foundry
-description: End-to-end pipeline for product homepages, landing pages, and sales pages. Use this skill whenever the user wants to create, draft, rewrite, review, or ship a homepage, landing page, sales page, product page, launch page, pricing page, course or workshop sales page, membership or community page, newsletter signup page, personal site, or marketing site for a product, web app, mobile app, SaaS, open source project, course, community, or person; also when they mention page-foundry, conversion copy, page CRO, hero sections, "make a page for X", or want a copy and design package to hand to Claude Design. It sequences intake, message architecture, page spec, copy, design, and build or handoff, then enforces ship gates (conversion rules, voice scan, accessibility, performance, schema, llms.txt). Orchestrates product-marketing, copywriting, cro, frontend-design, theme-factory, and gstack design skills when installed, and degrades gracefully when they are not.
+description: Produces high-converting homepages, landing pages, and sales pages written in your own voice, one brief in and one shipped page or design-handoff package out, with checks that keep the output from reading or looking AI-made. Use when the user wants to create, draft, rewrite, review, or ship a homepage, landing page, sales page, pricing page, course or workshop page, membership or community page, newsletter signup, or personal site, or mentions page-foundry, conversion copy, page CRO, or hero sections.
 ---
 
 # Page Foundry

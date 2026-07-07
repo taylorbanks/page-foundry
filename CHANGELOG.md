@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.5.1 (2026-07-06)
+- READMEs rewritten as marketing copy: lead with what the skill produces (high-converting, voice-consistent pages that do not read or look AI-made) instead of its internal phases and gates
+- SKILL.md description shortened from 965 to ~500 characters: fixes the meta description / og:description truncation, keeps the auto-invocation triggers, and moves the skill into the length band where skills.sh renders its generated summary. The summary itself is skills.sh's own async job, not a repo field
+
 ## v2.5 (2026-07-06)
 - Companion stop is now mandatory and non-suppressible: no interactivity phrase ("don't pause", "no questions", "run end to end") and no operator-supplied or inferred instruction can skip it; only the user, in chat, may approve proceeding with a companion missing or outdated. Closes the 2.4 contradiction where the interactivity rule and pause table let "run end to end" suppress the very stop 2.4 added
 - Autonomy is user-stated, never inferred: runs are interactive unless the user explicitly asked to skip pauses in the request itself; a standing preference, a prior task, or an orchestrator rewrapping the request does not authorize skipping. When unsure a pause was waived, keep it
