@@ -22,9 +22,17 @@ Audit date: 2026-07-17. Catalogs swept: marketingskills 2.3.0 (44 skills), gstac
 
 **Borderline, offered as opt-in enhancers where the archetype matches:** ad-creative (campaign-landing message match: the ad and the page written as a pair), free-tools (when the lead magnet IS a tool), paywalls (pricing-page psychology adjunct; the surface itself is in-app).
 
+### The distribution seam (revised 2026-07-17 after owner challenge)
+
+The first draft excluded the whole campaign-ops lane. Wrong cut. The boundary that keeps page-foundry coherent is "the page and its announcement" vs "ongoing marketing operations" — and the announcement side has a unique asset: the run's artifacts. A post-ship **distribution seam** (opt-in, after gates pass) lets `launch` orchestrate `social`, `pr`, `ad-creative`, `emails`, and `directory-submissions`, each consuming the run's message architecture, VOC, and voice rules — so the announcement inherits the page's message instead of being written from scratch. Message match works in both directions: the ad and the page written as a pair. This is exactly what a user cannot get by invoking those skills standalone, because standalone they lack the artifacts.
+
 ### Excluded, with reasons (stay excluded)
 
-content-strategy (multi-page editorial planning; evaluated and excluded in v2.6 — stands), programmatic-seo (pages at scale, not a page), video (motion is Remotion's lane; revisit only as a fallback if Remotion is absent), social / pr / co-marketing / marketing-ideas / marketing-plan / cold-email / sms / prospecting / revops / sales-enablement / churn-prevention / community-marketing / referrals / ads (campaign and lifecycle operations beyond the page's boundary). Exclusions are recorded so the quarterly reconciliation re-tests them instead of re-litigating from scratch.
+- **content-strategy** — plans editorial calendars and topic clusters for content marketing. Nothing in it builds, improves, or announces a page; it plans a publishing program. Evaluated in v2.6, re-tested here: still no seam that consumes or feeds page artifacts.
+- **programmatic-seo** — templated pages at scale is the philosophical opposite of per-page anti-uniformity, so it is not a v3.0 companion. Recorded as a **future mode candidate** ("foundry at scale": conversion contract + gates applied across N data-driven pages) if demand shows; that would be its own major version, not a bolt-on.
+- **cold-email / sms / prospecting / revops / sales-enablement / churn-prevention / community-marketing / referrals / ads (campaign management)** — lifecycle and outbound operations that neither consume nor produce page artifacts; wrapping them makes page-foundry a diluted marketing-plan skill.
+- **marketing-plan / marketing-ideas** — the strategy layer above page-foundry; orchestrating upward inverts the relationship. A marketing-plan run may CALL page-foundry, not the reverse.
+- **video** — motion stays in the Remotion stack (below); revisit only as a fallback.
 
 ## gstack
 
@@ -34,9 +42,25 @@ Used: design-consultation, design-shotgun, design-html, plan-design-review, desi
 
 Dispositioned in WS3: document, palette, detect, critique, polish, live, overdrive in; shape/init excluded (double-interview), clarify excluded (voice gate owns copy). No change.
 
-## anthropics official / vercel-labs
+## anthropics/skills (upstream repo swept 2026-07-17: 17 skills)
 
-frontend-design, skill-creator (build-time), web-artifacts-builder, theme-factory (leaving the table per dedup) — no additional catalog finds relevant to a marketing page. security-guidance, code-review et al. are out of lane. vercel-labs: web-design-guidelines remains the only fit.
+Used: frontend-design, theme-factory (leaving per dedup), web-artifacts-builder, skill-creator (build-time). **Adds:**
+
+| Skill | Where | Why |
+|---|---|---|
+| **webapp-testing** | Gates 3 and 5 executor | Playwright toolkit for local webapps: screenshots, browser logs, UI verification. The render gate currently names "Playwright, headless Chrome, or gstack /design-review" with no skill behind the first option; this is that skill. For users without a browser-automation setup, it is the difference between a real render gate and an N/A. |
+| **canvas-design** | Phase 5 asset production (OG cards, poster-style art) | Design-philosophy-driven static art in png/pdf. Default owner for OG-card production (on-token, deterministic); marketingskills `image` handles photographic/AI-generated needs. One owner per asset type, both under the integrity rule. |
+| **algorithmic-art** | Opt-in enhancer (signature elements, generative heroes) | p5.js generative art with seeded randomness. For the rare property whose register supports it (personal-home, creative portfolio, overdrive-style heroes). Pairs with impeccable overdrive; propose-first, never default. |
+
+Excluded: brand-guidelines (applies ANTHROPIC's brand specifically, not a generic brand tool), docx/pdf/pptx/xlsx/slack-gif-creator/internal-comms/doc-coauthoring/mcp-builder/claude-api (out of lane).
+
+## vercel-labs/agent-skills (upstream repo swept: 13 skills)
+
+Used: web-design-guidelines. **Conditional add:** react-view-transitions — only when the build path is web-artifacts-builder producing React; static HTML pages get view-transition guidance from impeccable animate instead. **Borderline opt-in:** deploy-to-vercel — a post-build deploy seam for users who want hosting handled; page-foundry stays host-agnostic ("HTML you own"), so this is offered, never default. Excluded: react-best-practices / react-native / composition-patterns (code-lane), vercel-optimize (platform-specific; Gate 4 owns the budget), writing-guidelines (the voice gate owns prose; two style authorities is one too many).
+
+## Motion stack (remotion-dev/skills swept: 9 skills; plus ecosystem)
+
+The companion table's single vague "remotion (official skill), confirm exact repo" line becomes a concrete stack: **remotion-best-practices** (431K installs; the doctrine), **remotion-create** + **remotion-render** (build and render the clip) — invoked together when a spec's motion slot is justified (hero demo clips, product loops). **remotion-captions** when the clip carries speech. Governance unchanged: impeccable animate.md duration/easing rules + our "motion earns its slot" doctrine decide WHETHER; the Remotion stack decides HOW. Evaluate-before-trust: heygen-com/hyperframes css-animations (73K installs) as a lighter CSS-motion path for micro-animation without video weight — third-party, needs the same read-the-source diligence as any companion before pinning.
 
 ## Standing rule (extends issue #6)
 
