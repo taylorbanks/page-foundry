@@ -1,0 +1,41 @@
+# Completeness critique — page-foundry v3.0 research pass
+
+## 1. Contradictions between reports
+
+1. **Stitch spec shape (material).** impeccable:core states the spec as "exactly six sections… no extra top-level sections," hex-sRGB-only linting with OKLCH warning, Zod-schema-limited frontmatter. stitch:format says the published spec has **eight** sections (incl. `## Layout`, `## Shapes`), accepts any CSS color, and permits arbitrary custom sections. **I verified against the cached spec** (`scratchpad/designmd/docs-spec.md`): eight sections including Layout and Shapes are present; stitch:format is right. impeccable:core reported impeccable's internal (stale) doctrine as spec fact. Consequence for v3.0: a page-foundry-generated 8-section design.md may be rejected/rewritten by impeccable's `document`/detector tooling; the plan must decide which profile to emit and possibly handle both.
+2. **theme-factory "never invoked."** pf:orchestration verdicts it "Never: no invocation point exists in any phase body." **Verified false as stated**: SKILL.md:179 (Phase 4 body) lists theme-factory as token-source fallback #3, and :181 persists tokens via theme-factory. The contract-absence critique stands; the "never" verdict overstates.
+3. **Role of impeccable `critique` in the gates.** impeccable:core recommends critique as a standard "full review gate" with score as pass/fail input; impeccable:craft says running Nielsen scoring alongside MECLABS duplicates rubrics and critique should be occasional, MECLABS staying arbiter. The plan must pick one.
+4. **Gate rework scope.** pf:archetypes: "the gates need almost no change." pf:orchestration proposes substantial gate changes (independent-subagent MECLABS audit, evidence lines, verbatim-copy hash check); pf:archetypes itself adds an anti-template Gate 1 check. Not fatal, but the "almost no change" framing is wrong once both redesigns land.
+5. **Where design.md-illegible content lives.** stitch:format notes custom body sections could legally carry conversion/copy content; pf:handoff says the format "has no native slots" for it. They converge on the same answer (sibling machine-checkable files + generated design.md projection) but disagree on what the format permits — matters if a consuming tool only reads design.md.
+
+## 2. Questions no report answers
+
+1. **Singleton collision:** PRODUCT.md/DESIGN.md/`.impeccable/` are per-project-root singletons; page-foundry is explicitly per-property, many products per user, possibly per repo. How do N properties share one root DESIGN.md/PRODUCT.md, and who owns their lifecycle when both skills (or a later manual `/impeccable init`) touch them? Nothing addresses this.
+2. **Does `detect.mjs` actually work on page-foundry output?** No report ran the detector on a real page-foundry static HTML page. The whole "design-side voice_scan" thesis is untested empirically.
+3. **Hook conflict:** impeccable's PostToolUse detector firing on every Phase 5 edit vs page-foundry's phase-boundary gate model — interaction, consent, and noise budget unexamined.
+4. **Serialization seam between the two redesigns:** how the new archetype contract (jobs, axes, ordering constraints) becomes `02-page-spec.md`/design.md in the handoff package. The archetype and handoff audits never reference each other.
+5. **Dependency policy for new gates:** `npx @google/design.md lint` and impeccable's Node scripts vs the skill's current "one standard-library Python script, no network" security posture (README/SECURITY.md promise). Adding Node/npm gate dependencies changes the skill's trust story.
+6. **Migration:** what happens to existing per-property foundry-logs/tokens/specs when v3.0 introduces contracts + the artifact directory. No report covers back-compat.
+7. **Current target-tool capabilities:** pf:handoff's Claude Design constraints are quoted from handoff.md itself (dated 2026-07), not re-verified; the return-spec question (what actually comes back from each tool class) is raised but unanswered.
+8. **Companion pin for impeccable:** source repo, version detection (SKILL.src.md compiled per provider), and preflight-table mechanics for adding it as a foundational companion — detection paths are covered, install/pin/update policy is not.
+
+## 3. Five most important findings
+
+1. **The archetype system defeats its own rule 4** — every archetype freezes one objection order into slots, producing a universal open (hero→proof-strip) and universal close (FAQ→CTA); 100 pages converge on one wireframe, the exact failure the skill exists to prevent. Fix: contracts (goal / entry states / jobs / proof+CTA policy / ordering constraints / composition axes), with the mapper becoming a contract compiler. (pf:archetypes)
+2. **Only one companion has a real invocation contract (humanizer); the two highest-differentiation companions (customer-research, marketing-psychology) leave zero artifacts** — deep use and token gestures are indistinguishable. Fix: per-companion I/O contract table, run artifact directory, per-companion evidence lines, VOC provenance schema. (pf:orchestration)
+3. **Build mode (the default) has no verbatim-copy protection and Phase 3's edit order lets unscanned prose reach Gate 2** — post-humanizer cuts/red-team fixes are never re-scanned, and the builder can paraphrase gated copy. (pf:orchestration)
+4. **impeccable is a clean complement, with one non-interactive seam that matters most:** `detect.mjs --json` as a mechanical design ship-gate (design analog of voice_scan), plus write-PRODUCT.md-from-the-brief-first to prevent the double interview and inherit context into every impeccable command. Absorb craft's ~15 mechanical rules into design-direction.md; keep critique/live/overdrive as invocations; MECLABS stays arbiter over Nielsen minimalism on sales pages. (impeccable:core + impeccable:craft)
+5. **Handoff's balance is inverted and design.md is a projection, not a replacement:** over-prescribes what design tools excel at (signature element, closed tokens, no-merge) while omitting what they can't know (voice rules for generated microcopy, an explicit fabrication ban, asset geometry, return/revision spec, Gates 6-7). Adopt the published Stitch spec as the design-system layer, generated deterministically from canonical 00-06 files. (pf:handoff + stitch:format)
+
+## 4. Claims to re-check before planning
+
+**Already verified by me (safe):** handoff.md gate-numbering bug (handoff.md:70 "Gate 6, integrity" vs ship-gates.md Gate 6=AI discovery, Gate 8=Integrity — CONFIRMED); archetypes.md:24 quote and all cited line counts (CONFIRMED); impeccable version 3.9.1 (cached SKILL.md — CONFIRMED); spec's eight sections + duplicate-heading-rejects rule (cached docs-spec.md — CONFIRMED); cached README/PHILOSOPHY exist as `.-README.md`/`.-PHILOSOPHY.md`.
+
+**Still needs re-check:**
+- All impeccable:core Stitch-spec assertions (hex-only lint, Zod schema fields, 8-prop hard limit, OKLCH warning) — proven partially stale; re-read impeccable's `document.md` against the cached spec before choosing an emission profile.
+- stitch:format's post-cutoff web claims: npm `@google/design.md` existence, the nine named lint rules (NOT in the cached spec doc — sourced from the linter tree, unverified locally), `diff`/`export`/`spec` subcommands, "~April 2026 open-sourcing," awesome-design-md "~70 files," and all blog/Medium URLs. Verify the CLI runs before wiring a ship gate to its exit codes.
+- impeccable:core's numeric flourishes: "46 rules," "23 sub-commands," "11k-line live-browser.js," "~25-file live family" — countable in the cached tree, uncounted.
+- pf:orchestration grade-table specifics before acting on them: "copywriting never receives voice.md," "Phase 2 body never invokes remotion," "gstack at Phase 6 additions produce no output" — plus the disproven theme-factory line; grep SKILL.md for each.
+- conversion-rules.md's evidence numbers ("+32% single-CTA," "nav removal roughly doubles conversion") — the contract redesign calls these "best-evidenced"; their provenance was never checked.
+- impeccable:craft's verbatim quotes and constants (cubic-bezier values, Cowan ≤4, "Herding pixels") — spot-check reference files before copying into design-direction.md.
+- pf:handoff's Claude Design capability snapshot — restated from handoff.md, not re-verified against the live tool.

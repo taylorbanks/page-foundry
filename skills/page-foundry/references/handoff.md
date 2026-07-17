@@ -67,7 +67,7 @@ Run BEFORE delivering the package (these gate the package itself):
 
 - Gate 1, conversion audit: runs against the spec and copy (5-second test, CTA policy, headline budget, proof adjacency, MECLABS scored on the planned page).
 - Gate 2, voice: `voice_scan.py` at zero FAILs on 01-copy.md and 00-master-prompt.md.
-- Gate 6, integrity: no fabricated proof anywhere in the package; [TK] items listed in the master prompt's questions section.
+- Gate 8, integrity: no fabricated proof anywhere in the package; [TK] items listed in the master prompt's questions section.
 
 Run AFTER the built asset comes back (request the HTML or a deployed URL):
 
