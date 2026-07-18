@@ -28,3 +28,4 @@ iter 27 · REVIEW-4 audit of WS4 (iters 25-26 + unowned 2186228) · done (GREEN)
 iter 28 · 12a three new contracts (pricing/comparison/thank-you) · done · f7d1c8a · zero new WARNs; onboarding companion given a 21b owner
 iter 29 · 12b docs/waitlist/event contracts · done · 891f536 · three fixture compiles in evidence; newsletter mapping sharpened for waitlist boundary
 iter 30 · 12c agency/ecommerce/changelog contracts + 404/portfolio notes + TESTS 40-43 · done · 7020a26 · #12 closed; owner queued 13h-13p mid-iteration, no conflict
+iter 31 · 13g customer-research Mode 2 authorization · done · 40f2e57 · real HN probe as dogfood; test 37 closing line updated with the doctrine
