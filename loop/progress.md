@@ -21,3 +21,4 @@ iter 18 · REVIEW-2b confirmation of 13f · done (GREEN) · d12bc4b · tagged v3
 iter 19 · 15a impeccable companion entry + PRODUCT.md handoff · done · 83d2d0b · dogfood ran against impeccable context.mjs itself
 iter 22 · 15b Phase 4 impeccable wiring + Gate 5 detect scan · done · 5626ce3 · #15 closed; docs findings filed as #22; iters 20-21 were the limit outage (see escalation-1-resolved)
 iter 23 · 16 craft-rule absorption into design-direction.md · done · 27db0bc · 15 stamps spot-checked vs clone 8967edc; squint gate line deferred to #18; voice.md 3.2.1 provenance fixed
+iter 24 · REVIEW-3 audit of WS3 (iters 19-23) · done (GREEN) · pending · tagged v3-night-3; 0 reopens, 3 observations (19a WS3 regression list, DOGFOOD detect from repo root, #22 open)
