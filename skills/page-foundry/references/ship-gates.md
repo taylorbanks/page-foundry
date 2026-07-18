@@ -55,8 +55,8 @@ Handoff mode: gates 1, 2, and 8 run before the package is delivered; gates 3, 4,
 - [ ] JSON-LD schema present and valid for the archetype (templates below).
 - [ ] `llms.txt` present at the site root (template below).
 - [ ] `robots.txt` does not `Disallow` the AI crawlers that drive citations: `GPTBot`, `ChatGPT-User`, `PerplexityBot`, `ClaudeBot`, `anthropic-ai`, `Google-Extended`, `Bingbot`. Blocking one loses that engine's citation; only `CCBot` is safe to block. An AI-discovery gate that passes while `ClaudeBot` is disallowed is a false pass.
-- [ ] Page copy is machine-extractable: the primary answer sits in a self-contained 40 to 60 word block near the top, key facts are in real text (not baked into images), and comparisons/FAQs use plain markup.
-- [ ] For archetypes with public pricing (saas-homepage, course-sales, membership-community), a machine-readable `/pricing.md` (or `/pricing.txt`) is present for agentic buyers.
+- [ ] Page copy is machine-extractable: the answer block the Phase 2 spec placed survived the build as a self-contained 40 to 60 word block near the top, key facts are in real text (not baked into images), and comparisons/FAQs use plain markup. This gate verifies the spec's block; discovering at ship time that no block was specced is a Phase 2 defect, not something to retrofit here.
+- [ ] For archetypes with public pricing (saas-homepage, course-sales, membership-community), the machine-readable `/pricing.md` (or `/pricing.txt`) the Phase 2 spec drafted is present for agentic buyers.
 - [ ] `<title>` and meta description written to the same standard as page copy (voice rules apply), and short enough not to truncate.
 - [ ] Open Graph + Twitter card meta complete, with a real OG image (1200x630).
 - [ ] Canonical URL set; favicon present.
@@ -65,8 +65,8 @@ Note: Google does not consume `llms.txt`; it helps ChatGPT, Claude, and Perplexi
 
 ## Gate 7: Measurement
 
-- [ ] Conversion event defined: the form destination (ESP, endpoint) records source/medium, or the user has consciously declined measurement.
-- [ ] UTM convention stated for every planned traffic source, so campaign performance is attributable from day one.
+- [ ] Conversion event wired as the Phase 2 spec defined it: the form destination (ESP, endpoint) records source/medium, or the user has consciously declined measurement. A spec with no measurement plan is a Phase 2 defect; this gate verifies, it does not invent measurement after the build.
+- [ ] The spec's UTM convention stated for every planned traffic source, so campaign performance is attributable from day one.
 - [ ] Analytics: privacy-respecting option (Plausible, GoatCounter, or server logs) wired or consciously declined. A gauge-interest page without measurement cannot gauge interest.
 
 ## Gate 8: Integrity
@@ -231,7 +231,7 @@ line reads "PARTIAL: overridden at preflight".
 - frontend-design: {invoked, tokens persisted, alternatives considered}
 - humanizer: {invoked once on final copy — yes/no; one line on what it changed (e.g. "broke two three-verb runs, varied a 6-item roster"); accepted WARNs, each with its reason; re-runs triggered by post-pass edits, if any; or "not run" which makes Gate 2 incomplete}
 - copy-editing: {changelog summary — what was cut, what was tightened; or "skipped (degraded)"}
-- {one line per enhancer whose seam was in scope: analytics, ai-seo, schema, web-design-guidelines (live ruleset or frozen fallback), remotion, gstack (which commands ran), and the archetype companions (pricing, competitors, aso, launch, lead-magnets, popups, signup) when their section is on the page. In scope but skipped reads "skipped (degraded: missing)" or "skipped (declined at preflight)"}
+- {one line per enhancer whose seam was in scope: analytics, ai-seo, schema, competitor-profiling (when the brief named alternatives), web-design-guidelines (live ruleset or frozen fallback), remotion, gstack (which commands ran), and the archetype companions (pricing, competitors, aso, launch, lead-magnets, popups, signup) when their section is on the page. In scope but skipped reads "skipped (degraded: missing)" or "skipped (declined at preflight)"}
 
 Degraded phases: {any phase that ran on a reference-file fallback because its companion was missing or declined, named with the companion it lacked; core-tier overrides prefixed PARTIAL:; "none, all companions present" otherwise. A degraded run is a partial execution, and the owner is told which skill would improve it.}
 
