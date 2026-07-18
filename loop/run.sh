@@ -21,12 +21,13 @@ LOOP=loop
 LOG="$LOOP/logs"
 mkdir -p "$LOG" "$LOOP/evidence"
 MAX_ITER=60
-STOP_AFTER="06:30"   # local; no NEW iterations after this
+STOP_AFTER="14:00"   # local; no NEW iterations after this (extended for the 07-18 daytime run, owner present)
 PROMISE="PF-V3-SHIPPED-COMPLETE-WITH-EVIDENCE-9f3a"
 ITER=0
 
 log(){ echo "[runner $(date '+%H:%M:%S')] $*" | tee -a "$LOG/runner.log"; }
 
+echo 0 > "$LOG/.noprog"; rm -f "$LOG/.lastheads"; FASTFAIL=0
 log "start pid=$$ max_iter=$MAX_ITER stop_after=$STOP_AFTER"
 
 while :; do
@@ -53,16 +54,31 @@ while :; do
 
   # ---- execute: fresh context, session-default model (Fable) ----
   OUT="$LOG/iter-$ITER.log"
+  T0=$(date +%s)
   timeout 3900 env -u CLAUDECODE claude -p --dangerously-skip-permissions < "$LOOP/PROMPT.md" > "$OUT" 2>&1
   RC=$?
 
   # ---- limit / transient handling: retry without consuming budget ----
-  if grep -qiE "usage limit|rate limit|limit reached|limit will reset|overloaded|529|too many requests" "$OUT"; then
-    log "usage/rate limit detected on iter $ITER (rc=$RC); sleeping 15m, iteration not counted"
-    ITER=$((ITER-1))
+  # String match against known phrasings, INCLUDING the real one that bit us on
+  # 2026-07-18: "You've hit your session limit . resets 3:30am". Phrasings drift, so a
+  # duration heuristic backs the strings: any failure under 90s is a suspected limit.
+  DUR=$(( $(date +%s) - T0 ))
+  if grep -qiE "usage limit|session limit|rate limit|limit reached|limit will reset|resets [0-9]|out of (extra )?usage|overloaded|529|too many requests" "$OUT"; then
+    log "limit detected on iter $ITER (rc=$RC, ${DUR}s); sleeping 15m, iteration not counted"
+    ITER=$((ITER-1)); FASTFAIL=$((FASTFAIL+1))
+    [ "$FASTFAIL" -gt 20 ] && { log "20+ limit sleeps; escalating"; echo "Persistent limit/auth failure after 20 retries, $(date)" >> "$LOOP/ESCALATION.md"; break; }
     sleep 900
     continue
   fi
+  if [ $RC -ne 0 ] && [ "$DUR" -lt 90 ]; then
+    log "fast failure on iter $ITER (rc=$RC, ${DUR}s) = suspected unrecognized limit/API error; sleeping 15m, not counted (fastfail $FASTFAIL/20)"
+    tail -1 "$OUT" >> "$LOG/fastfail-samples.log"
+    ITER=$((ITER-1)); FASTFAIL=$((FASTFAIL+1))
+    [ "$FASTFAIL" -gt 20 ] && { log "20+ fast failures; escalating"; echo "Persistent fast-failure after 20 retries, $(date). Samples: loop/logs/fastfail-samples.log" >> "$LOOP/ESCALATION.md"; break; }
+    sleep 900
+    continue
+  fi
+  FASTFAIL=0
   [ $RC -eq 124 ] && log "iteration $ITER hit 65m timeout (state is in git; next iteration resumes)"
 
   # ---- record progress signal ----
