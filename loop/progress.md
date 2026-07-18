@@ -10,3 +10,4 @@ iter 7 · 11e mapper → contract compiler + micro-dogfood · done · f966ae8 ·
 iter 8 · 11f axes + lexicon + multi-skeleton · done · 711fa66 · one forward-claim self-caught pre-commit
 iter 9 · 11g anti-template check + TESTS 23-28 + #11 closed · done · 40f6283 · N=3 window recorded as autonomous decision
 iter 10 · REVIEW-1 audit of iters 1-9 · done (GREEN) · dfbc496 · tagged v3-night-1; 0 reopens, 2 observations recorded
+iter 11 · 13a I/O contract table + two-tier policy · done · 02201d6 · theme-factory delisted; micro-dogfood green
