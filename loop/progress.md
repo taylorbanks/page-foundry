@@ -47,3 +47,4 @@ iter 46 · 21b catalog second half (assets, executor, motion stack, post-ship se
 iter 47 · 18 gate teeth + doctrine header + report skeleton + criteria sync · done · b08bc5e · Gate 3 line surfaced two real docs hover findings, routed to #22
 iter 48 · 22 docs detector findings + showcase treatment + hover teeth · done · 74c79ef · interceptor screenshot outage mid-iteration; headless fallback per REVIEW-4 precedent
 iter 49 · 19a TESTS.md sweep + renumber (tests 65-67, sort, gap removal) · done · 626bdaf · labels preserved over relabel to keep external refs valid
+iter 50 · 19b-1 homepage truth fixes (founder quote / measurement cell / meta desc) · done · 07fd764 · split 19b into 19b-1/19b-2; interceptor screenshot still down, open+extract used; detect [] exit 0
