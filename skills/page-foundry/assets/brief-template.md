@@ -1,6 +1,6 @@
 # Product Marketing Brief: {Product Name}
 
-Phase 0 output. Lives at `.agents/product-marketing.md` in the product's repo (or beside the page output). Every downstream phase reads this file; keep it current. Compatible with the coreyhaines31/marketingskills `product-marketing` context format.
+Phase 0 output. Lives at `.agents/product-marketing.md` in the product's repo (or inside the product's run artifact directory, `.agents/foundry/<product>/`, when there is no repo). Every downstream phase reads this file; keep it current. Compatible with the coreyhaines31/marketingskills `product-marketing` context format.
 
 ## Product
 
