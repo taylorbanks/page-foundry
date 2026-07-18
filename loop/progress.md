@@ -44,3 +44,4 @@ iter 43 · AUDIT-F2 Phase 4.5 comp stage + Gate 5 comp-record line · done · 4a
 iter 44 · AUDIT-DOCS plan record + walkthrough regeneration · done · baaa1aa · two pre-existing em-dash FAILs in v3.0.md fixed in passing
 iter 45 · 21a seo-audit + ab-testing contracts, site-arch seam, profiling cross-ref · done · 14eae08 · docs meta-truncation finding routed to 19b
 iter 46 · 21b catalog second half (assets, executor, motion stack, post-ship seams) · done · c09d6f9 · #21 closed with evidence; two upstream renames caught pre-pin; 4 new upstream names routed to #6
+iter 47 · 18 gate teeth + doctrine header + report skeleton + criteria sync · done · b08bc5e · Gate 3 line surfaced two real docs hover findings, routed to #22

@@ -66,7 +66,7 @@ One item per iteration, top-most unchecked first. Items are sized to finish insi
 
 ## WS5 + WS6 — gates, docs, dogfood, release (#18, #19)
 
-- [ ] 18 (#18): Gate upgrades consolidation — squint test in render review, focus/hover + CLS/LCP teeth in Gates 3/4, floors-not-verdicts doctrine line, final gate-report format (evidence lines + humanizer + degraded + skeleton + design-detect). Close #18.
+- [x] (b08bc5e) 18 (#18): Gate upgrades consolidation — squint test in render review, focus/hover + CLS/LCP teeth in Gates 3/4, floors-not-verdicts doctrine line, final gate-report format (evidence lines + humanizer + degraded + skeleton + design-detect). Close #18.
 - [ ] 22 (#22): docs detector findings — restyle docs/ (numbered section markers, side-tab accent) or record each as an accepted finding with a real reason in a repo `.impeccable/config.json`; re-run detect and commit the output as evidence. Close #22. (Discovered in 15b's micro-dogfood; must precede 19b's docs truth pass.)
 - [ ] 19a (#19): TESTS.md full sweep — regression entries for every v3 behavior (contract compiler, required-core preflight, artifact directory, evidence lines, verbatim diff, detect gate, handoff manifest, projection). Renumber cleanly.
 - [ ] 19b (#19): Docs truth pass — README, skill README, CHANGELOG v3.0.0 entry, orientation text, llms.txt; no claims for anything not merged; plans/v3.0.md status flipped to shipped-pending-release. Also settle the two 13j-dogfood docs findings (unattributed line-89 founder quote; Measurement PASS cell with zero analytics wiring — evidence in loop/evidence/13j-dogfood/) and the 21a walk's finding (docs meta description 174 chars, truncates near 160 — evidence in loop/evidence/21a/). Close #19 (migration shipped in 13b — note it).
