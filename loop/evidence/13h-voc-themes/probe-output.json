@@ -1,0 +1,56 @@
+[
+  {
+    "objectID": "48920025",
+    "created_at": "2026-07-15T12:46:17Z",
+    "author": "wongarsu",
+    "comment_text": "The trivial fix is to execute not \"git.exe\" but \"C:\\Program Files\\Git\\bin\\git.exe\". With a configurable git binary Of course that then leads you down the rabbit hole of whether the llm should exectute a known-good ripgrep, tree, etc. instead of depending on PATH resolution"
+  },
+  {
+    "objectID": "48913543",
+    "created_at": "2026-07-14T22:09:25Z",
+    "author": "bpavuk",
+    "comment_text": "well, I've been working on the Zig compiler lately, there you have to swear off using AI in any capacity. even your tab-complete, yes. I find that yes, I'm a little slower with regexes instead of GPT mini/Luna models as a find/replace engine, but I am quickly getting grasp of it, and I see the future where I'm faster with Neovim and ripgrep than Codex. the structure of the standard library is super-logical and the code is eye-wateringly readable. I don't even feel the  need  in, or will to, use Codex in any capacity when working on such a great project. DVUI is also great to work with. that sa"
+  },
+  {
+    "objectID": "48886912",
+    "created_at": "2026-07-13T01:51:49Z",
+    "author": "cadamsdotcom",
+    "comment_text": "500 memories for free! That's nearly as good as a small markdown file! But not as good as a directory of markdown files and access to ripgrep."
+  },
+  {
+    "objectID": "48876721",
+    "created_at": "2026-07-11T23:10:59Z",
+    "author": "gunalx",
+    "comment_text": "I find a llm in a harnes combined with manual ripgrep exploration is really effective of getting codebases. But you font always want to find what you find."
+  },
+  {
+    "objectID": "48798893",
+    "created_at": "2026-07-05T23:13:30Z",
+    "author": "skydhash",
+    "comment_text": "I use Emacs and ripgrep with the deadgrep plugin[0]. Emacs does have the `rgrep` command but the plugin presents a nicer interface. With no Emacs, I use `ripgrep` (sometimes with fd for the file candidates) and `less`. I only bother with LSP for projects I'm currently working on. Even then, I sometimes use `project-find-regexp` for whole codebase search. In Vim, I had the fzf plugin[1] with the command `:RG` bound to <leader>fg. [0]  https://github.com/Wilfred/deadgrep  [1]:  https://github.com/junegunn/fzf.vim "
+  },
+  {
+    "objectID": "48797044",
+    "created_at": "2026-07-05T19:11:57Z",
+    "author": "dv_dt",
+    "comment_text": "Lightest weight: bat and ripgrep Though not a traditional ide"
+  },
+  {
+    "objectID": "48768628",
+    "created_at": "2026-07-02T23:16:01Z",
+    "author": "lowbloodsugar",
+    "comment_text": "Build your own MCP of allowed tools. Cargo. Ripgrep. File read and write, including directory listing and find.  some  git commands. Then block everything else."
+  },
+  {
+    "objectID": "48638607",
+    "created_at": "2026-06-23T00:39:08Z",
+    "author": "sdesol",
+    "comment_text": "I think the issues is, it is going against a very well established pattern. I have a tool that wraps ripgrep so that search results always includes context and from time to time, the agent will use ripgrep by itself and when I ask why, it would go \"yeah I should have done that\" There are work arounds though and I am creating what I call knowledge triggers for Pi that are similar to claude's \"PreToolUse\" so having the agent use oak all the time is not an issue in my opinion. The challenge for oak is why? Considering how I actually want to slow agents down so I can ensure it is doing the right t"
+  },
+  {
+    "objectID": "34078504",
+    "created_at": "2022-12-21T09:35:24Z",
+    "author": "cyneox",
+    "comment_text": "For me it was definitely Emacs and ORG mode. I use this combo to create presentations (pdf + reveal.js), write notes (org-roam style), do project management (ORG mode at its best), collect small code snippets (literal programming in ORG mode), almost everything... As for a large code base I found ripgrep + rg.el (the interface in Emacs) to be pure gold!"
+  }
+]

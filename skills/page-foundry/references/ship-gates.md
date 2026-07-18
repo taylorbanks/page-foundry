@@ -254,7 +254,7 @@ transcript says. The seven core lines always appear; an overridden core companio
 line reads "PARTIAL: overridden at preflight".
 
 - product-marketing: {invoked, brief written, fields the interview still had to supply}
-- customer-research: {invoked, voc.md written, {n} verbatim quotes, every one carrying a source}
+- customer-research: {invoked, voc.md written, {n} verbatim quotes, every one carrying a source; {k} themes ranked, the top theme named with its confidence}
 - marketing-psychology: {invoked, persuasion-map.md written, levers applied and where}
 - cro: {invoked at spec and at Gate 1; Gate 1 run in a fresh context on the rendered page and brief alone; conversion-audit.md written with both scores and the divergence; spec changes applied}
 - copywriting: {invoked, sections drafted, headline candidates scored}
