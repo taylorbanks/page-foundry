@@ -10,3 +10,5 @@ skills-lock.json
 .agents.archived-*/
 node_modules/
 *.tgz
+loop/logs/
+loop/evidence/dogfood/node_modules/
