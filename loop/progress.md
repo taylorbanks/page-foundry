@@ -48,3 +48,4 @@ iter 47 · 18 gate teeth + doctrine header + report skeleton + criteria sync · 
 iter 48 · 22 docs detector findings + showcase treatment + hover teeth · done · 74c79ef · interceptor screenshot outage mid-iteration; headless fallback per REVIEW-4 precedent
 iter 49 · 19a TESTS.md sweep + renumber (tests 65-67, sort, gap removal) · done · 626bdaf · labels preserved over relabel to keep external refs valid
 iter 50 · 19b-1 homepage truth fixes (founder quote / measurement cell / meta desc) · done · 07fd764 · split 19b into 19b-1/19b-2; interceptor screenshot still down, open+extract used; detect [] exit 0
+iter 51 · 19b-2 repo docs truth pass (archetype count eight-to-sixteen, theme-factory drop, CHANGELOG v3.0.0 unreleased, plan status, badge de-version, llms.txt) · done · b72df1f · concurrent commits 2acdc4f/3e3e3cd (render-method fix, no progress line, disjoint from my files) landed mid-iter; interceptor confirmed working, lesson 30 was corrected
