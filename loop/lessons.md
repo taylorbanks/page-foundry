@@ -9,3 +9,4 @@ Two-tier rewrite left step 2 still saying "outdated exactly like missing" until 
 Persisted cwd from a prior Bash call made `cd rel/path && write-file` skip the write while later heredocs still ran on stale files -> absolute paths for every file write in loop shell commands; never chain work after a cd that can fail
 Evidence file's independent-score section drafted before the scoring agent ran (caught pre-dispatch) -> never write a result section before the run that produces it; scaffold the heading, leave the body empty until real output exists
 Subagent told to "return raw data" wrote its artifact into the live .agents/ tree anyway -> dogfood subagent prompts must name the exact output path (or forbid writes); relocate strays out of the live artifact tree before commit
+Em/en dashes typed into fresh evidence prose FAILed the first scan -> draft evidence files to voice rules from the start (no dashes, ranges as 'to'); the scan confirms, it does not clean up
