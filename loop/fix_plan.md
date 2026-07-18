@@ -45,7 +45,7 @@ One item per iteration, top-most unchecked first. Items are sized to finish insi
 ## WS1b + WS2c — new archetypes and catalog integration (#12, #21)
 
 - [x] (f7d1c8a) 12a: Contracts for pricing-page, comparison-alternatives, thank-you-post-conversion (top-3; thank-you referenced by all archetypes).
-- [ ] 12b: Contracts for docs-dev-tool-landing, waitlist-coming-soon, event-webinar (Event schema note).
+- [x] (891f536) 12b: Contracts for docs-dev-tool-landing, waitlist-coming-soon, event-webinar (Event schema note).
 - [ ] 12c: Contracts for agency-services, ecommerce-product, changelog-launch-post; 404 note in shared rules; portfolio = personal-home axis note. TESTS.md entries for 12a-c, including extending test 38's public-pricing enumeration with pricing-page. Close #12.
 - [ ] 13g: customer-research full-capability fix — Phase 0/1 and the companion-table INPUT currently authorize only Mode 1 (analyze sources the brief points to). Authorize Mode 2 explicitly: when pointed-to VOC sources are thin or absent, customer-research runs its digital-watering-hole research (Reddit, G2, HN, communities per its own source-selection table) to FIND buyer language, with findings landing in voc.md with sources like any other quote; the interview then asks only what discovery could not supply. Note the outbound-web nature in the phase text. TESTS entry.
 - [ ] 21a (#21): site-architecture (Phase 2 adjunct + scope-escalation seam), competitor-profiling (already in 13e — verify + cross-reference), seo-audit (Gate 6), ab-testing (post-ship loop) — real I/O contracts in the table + phase bodies.

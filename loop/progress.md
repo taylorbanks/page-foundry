@@ -26,3 +26,4 @@ iter 25 · 17a handoff.md rewrite (manifest 00-06, fixed criteria template) · d
 iter 26 · 17b design.md projection + per-tool packaging + #17 closed · done · fe62776 · lint blocking claim verified live via induced broken-ref probe
 iter 27 · REVIEW-4 audit of WS4 (iters 25-26 + unowned 2186228) · done (GREEN) · 62832e3 · tagged v3-night-4; 0 reopens, 4 observations; lint + 46-rule count independently reproduced
 iter 28 · 12a three new contracts (pricing/comparison/thank-you) · done · f7d1c8a · zero new WARNs; onboarding companion given a 21b owner
+iter 29 · 12b docs/waitlist/event contracts · done · 891f536 · three fixture compiles in evidence; newsletter mapping sharpened for waitlist boundary
