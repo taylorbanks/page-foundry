@@ -7,3 +7,4 @@ iter 4 · 11b oss/saas/campaign contract conversion · done · 5d54185 · deriva
 iter 5 · 11c mobile/course/membership contract conversion · done · f3d22bd · 1 justified WARN (v2.x carryover prose)
 iter 6 · 11d newsletter/personal-home contracts + shared post-conversion section · done · e76a19e · fixed pre-existing rule-8 violation in newsletter hero (see report draft)
 iter 7 · 11e mapper → contract compiler + micro-dogfood · done · f966ae8 · two compiles in evidence; 11f gains axis-wiring dependency note
+iter 8 · 11f axes + lexicon + multi-skeleton · done · 711fa66 · one forward-claim self-caught pre-commit
