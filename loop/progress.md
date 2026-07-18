@@ -34,3 +34,4 @@ iter 33 · 13i meta title/description into the voice chain + Gate 6 snapshot dif
 iter 34 · 13j rewrite-path diagnosis before re-derivation · done · 9da1dcd · real dogfood on docs/index.html surfaced two 19b findings
 iter 35 · 13k grid spec + recomposition notes into the token plan, Gate 5 check · done · 5126fa9 · static half dogfooded; screenshot half lands in DOGFOOD-FULL
 iter 36 · 13l form design into the spec's form entry, Gate 1 form audit · done · b73f2b4 · static walk dogfooded; runtime error-handling sub-checks land in DOGFOOD-FULL
+iter 37 · 13m named-capabilities invocation text · done · 5d40dff · brief-template gains the two consumed sections; Gate 1 red-team aligned with the phase walk
