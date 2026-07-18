@@ -1,0 +1,20 @@
+[
+  {
+    "antipattern": "numbered-section-markers",
+    "name": "Numbered section markers (01 / 02 / 03)",
+    "description": "Numbered display markers as section labels (01, 02, 03) are the AI editorial scaffold one tier deeper than tracked eyebrow chips. If you find yourself reaching for them, choose a different section cadence.",
+    "severity": "advisory",
+    "file": "/Users/taylor/projects/page-foundry/docs/index.html",
+    "line": 0,
+    "snippet": "Sequence: 01, 02, 03, 04, 05, 06"
+  },
+  {
+    "antipattern": "side-tab",
+    "name": "Side-tab accent border",
+    "description": "Thick colored border on one side of a card — the most recognizable tell of AI-generated UIs. Use a subtler accent or remove it entirely.",
+    "severity": "warning",
+    "file": "/Users/taylor/projects/page-foundry/docs/theme.css",
+    "line": 88,
+    "snippet": "border-left:6px solid var(--red)"
+  }
+]

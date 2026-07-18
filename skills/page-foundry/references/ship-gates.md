@@ -48,7 +48,9 @@ Handoff mode: gates 1, 2, and 8 run before the package is delivered; gates 3, 4,
 ## Gate 5: Render review
 
 - [ ] Render the page and look at it: screenshot at 390px and 1440px via Playwright, headless Chrome, or gstack `/design-review` when available. Critique the screenshots against the chosen design direction, the anti-slop list, and (when installed) the web-design-guidelines rules; fix anything a cold viewer would flag in five seconds (cramped hero, wall of gray, broken wrap, invisible CTA).
-- [ ] If no render tool exists in the environment, mark this gate N/A in the report and tell the user to eyeball both widths before deploy. Never silently skip it; an unrendered page is unreviewed design.
+- [ ] Design detect scan: with impeccable installed, run its detector over the built HTML and CSS (`node <impeccable skill dir>/scripts/detect.mjs --json pages/<product>/`, or `npx impeccable detect --json`), from the product's repo root so the property's `.impeccable/config.json` ignores and `DESIGN.md` token enforcement apply; a persisted `DESIGN.md` makes off-palette colors, radii, and fonts findings, which is why Phase 4 step 6 wrote it. The scan prints an empty JSON array and exits 0 when clean, a findings array and a non-zero exit otherwise; the findings list is the array. Resolve every entry one of two ways: fix the page, or accept the finding into the product's `.impeccable/config.json` under `detector.ignoreValues` with a `reason`. That file is the per-property accepted-findings record, and an ignore without a reason is a suppressed finding, not an accepted one. The `impeccable` evidence line carries the finding count, what was fixed, and each accepted finding with its reason. Without impeccable, critique the built page against the anti-slop list in `references/design-direction.md` instead and mark the scan degraded.
+- [ ] A clean scan is a floor, never a verdict (impeccable's own doctrine, adopted whole): zero findings means no known tell fired, not that the design is good. The screenshot critique above still runs in full, and an accepted finding is a recorded style choice, not a waived check.
+- [ ] If no render tool exists in the environment, mark the screenshot review N/A in the report and tell the user to eyeball both widths before deploy; the detect scan is static and runs regardless. Never silently skip either; an unrendered page is unreviewed design.
 
 ## Gate 6: AI discovery and meta
 
@@ -212,7 +214,7 @@ Omit `endDate` and `offers` fields you cannot fill with real values; never inven
 | Voice scan | PASS | 0 hits across {n} files |
 | Accessibility | PASS | |
 | Performance | PASS | {transfer size}, {LCP if measured} |
-| Render review | PASS / N/A | {widths checked, or why N/A} |
+| Render review | PASS / N/A | {widths checked; detect findings fixed/accepted; or why the screenshot half was N/A} |
 | AI discovery | PASS | schema valid, llms.txt present |
 | Measurement | PASS | {conversion event, UTM, analytics or declined} |
 | Integrity | PASS | {n} TK items resolved/cut |
@@ -231,7 +233,7 @@ line reads "PARTIAL: overridden at preflight".
 - frontend-design: {invoked, tokens persisted, alternatives considered}
 - humanizer: {invoked once on final copy — yes/no; one line on what it changed (e.g. "broke two three-verb runs, varied a 6-item roster"); accepted WARNs, each with its reason; re-runs triggered by post-pass edits, if any; or "not run" which makes Gate 2 incomplete}
 - copy-editing: {changelog summary — what was cut, what was tightened; or "skipped (degraded)"}
-- {one line per enhancer whose seam was in scope: analytics, ai-seo, schema, competitor-profiling (when the brief named alternatives), web-design-guidelines (live ruleset or frozen fallback), remotion, gstack (which commands ran), and the archetype companions (pricing, competitors, aso, launch, lead-magnets, popups, signup) when their section is on the page. In scope but skipped reads "skipped (degraded: missing)" or "skipped (declined at preflight)"}
+- {one line per enhancer whose seam was in scope: analytics, ai-seo, schema, competitor-profiling (when the brief named alternatives), web-design-guidelines (live ruleset or frozen fallback), impeccable (which commands ran; at Gate 5 the detect finding count, fixes, and each accepted finding with its reason), remotion, gstack (which commands ran), and the archetype companions (pricing, competitors, aso, launch, lead-magnets, popups, signup) when their section is on the page. In scope but skipped reads "skipped (degraded: missing)" or "skipped (declined at preflight)"}
 
 Degraded phases: {any phase that ran on a reference-file fallback because its companion was missing or declined, named with the companion it lacked; core-tier overrides prefixed PARTIAL:; "none, all companions present" otherwise. A degraded run is a partial execution, and the owner is told which skill would improve it.}
 
