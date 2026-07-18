@@ -55,7 +55,7 @@ while :; do
   # ---- execute: fresh context, session-default model (Fable) ----
   OUT="$LOG/iter-$ITER.log"
   T0=$(date +%s)
-  timeout 3900 env -u CLAUDECODE claude -p --dangerously-skip-permissions < "$LOOP/PROMPT.md" > "$OUT" 2>&1
+  timeout 3900 env -u CLAUDECODE claude -p --model opus --dangerously-skip-permissions < "$LOOP/PROMPT.md" > "$OUT" 2>&1
   RC=$?
 
   # ---- limit / transient handling: retry without consuming budget ----
@@ -69,6 +69,11 @@ while :; do
     [ "$FASTFAIL" -gt 20 ] && { log "20+ limit sleeps; escalating"; echo "Persistent limit/auth failure after 20 retries, $(date)" >> "$LOOP/ESCALATION.md"; break; }
     sleep 900
     continue
+  fi
+  if [ $RC -ne 0 ] && [ "$DUR" -lt 90 ] && grep -qiE "model|not available|unavailable|invalid.*model|does not exist" "$OUT"; then
+    log "fast failure on iter $ITER names a MODEL problem, not a rolling limit; escalating immediately (a model outage does not self-heal)"
+    echo "Model-unavailable fast-failure at iter $ITER, $(date). Runner exec line uses --model opus; if opus is also exhausted, switch to sonnet in run.sh. Sample: $(tail -1 "$OUT")" >> "$LOOP/ESCALATION.md"
+    break
   fi
   if [ $RC -ne 0 ] && [ "$DUR" -lt 90 ]; then
     log "fast failure on iter $ITER (rc=$RC, ${DUR}s) = suspected unrecognized limit/API error; sleeping 15m, not counted (fastfail $FASTFAIL/20)"
