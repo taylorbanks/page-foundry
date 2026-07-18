@@ -11,3 +11,4 @@ Evidence file's independent-score section drafted before the scoring agent ran (
 Subagent told to "return raw data" wrote its artifact into the live .agents/ tree anyway -> dogfood subagent prompts must name the exact output path (or forbid writes); relocate strays out of the live artifact tree before commit
 Em/en dashes typed into fresh evidence prose FAILed the first scan -> draft evidence files to voice rules from the start (no dashes, ranges as 'to'); the scan confirms, it does not clean up
 Dedup decision comment assigned voice_scan two absorbed rules; no fix_plan item owned them and 13a-e all shipped without it -> when decomposing an issue, enumerate deliverables from its comments as well as its body and give every one a backlog owner before authoring starts
+Em dash leaked into two freshly authored files in one iteration despite lesson 12 -> scan every authored md file the moment it is written, before the next edit, not at gate time
