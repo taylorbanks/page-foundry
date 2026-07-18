@@ -4,7 +4,7 @@ The design phase has one job: make a page that could only belong to this propert
 
 ## One property, one theme
 
-Each property (each product, each brand under the holding company) gets exactly one token set: 4 to 6 named palette colors, a display/body type pairing, spacing scale, radius and border conventions, and the signature element. Persist it as `theme.css` with custom properties; use theme-factory when installed to generate or apply a cohesive palette and type pairing, but `theme.css` is the durable per-property token store (theme-factory is a theming toolkit for artifacts, not a persistence layer). Every subsequent page for that property reuses the tokens unchanged. Distinctiveness between properties, consistency within one.
+Each property (each product, each brand under the holding company) gets exactly one token set: 4 to 6 named palette colors, a display/body type pairing, spacing scale, radius and border conventions, and the signature element. Persist it as `theme.css` with custom properties; that file is the durable per-property token store. Every subsequent page for that property reuses the tokens unchanged. Distinctiveness between properties, consistency within one.
 
 ## Choosing a direction
 

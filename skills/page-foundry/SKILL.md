@@ -35,11 +35,13 @@ Nothing installs, updates, or gets skipped silently.
    - Filesystem: `~/.agents/skills/` (the skills CLI's canonical location), `~/.claude/skills/`, project `.claude/skills/` and `.agents/skills/`, `/mnt/skills/*` (public, examples, user, plugins), and Claude Code plugin directories under `~/.claude/plugins/`.
    - gstack is detected by its slash commands (`/design-shotgun` etc.), never by directory.
    The sweep must complete before any install or update command is even considered. Installing a companion that is already present anywhere is a defect. Cache the result for the session.
-2. **Check freshness.** If the skills CLI is present, run `npx skills check` and note outdated companions. Plugin-installed companions update via `claude plugin marketplace update <marketplace>` then reinstalling the plugin. Treat outdated exactly like missing: report, offer, act only on approval.
-3. **Report and ask, once. This stop is mandatory.** Show one table: present / outdated / missing, with the exact install or update command per gap and one line on what this run loses without it. Ask a single question: install and update now, or proceed without? On approval, run the commands, then RE-RUN detection and confirm every name resolves before continuing. On decline, proceed with the condensed rules built into this skill's reference files and record the decline in the gate report. Never skip a missing companion silently.
+2. **Check freshness.** If the skills CLI is present, run `npx skills check` and note outdated companions. Plugin-installed companions update via `claude plugin marketplace update <marketplace>` then reinstalling the plugin. Outdated is a reportable gap like missing: report, offer, act only on approval; what declining means per tier is defined in step 3.
+3. **Report and ask, once. This stop is mandatory.** Show one table: present / outdated / missing, each row carrying its tier from the companion tables below, with the exact install or update command per gap and one line on what this run loses without it. Ask a single question: install and update now, or proceed without? On approval, run the commands, then RE-RUN detection and confirm every name resolves before continuing. What declining means depends on the tier:
+   - **Core companion missing: the run does not start.** There is no silent degrade to the reference files; the condensed rules are weaker summaries of mechanisms the real skills apply with deeper and more current logic, and the seven core companions (product-marketing, customer-research, marketing-psychology, cro, copywriting, frontend-design, humanizer) are what separates page-foundry from running a design skill alone. The only way forward without one is an explicit per-run override: the user, in chat, told what this run loses, saying build anyway. An overridden run is marked PARTIAL, loudly: a banner at the top of the gate report naming every overridden core companion, and the same names in the foundry-log `degraded` field prefixed `PARTIAL:`. A partial run is a draft, not a page-foundry page.
+   - **Enhancer companion missing, or any companion outdated: declining proceeds.** The affected phases run on the condensed reference-file rules per the orchestration doctrine, and the decline is recorded on the gate report's `degraded` line. A companion left outdated still runs as the primary path; note the version gap in the report. Never skip a missing companion silently.
 
-   The companion stop cannot be suppressed by any interactivity phrase (`don't pause`, `no questions`, `run end to end`) or by an operator-supplied or inferred instruction. Only the user, in chat, may approve proceeding with a companion missing or outdated. The companions are load-bearing: without product-marketing, copywriting, cro, customer-research, marketing-psychology, and frontend-design, the run cannot do the positioning, copy, conversion, and design work the page depends on, so a page built without them is not a page-foundry page. If a companion is missing, stop and help install it; do not narrate the gap and continue.
-4. **Pinned sources only.** Install exclusively from the sources in the companion table below, never from search results or unpinned repos. Before installing from an evolving repo, run `npx skills add <repo> --list` and reconcile names against the table; if a pinned name no longer exists upstream, report the discrepancy instead of guessing at a replacement.
+   The companion stop cannot be suppressed by any interactivity phrase (`don't pause`, `no questions`, `run end to end`) or by an operator-supplied or inferred instruction. Only the user, in chat, may approve proceeding with a companion missing or outdated, and for a core companion that approval is the explicit per-run override above, never a default and never inferred. If a companion is missing, stop and help install it; do not narrate the gap and continue.
+4. **Pinned sources only.** Install exclusively from the sources in the companion tables below, never from search results or unpinned repos. Before installing from an evolving repo, run `npx skills add <repo> --list` and reconcile names against the tables; if a pinned name no longer exists upstream, report the discrepancy instead of guessing at a replacement.
 5. **Pick the mode** (ask if not obvious from the request):
    - **build** (default): this skill carries the page through Phase 5 and ships code.
    - **explore**: design variants first. Phases 0 through 3 run normally; Phase 4 produces multiple committed design directions instead of one (gstack `/design-shotgun` when installed; otherwise this skill generates 3 contrasting token plans, each with a static hero mockup, built one at a time). The user picks; the winner proceeds through Phase 5 as a normal build. Use when the property has no theme yet or the user wants options.
@@ -80,30 +82,46 @@ Example invocations:
 
 ### Companion skills
 
-| Skill / command | Source | Install | Used in phase |
-|---|---|---|---|
-| product-marketing | coreyhaines31/marketingskills | `npx skills add coreyhaines31/marketingskills --skill product-marketing` | 0 |
-| customer-research, marketing-psychology | coreyhaines31/marketingskills | same pattern, `--skill <name>` | 1 |
-| copywriting, copy-editing | coreyhaines31/marketingskills | same pattern | 3 |
-| humanizer | blader/humanizer (GitHub) | `git clone https://github.com/blader/humanizer.git ~/.claude/skills/humanizer` | 3 (AI pattern pass) |
-| cro | coreyhaines31/marketingskills | same pattern | 2, 6 |
-| pricing, competitors, aso | coreyhaines31/marketingskills | same pattern | 2 (archetype-dependent) |
-| launch, lead-magnets, popups, signup | coreyhaines31/marketingskills | same pattern, `--skill <name>` | 2, 3 (archetype-dependent: launch and campaign pages, newsletter and gated offers, exit/scroll popups when in scope, signup-flow copy) |
-| analytics | coreyhaines31/marketingskills | same pattern | 6 (measurement gate) |
-| frontend-design | Anthropic (anthropics/skills) | `npx skills add anthropics/skills --skill frontend-design` | 4 |
-| theme-factory, web-artifacts-builder | Anthropic (anthropics/skills) | same pattern | 4, 5 |
-| ai-seo, schema | coreyhaines31/marketingskills | same pattern | 6 |
-| web-design-guidelines | vercel-labs/agent-skills | `npx skills add vercel-labs/agent-skills --skill web-design-guidelines` | 4, 6 (render gate) |
-| remotion (official Remotion skill) | remotion-dev (confirm exact repo via `npx skills find remotion --owner remotion-dev`) | per find result | 2, 5 (motion assets) |
-| gstack (`/design-consultation`, `/design-shotgun`, `/design-html`, `/plan-design-review`, `/design-review`, `/qa`) | garrytan/gstack | per gstack README (installs to `~/.claude/skills/gstack/`) | 2, 4, 5, 6 |
+Two tiers. **Core** companions are required: they do the positioning, research, persuasion, conversion, copy, design, and de-patterning work the page depends on, and preflight stops until they are installed (step 3 above). **Enhancer** companions strengthen specific seams and degrade gracefully to reference-file fallbacks when absent.
+
+Every row is an invocation contract, modeled on the humanizer contract in Phase 3: INPUT is what the companion is handed, OUTPUT is the artifact it must leave, CONSUMER is who reads that artifact, EVIDENCE is the gate-report line that proves the invocation was real. An invocation that leaves no artifact and fills no evidence line did not happen, whatever the transcript says.
+
+Install commands by source: coreyhaines31/marketingskills companions via `npx skills add coreyhaines31/marketingskills --skill <name>`; anthropics/skills via `npx skills add anthropics/skills --skill <name>`; web-design-guidelines via `npx skills add vercel-labs/agent-skills --skill web-design-guidelines`; humanizer via `git clone https://github.com/blader/humanizer.git ~/.claude/skills/humanizer`; remotion from the repo `npx skills find remotion --owner remotion-dev` returns; gstack per its README (installs to `~/.claude/skills/gstack/`).
+
+#### Core tier (required)
+
+| Skill | Source | Phase | INPUT | OUTPUT | CONSUMER | EVIDENCE |
+|---|---|---|---|---|---|---|
+| product-marketing | coreyhaines31/marketingskills | 0 | product, repo README, PRD or spec, existing site, the conversation | `.agents/product-marketing.md`: positioning, ICP, differentiation, competitive frame, proof inventory | every later phase; the Phase 0 interview asks only what it could not infer | `product-marketing:` invoked, brief written, fields the interview still had to supply |
+| customer-research | coreyhaines31/marketingskills | 1 | every VOC source the brief points to: reviews, transcripts, support tickets, competitor reviews, forums | `voc.md`: verbatim buyer quotes, every quote carrying its source | Phase 1 writes the message hierarchy and objection map in these words; Gate 2 traces quotes to the file; Gate 8 checks no paraphrase poses as verbatim | `customer-research:` invoked, voc.md written, quote count with sources |
+| marketing-psychology | coreyhaines31/marketingskills | 1 | the brief plus `voc.md` | `persuasion-map.md`: the chosen levers and where each lands (claim order, objection answers, CTA framing) | Phase 2 claim ordering; Phase 3 copy applies the levers | `marketing-psychology:` invoked, map written, levers applied and where |
+| cro | coreyhaines31/marketingskills | 2, Gate 1 | compiled contract, message architecture, candidate skeletons | skeleton pre-reads and spec structure; at Gate 1, `conversion-audit.md` with the MECLABS score | Phase 2 spec; Gate 1 verdict | `cro:` invoked, audit written, spec changes applied |
+| copywriting | coreyhaines31/marketingskills | 3 | page spec, message architecture, `voice.md`, `voc.md` | full draft copy, section by section, which the voice chain refines into `copy-approved.md` | Phase 3 voice chain; Phase 5 builds it verbatim | `copywriting:` invoked, sections drafted, headline candidates scored |
+| frontend-design | anthropics/skills | 4 | brand assets from the brief, the compiled contract, the page spec, any existing theme or `DESIGN.md` | the token plan: named hex palette, type pairing, layout concept, signature element, critique against the generic default; persisted as `theme.css` | Phase 4 shape picks; Phase 5 build; handoff `03-design-direction` | `frontend-design:` invoked, tokens persisted, alternatives considered |
+| humanizer | blader/humanizer (GitHub) | 3, Gate 2 | final copy, after the word scan and the pattern pass | the rewrites that survive meaning arbitration, applied to the copy | Gate 2; `copy-approved.md` snapshots the result | `humanizer:` ran once, what it changed, accepted WARNs each with a reason |
+
+#### Enhancer tier (graceful fallback)
+
+| Skill | Source | Phase | INPUT | OUTPUT | CONSUMER | EVIDENCE |
+|---|---|---|---|---|---|---|
+| copy-editing | coreyhaines31/marketingskills | 3 | copywriting's draft | the tightened draft plus a changelog of what was cut and what was tightened | Phase 3 step 5 re-scan; the gate report | `copy-editing:` the changelog summary |
+| pricing, competitors, aso | coreyhaines31/marketingskills | 2 (archetype-dependent) | the section's spec entry plus the brief fields it needs | that section's structure and copy input; pricing also feeds Gate 6's `/pricing.md` check on pricing pages | Phase 2 spec, Phase 3 copy | own line each when its section is in scope; `degraded` when needed and missing |
+| launch, lead-magnets, popups, signup | coreyhaines31/marketingskills | 2, 3 (archetype-dependent: launch and campaign pages, gated offers, exit or scroll popups when in scope, signup-flow copy) | the section's spec entry plus the brief fields it needs | that section's structure and copy input | Phase 2 spec, Phase 3 copy | own line each when its section is in scope; `degraded` when needed and missing |
+| analytics | coreyhaines31/marketingskills | Gate 7 | the conversion goal and the CTA set | the measurement plan: conversion event, UTM convention | Gate 7; the foundry-log `conversion data` field closes the loop next run | `analytics:` invoked, plan written |
+| ai-seo | coreyhaines31/marketingskills | Gate 6 | the rendered page and copy | AI-discovery results and `llms.txt` | Gate 6 | `ai-seo:` invoked, checks run |
+| schema | coreyhaines31/marketingskills | Gate 6 | page type plus brief facts | the JSON-LD block | Gate 6; embedded in the page | `schema:` invoked, block written |
+| web-design-guidelines | vercel-labs/agent-skills | 4, Gates 3/5 | the design direction (Phase 4), the built page (gates) | rulings on accessibility, typography, imagery, interaction | Phase 4; Gates 3 and 5 | `web-design-guidelines:` whether the live ruleset ran or the frozen fallback did |
+| web-artifacts-builder | anthropics/skills | 5 | `copy-approved.md` verbatim, the spec, the tokens | the built page | Phase 5 output; Gate 2 diffs its rendered text against the snapshot | the report names the build path; Gate 2's verbatim diff covers its output |
+| remotion (official Remotion skill) | remotion-dev | 2, 5 (motion assets) | the spec's motion slot and its justification | the clip: muted, `prefers-reduced-motion` respected, static fallback frame | Phase 5 build | `remotion:` clip produced, or `[TK: motion asset]` in open items |
+| gstack (`/design-consultation`, `/design-shotgun`, `/design-html`, `/plan-design-review`, `/design-review`, `/qa`) | garrytan/gstack | 2, 4, 5, 6 | per seam, per the integration notes below | `DESIGN.md` tokens, variant boards, built HTML, review findings | per seam, per the integration notes below | `gstack:` which commands ran; skipping without substituting is the documented default |
 
 ### Orchestration doctrine (how companions are used)
 
 page-foundry is an orchestrator. Its reference files are a fallback, not the plan. In every phase that names a companion skill, follow this without exception:
 
 1. **Invoke the companion as the primary path.** Actually call the skill, hand it the phase's inputs (the brief, the spec, the copy draft, the tokens, whatever that phase works on), and use its output as the phase's work product. When a companion is available you do not read its reference file and do the work yourself; the companion is more capable than the condensed rules, and skipping it is the main reason two runs of this skill differ in quality.
-2. **Fall back only when the companion cannot be invoked** (declined at the Phase -1 stop, not installed, or it errors). Then, and only then, use the condensed rules in the phase's named reference file.
-3. **Flag every fallback.** Any phase that runs on a reference file because its companion was missing or declined is a DEGRADED phase. Say so in that phase ("running Phase N without <companion>; using the built-in condensed rules, which are weaker"), and record it on the gate report's `degraded` line. A run missing load-bearing companions is a partial execution, and the user is told which skill would have made it better.
+2. **Fall back only when the companion cannot be invoked.** For an enhancer companion that means declined at the Phase -1 stop, not installed, or erroring mid-run: use the condensed rules in the phase's named reference file. A core companion has no quiet fallback: reaching the reference file at all requires the explicit per-run override from Phase -1, or a mid-run error that one reinstall and retry did not fix, and either way the run is marked PARTIAL as Phase -1 describes.
+3. **Flag every fallback.** Any phase that runs on a reference file because its companion was missing or declined is a DEGRADED phase. Say so in that phase ("running Phase N without <companion>; using the built-in condensed rules, which are weaker"), and record it on the gate report's `degraded` line. A degraded core phase also makes the whole run PARTIAL, and the user is told which skill would have made it better.
 
 The reference files are the floor, so the skill still produces something when a companion is absent. The companion, when present, is the standard.
 
@@ -179,10 +197,10 @@ Run when: the user says anything like "set up my voice", "update the voice", "th
 Goal: a committed aesthetic and a token set, chosen for this property, before any markup.
 
 1. **Invoke web-design-guidelines** and treat it as authoritative on accessibility, typography, imagery, and interaction mechanics. `references/design-direction.md` carries the marketing-page and anti-slop layer (this skill wins on structure, conversion, and anti-slop calls) and is the fallback for the mechanics when web-design-guidelines is absent, which marks the design degraded.
-2. **Invoke the frontend-design skill to produce the token plan** (palette as named hex values, display plus body pairing, layout concept, one signature element, and a critique against the generic default before building); use its output as the design direction. Token source priority when they exist: brand assets from the brief, then gstack `DESIGN.md` (from `/design-consultation`), then a **theme-factory** theme, then frontend-design's plan. If frontend-design is absent, build the token plan yourself from `references/design-direction.md` and mark Phase 4 degraded. When direction is genuinely undecided and gstack is present, invoke `/design-shotgun`.
+2. **Invoke the frontend-design skill to produce the token plan** (palette as named hex values, display plus body pairing, layout concept, one signature element, and a critique against the generic default before building); use its output as the design direction. Token source priority when they exist: brand assets from the brief, then gstack `DESIGN.md` (from `/design-consultation`), then frontend-design's plan. If frontend-design is absent, build the token plan yourself from `references/design-direction.md` and mark Phase 4 degraded. When direction is genuinely undecided and gstack is present, invoke `/design-shotgun`.
 3. **Pick each section's shape** from the section-shape lexicon in `references/archetypes.md`. Phase 2 fixed the jobs and their order; the form each job takes on the page (which proof shape, which how-it-works shape, which close) is a design decision made here, with the tokens in hand. An off-lexicon shape is fine when the spec records what it is and why; the ordering constraints and proof adjacency bind whatever shape a job takes.
 4. **Explore mode:** produce the stated number of variants (default 3), each a complete committed direction (token plan + static hero mockup), deliberately contrasting along real axes (light/dark, editorial/brutalist, type-led/visual-led), never three flavors of the same idea. Present them, wait for the pick, then proceed as build mode with the winner. With gstack, `/design-shotgun` replaces this step and its comparison board handles the pick.
-5. Persist the winning tokens (theme-factory, or `theme.css` with custom properties). One property, one theme, many pages.
+5. Persist the winning tokens as `theme.css` with custom properties. One property, one theme, many pages.
 
 ## Phase 5: Build (build mode) or Handoff (handoff mode)
 
@@ -215,7 +233,7 @@ Close every run by appending a record to `foundry-log.md` beside the page output
 - meclabs: C={n} (M{n} V{n} I{n} F{n} A{n})
 - gates: {pass/fail/N-A summary}
 - companions: {active this run, with versions where known}
-- degraded: {phases that ran on a reference-file fallback because a companion was missing or declined, each with the companion it lacked; "none" if every phase used its companion}
+- degraded: {phases that ran on a reference-file fallback because a companion was missing or declined, each with the companion it lacked; core-tier overrides listed first, each prefixed PARTIAL:; "none" if every phase used its companion}
 - open items: {unresolved, one per line}
 - conversion data: {added later by the user; visits, signups, rate, source}
 - learnings: {one line per lesson worth carrying forward}

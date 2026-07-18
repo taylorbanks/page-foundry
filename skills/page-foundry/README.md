@@ -8,6 +8,6 @@
 
 **What it makes:** open source project, SaaS homepage, campaign landing page, mobile app, course or workshop sales page, membership or community, newsletter signup, or personal site. Build mode ships static HTML you own; explore mode gives you design directions to pick from; handoff mode packages copy and design for a design tool.
 
-**Companions (all optional, all improve results):** coreyhaines31/marketingskills (product-marketing, copywriting, cro, and more), Anthropic's frontend-design / theme-factory / web-artifacts-builder, and garrytan/gstack for design variants and visual review. The skill detects what is installed and degrades to built-in condensed rules for anything missing.
+**Companions (two tiers):** seven are core and required: product-marketing, customer-research, marketing-psychology, cro, copywriting (coreyhaines31/marketingskills), frontend-design (Anthropic), and humanizer. Preflight stops until they are installed; only an explicit per-run override proceeds without one, and that output is loudly marked partial. Enhancers (more marketingskills companions, Anthropic's web-artifacts-builder, garrytan/gstack for design variants and visual review) improve results and degrade to built-in condensed rules when missing.
 
 Methodology credits: conversion structure informed by published landing-page research and the MECLABS Conversion Sequence heuristic, with Corey Haines' marketing skills doing the marketing work. License: MIT.

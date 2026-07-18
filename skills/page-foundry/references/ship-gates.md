@@ -203,6 +203,8 @@ Omit `endDate` and `offers` fields you cannot fill with real values; never inven
 ```
 ## Ship gates: {product} / {archetype}
 
+{when any core companion was overridden at preflight, open with the banner: "PARTIAL RUN: built without {names}; this output is a draft, not a page-foundry page". Omit the line entirely on full runs.}
+
 | Gate | Result | Notes |
 |---|---|---|
 | Conversion audit | PASS | MECLABS C = {n} (M{n} V{n} I{n} F{n} A{n}) |
@@ -218,7 +220,7 @@ Humanizer: {invoked once on final copy — yes/no; one line on what it changed (
 
 Copy-editing: {changelog summary — what was cut, what was tightened; or "not run" (Phase 3 degraded)}
 
-Degraded phases: {any phase that ran on a reference-file fallback because its companion was missing or declined, named with the companion it lacked; "none, all companions present" otherwise. A degraded run is a partial execution, and the owner is told which skill would improve it.}
+Degraded phases: {any phase that ran on a reference-file fallback because its companion was missing or declined, named with the companion it lacked; core-tier overrides prefixed PARTIAL:; "none, all companions present" otherwise. A degraded run is a partial execution, and the owner is told which skill would improve it.}
 
 Open items for the owner: {real proof to collect, urgency to verify, etc.}
 ```
