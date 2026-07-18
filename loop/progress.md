@@ -36,3 +36,4 @@ iter 35 · 13k grid spec + recomposition notes into the token plan, Gate 5 check
 iter 36 · 13l form design into the spec's form entry, Gate 1 form audit · done · b73f2b4 · static walk dogfooded; runtime error-handling sub-checks land in DOGFOOD-FULL
 iter 37 · 13m named-capabilities invocation text · done · 5d40dff · brief-template gains the two consumed sections; Gate 1 red-team aligned with the phase walk
 iter 38 · 13n site-context before compiler + PRODUCT.md at sign-off · done · 970d6f9 · table row pulled forward from 21a (recorded); stale archetype list synced
+iter 39 · 13o critique snapshot wired as polish backlog at Gate 5 · done · 37e8362 · storage CLI round trip observed in clean temp dir; deferral rule recorded as decision
