@@ -46,3 +46,4 @@ iter 45 · 21a seo-audit + ab-testing contracts, site-arch seam, profiling cross
 iter 46 · 21b catalog second half (assets, executor, motion stack, post-ship seams) · done · c09d6f9 · #21 closed with evidence; two upstream renames caught pre-pin; 4 new upstream names routed to #6
 iter 47 · 18 gate teeth + doctrine header + report skeleton + criteria sync · done · b08bc5e · Gate 3 line surfaced two real docs hover findings, routed to #22
 iter 48 · 22 docs detector findings + showcase treatment + hover teeth · done · 74c79ef · interceptor screenshot outage mid-iteration; headless fallback per REVIEW-4 precedent
+iter 49 · 19a TESTS.md sweep + renumber (tests 65-67, sort, gap removal) · done · 626bdaf · labels preserved over relabel to keep external refs valid
