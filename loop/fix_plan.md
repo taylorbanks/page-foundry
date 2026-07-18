@@ -27,7 +27,7 @@ One item per iteration, top-most unchecked first. Items are sized to finish insi
 - [x] (0d8b42d) 13e: Timing fixes — ai-seo answer-block + analytics conversion event into Phase 2 spec; customer-research during intake; competitor-profiling into Phase 0/1 (competitors stays archetype-side); pricing output generates /pricing.md. Close #13 with evidence. TESTS entries 13a–e.
 - [x] REVIEW-2: audit WS2 vs #13 acceptance; tag v3-night-2 on green. AUDITED: body deliverables all verified; one decision-comment deliverable unshipped, reopened as 13f; no tag until it closes. Record: loop/evidence/review-2.md.
 - [x] (f6aee06) 13f (#13 reopened): absorb impeccable's two scanner rules per the dedup decision (aphoristic cadence; repeated section kickers) into references/voice.md scan:patterns as WARN-level entries, extending scripts/voice_scan.py only if a rule cannot be a line regex (kicker repetition is cross-section, so scanner logic may be needed); TESTS.md entry; re-close #13 with evidence.
-- [ ] REVIEW-2b: confirm 13f meets the dedup decision line and broke nothing (verify.sh, scans, TESTS); tag v3-night-2 on green.
+- [x] (d12bc4b) REVIEW-2b: confirm 13f meets the dedup decision line and broke nothing (verify.sh, scans, TESTS); tag v3-night-2 on green. GREEN, zero reopens; tagged v3-night-2. Record: loop/evidence/review-2b.md.
 
 ## WS3 — impeccable (#15, #16)
 

@@ -17,3 +17,4 @@ iter 14 · 13d independent audit + multi-candidate generation · done · a3dbf69
 iter 15 · 13e timing fixes + TESTS 29-38 + #13 closed · done · 0d8b42d · competitor-profiling enters table; 21a cross-ref note stands
 iter 16 · REVIEW-2 audit of iters 11-15 · done (1 reopen: 13f scanner-rule absorption) · 65652a7 · no tag; v3-night-2 waits on REVIEW-2b
 iter 17 · 13f scanner-rule absorption from pinned impeccable clone · done · f6aee06 · #13 re-closed; clone at ~/projects/impeccable pre-stages WS3
+iter 18 · REVIEW-2b confirmation of 13f · done (GREEN) · d12bc4b · tagged v3-night-2; 0 reopens, 3 observations (kicker false-positive nuance flagged for DOGFOOD-FULL)
