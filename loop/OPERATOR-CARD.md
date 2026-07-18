@@ -4,7 +4,7 @@
 
 ```
 cd /Users/taylor/projects/page-foundry
-nohup bash loop/run.sh > loop/logs/nohup.out 2>&1 &
+nohup bash loop/run-tiered.sh > loop/logs/nohup.out 2>&1 &   # tiered-model runner; see loop/MODEL-POLICY.md
 ```
 
 Preconditions: git clean at start (runner assumes committed baseline), `gh` authed, npm automation token in `~/.npmrc` (expires ~2026-10), Chrome + Interceptor up for dogfood items. Baseline: `git log --oneline -1` recorded in loop/logs/runner.log line 1.
@@ -51,3 +51,8 @@ The report (`plans/v3.0-overnight-report.md`) is the map, not the territory: bud
 1. Linter "no completion promise in LOOP-SPEC" — false positive; the promise string is in the Stop gate section (`PF-V3-SHIPPED-COMPLETE-WITH-EVIDENCE-9f3a`).
 2. PROMPT references `taylor-voice.md` — as a NEVER-touch guardrail, not an orientation file; its absence from the kit is the point.
 3. PROMPT references `loop/ESCALATION.md` — created on demand at first escalation, by design.
+
+
+## Model policy (loop/MODEL-POLICY.md)
+
+The orchestrator floor is Opus. When Opus is exhausted the loop PAUSES and waits for it to reset (30-min checks, 24h cap), then resumes itself — it never silently drops to a weaker model. To trade quality for progress, edit `ORCH_MODELS=(opus sonnet)` in `run-tiered.sh` explicitly; those iterations are logged DEGRADED and the AUDIT re-reviews them, and release blocks until reviewed. Watch the per-iteration model in `loop/logs/models.log`.
