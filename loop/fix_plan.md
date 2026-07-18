@@ -40,7 +40,7 @@ One item per iteration, top-most unchecked first. Items are sized to finish insi
 
 - [x] (872c238) 17a: handoff.md rewrite — manifest 00–06 (+assets/manifest geometry), five non-negotiables + explicit creative-license grant in 00, fabrication ban verbatim, 01 image slots with dimensions/aspect ratios, 04 from a FIXED criteria template with criterion-ID↔gate-ID map incl. Gates 6+7, 05 voice-rules excerpt, 06 return-spec + revision-request format.
 - [x] (fe62776) 17b: design.md projection — generation rules (deterministic compilation from 00–05, published 8-section spec, version alpha pinned, never hand-edited, regenerate on change) + `npx @google/design.md lint` wiring when available + per-tool packaging table (attachments / single-prompt / repo). Closed #17 with evidence.
-- [ ] REVIEW-4: audit WS4; tag v3-night-4 on green.
+- [x] (62832e3) REVIEW-4: audit WS4; tag v3-night-4 on green. GREEN, zero reopens; lint claim reproduced cold (exit 0, identical findings); 46-rule count verified by hand in the pinned clone; unowned walkthrough commit audited clean, process lesson recorded. Record: loop/evidence/review-4.md. 4 observations (G5 label drift for #18/19a; N/A body-text nuance for DOGFOOD-FULL; 19a must cover per-tool seam + lint dispositions; unowned commits route through fix_plan).
 
 ## WS1b + WS2c — new archetypes and catalog integration (#12, #21)
 
