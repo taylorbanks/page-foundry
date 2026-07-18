@@ -1,0 +1,13 @@
+{
+  "detector": {
+    "ignoreValues": [
+      {
+        "rule": "numbered-section-markers",
+        "value": "*",
+        "files": ["docs/index.html"],
+        "createdAt": "2026-07-18T21:51:04Z",
+        "reason": "The 01 to 06 roster ordinals and the 01 to 08 gate numbers are the page's content, not decorative section scaffold: the how-it-works section's claim is that the pipeline runs the skills in order, and the gates are numbered 1 to 8 in the product's own ship-gates doctrine. Removing the numbers would remove the claim. Accepted 2026-07-18 during the overnight v3 run; flagged OWNER-REVIEW in plans/v3.0-overnight-report.md."
+      }
+    ]
+  }
+}
