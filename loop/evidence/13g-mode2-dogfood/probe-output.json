@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "48913543",
+    "author": "bpavuk",
+    "created_at": "2026-07-14T22:09:25Z",
+    "comment_text": "well, I&#x27;ve been working on the Zig compiler lately, there you have to swear off using AI in any capacity. even your tab-complete, yes. I find that yes, I&#x27;m a little slower with regexes instead of GPT mini&#x2F;Luna models as a find&#x2F;replace engine, but I am quickly getting grasp of it, and I see the future where I&#x27;m faster with Neovim and ripgrep than Codex. the structure of the standard library is super-logical and the code is eye-wateringly readable. I don&#x27;t even feel the <i>need</i> in, or will to, use Codex in any capacity when working on such a great project. DVUI is also great to work with.<p>that said, I also used to work in environments where even Claude Opus tripped over itself when trying to untangle its own slop. that made me looking forward to AI going bust and folding back into tab-complete. that bubble revealed a lot of projects that always were slop, even before AI. the LLM policy became a great proxy of the quality standard the codebase and the community upholds itself to",
+    "story_title": "S&P Global has lowered Oracle\u2019s creditworthiness from BBB to BBB-"
+  },
+  {
+    "objectID": "48876721",
+    "author": "gunalx",
+    "created_at": "2026-07-11T23:10:59Z",
+    "comment_text": "I find a llm in a harnes combined with manual ripgrep exploration is really effective of getting codebases. But you font always want to find what you find.",
+    "story_title": "Stop Telling Me to Ask an LLM"
+  },
+  {
+    "objectID": "48797044",
+    "author": "dv_dt",
+    "created_at": "2026-07-05T19:11:57Z",
+    "comment_text": "Lightest weight: bat and ripgrep<p>Though not a traditional ide",
+    "story_title": "Ask HN: Good fast IDE for reading and navigating code in multiple languages"
+  }
+]
