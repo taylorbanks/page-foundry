@@ -44,11 +44,11 @@ One item per iteration, top-most unchecked first. Items are sized to finish insi
 
 ## WS1b + WS2c — new archetypes and catalog integration (#12, #21)
 
-- [ ] 12a: Contracts for pricing-page, comparison-alternatives, thank-you-post-conversion (top-3; thank-you referenced by all archetypes).
+- [x] (f7d1c8a) 12a: Contracts for pricing-page, comparison-alternatives, thank-you-post-conversion (top-3; thank-you referenced by all archetypes).
 - [ ] 12b: Contracts for docs-dev-tool-landing, waitlist-coming-soon, event-webinar (Event schema note).
-- [ ] 12c: Contracts for agency-services, ecommerce-product, changelog-launch-post; 404 note in shared rules; portfolio = personal-home axis note. Close #12.
+- [ ] 12c: Contracts for agency-services, ecommerce-product, changelog-launch-post; 404 note in shared rules; portfolio = personal-home axis note. TESTS.md entries for 12a-c, including extending test 38's public-pricing enumeration with pricing-page. Close #12.
 - [ ] 21a (#21): site-architecture (Phase 2 adjunct + scope-escalation seam), competitor-profiling (already in 13e — verify + cross-reference), seo-audit (Gate 6), ab-testing (post-ship loop) — real I/O contracts in the table + phase bodies.
-- [ ] 21b (#21): image + canvas-design (asset ownership split), webapp-testing (Gates 3/5 executor), gstack diagram (how-it-works), motion stack rewrite (remotion-best-practices + create + render + captions; hyperframes flagged evaluate-before-trust), react-view-transitions conditional, deploy-to-vercel opt-in; distribution seam section (launch orchestrates social/pr/ad-creative/emails/directory-submissions consuming run artifacts, opt-in post-ship). Close #21.
+- [ ] 21b (#21): image + canvas-design (asset ownership split), webapp-testing (Gates 3/5 executor), gstack diagram (how-it-works), motion stack rewrite (remotion-best-practices + create + render + captions; hyperframes flagged evaluate-before-trust), react-view-transitions conditional, deploy-to-vercel opt-in; distribution seam section (launch orchestrates social/pr/ad-creative/emails/directory-submissions consuming run artifacts, opt-in post-ship); onboarding companion entry (thank-you-post-conversion section companion; plan line 45 catalog item, previously unowned — added by 12a per lesson 13). Close #21.
 
 ## WS5 + WS6 — gates, docs, dogfood, release (#18, #19)
 
