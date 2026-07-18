@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Token-derived favicon: the product's initial letterform in the
+       display face on the brand field, per the Phase 5 bullet. -->
+  <rect width="64" height="64" rx="12" fill="#0f1b2d"/>
+  <text x="32" y="46" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
+        font-size="42" fill="#e8a13a">L</text>
+</svg>

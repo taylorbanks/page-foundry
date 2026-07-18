@@ -1,0 +1,9 @@
+/* Fixture theme for the 13p dogfood: the fictional Logship dev tool
+   (same fictional product as the 13k grid fixture). Brand tokens only;
+   the OG card and favicon are styled from these and nothing else. */
+:root {
+  --field: #0f1b2d;
+  --ink: #f4f1ea;
+  --accent: #e8a13a;
+  --display: Georgia, 'Times New Roman', serif;
+}
