@@ -44,7 +44,7 @@ page-foundry fixes the process, not the sentence. The same voice across fifty pa
 
 ## Whatever page you need
 
-Eight page types, each with a structure that fits how that page actually gets bought: open source project, SaaS homepage, campaign landing page, mobile app, course or workshop sales page, membership or community, newsletter signup, personal site. A page that straddles two gets composed from both.
+Sixteen page archetypes, each a conversion contract rather than a fixed template: open source project, SaaS homepage, campaign landing, pricing, comparison, docs, waitlist, event, agency, e-commerce, mobile app, course sales, membership, newsletter, personal site, and a launch changelog. Section order follows how your buyer raises objections instead of a numbered slot, and a page that straddles two archetypes gets a merged contract.
 
 Three ways to run it:
 
@@ -93,7 +93,7 @@ page-foundry is an orchestrator. It does not reinvent marketing; it invokes the 
 These projects do the heavy lifting. page-foundry does the sequencing and the checking, and it is a lesser tool without any of them. All optional at runtime; the skill degrades to built-in condensed rules when they are absent. Install them anyway.
 
 - [marketingskills](https://github.com/coreyhaines31/marketingskills) by [Corey Haines](https://www.corey.co): product-marketing, copywriting, CRO, customer-research, pricing, and psychology.
-- [Anthropic's skills](https://github.com/anthropics/skills): frontend-design, theme-factory, web-artifacts-builder, and skill-creator.
+- [Anthropic's skills](https://github.com/anthropics/skills): frontend-design, web-artifacts-builder, and skill-creator.
 - [web-design-guidelines](https://github.com/vercel-labs/agent-skills) by Vercel Labs: accessibility, typography, and UX rules.
 - [humanizer](https://github.com/blader/humanizer) by blader: the "Signs of AI writing" pattern set behind the copy pattern pass.
 - [gstack](https://github.com/garrytan/gstack) by Garry Tan: design consultation, the variant shotgun, and visual review.
