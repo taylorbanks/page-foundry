@@ -38,19 +38,25 @@ Every goal in this file drops the converted reader somewhere: a confirmation scr
 
 When the next screen is a page this skill can build (a thank-you page, as opposed to a store listing or checkout flow the platform owns), build it in the same pass; the conversion is not done at the form.
 
-## Archetype mapper
+## The contract compiler
 
 Current archetypes: `oss-project`, `saas-homepage`, `campaign-landing`, `mobile-app`, `course-sales`, `membership-community`, `newsletter-capture`, `personal-home`.
 
-When the right archetype is not obvious, ask (or infer from the brief) three questions:
+The compiler turns a Phase 1 brief into a filled contract. It runs for every page, whether or not the user named an archetype: naming one skips classification, never compilation. Answer five questions from the brief (ask only for what the brief does not settle, and state every inferred answer):
 
 1. **What is the conversion?** Install/star → oss-project. Trial/demo → saas-homepage. One-time purchase of a defined offer → campaign-landing or course-sales. Recurring subscription to people + content → membership-community. Email address → newsletter-capture. Store install → mobile-app. "Know who I am, then one action" → personal-home.
 2. **Is the relationship one-time or ongoing?** One-time purchases sell a transformation with an endpoint (course-sales, campaign-landing). Ongoing subscriptions sell a living thing and must prove it is alive (membership-community, saas-homepage, newsletter-capture).
 3. **Where does the traffic come from?** A single controlled source with one intent pushes toward campaign-landing's contract (no nav, message match binding) regardless of what is being sold. Mixed/organic traffic pushes toward homepage contracts (nav, fuller story).
+4. **What awareness state dominates?** Unaware, problem-aware, solution-aware, or product-aware, from the brief's traffic answer. Every contract's entry-states block conditions jobs on this; the compiler keeps or strikes each awareness-conditional job accordingly and records which state it compiled for. The first three questions pick the contract; this one decides what survives inside it.
+5. **How heavy is the decision?** Price and commitment, from free install to high-ticket application. course-sales states the thresholds (roughly $200 for a focused page, $500 and up for full long-form); the same gradient governs length on every archetype. Weight sets the density default: how much persuasion the page carries before the ask.
+
+**The output is a filled contract, not an archetype name.** Instantiate the matched archetype's six blocks: the goal made concrete for this product, entry states narrowed to the ones the brief says actually arrive, every awareness-conditional job marked kept or struck with one line of reasoning, proof requirements checked against the brief's real proof inventory, the CTA policy, and the full ordering-constraint set (the shared ten plus the archetype's own). The filled contract goes into the page spec, and the gates audit against it.
 
 **Straddling.** A page straddling two archetypes gets a merged contract: the union of both jobs lists, the goal from the archetype matching the CONVERSION, and the strictest applicable CTA and navigation policy. A paid workshop sold from one ad campaign merges campaign-landing and course-sales: campaign-landing's goal and no-nav policy, plus the curriculum and instructor jobs. A paid newsletter merges newsletter-capture and membership-community the same way. Record the merge in the page spec so the gates audit the right constraints.
 
 **Nothing fits.** The shared constraints plus `references/conversion-rules.md` already amount to a contract; fill the six blocks by hand, state in the spec that the page is off-archetype, and when the same hand-filled contract recurs across runs, promote it into this file using the schema above.
+
+**The log moves the defaults.** Before filling anything, read `foundry-log.md` for this property (Phase 0 already loaded it). Its `conversion data` and `learnings` lines adjust what the compiler would otherwise assume: a page length that underperformed at this price point stops being the default; a proof placement that produced signups is not overridden without saying so. When the log moves a default, the filled contract names the log line that moved it; when a log exists and moves nothing, the contract says why, the same discipline the pipeline demands of Phases 1 through 3. No log means the defaults stand, and the contract says that too.
 
 ---
 
