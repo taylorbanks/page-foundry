@@ -13,3 +13,4 @@ iter 10 · REVIEW-1 audit of iters 1-9 · done (GREEN) · dfbc496 · tagged v3-n
 iter 11 · 13a I/O contract table + two-tier policy · done · 02201d6 · theme-factory delisted; micro-dogfood green
 iter 12 · 13b run artifact directory + v2.x adoption · done · 081f952 · brief stays at .agents/product-marketing.md (marketingskills convention), recorded as autonomous decision
 iter 13 · 13c evidence lines + VOC provenance · done · 531dd3f · dogfood proves quote trace is a pure text search
+iter 14 · 13d independent audit + multi-candidate generation · done · a3dbf69 · real divergence measured (self 28 vs cold 26); fabrication near-miss caught pre-dispatch, lesson recorded
