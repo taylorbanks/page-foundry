@@ -232,7 +232,7 @@ One package, three delivery shapes. Which shape a tool gets follows from what it
 Run BEFORE delivering the package (these gate the package itself):
 
 - Gate 1, conversion audit: runs against the spec and copy (5-second test, CTA policy, headline budget, proof adjacency). The MECLABS score of record comes from a fresh agent given the package's verbatim copy and the brief, per Gate 1's mechanics in `references/ship-gates.md`.
-- Gate 2, voice: `voice_scan.py` at zero FAILs across the package's prose files (`00` through `06`, and the generated `DESIGN.md` with them); the pattern pass and the humanizer already ran in Phase 3 on the copy itself.
+- Gate 2, voice: `voice_scan.py` at zero FAILs across the package's prose files (`00` through `06`, and the generated `DESIGN.md` with them); the pattern pass and the humanizer already ran in Phase 3 and the copy-fit pass on the copy itself.
 - The projection check: `DESIGN.md` regenerated from the current package files, then linted per the projection section (`broken-ref` blocks; warnings dispositioned in the gate report; an unlinted projection recorded as unlinted).
 - Gate 8, integrity: no fabricated proof anywhere in the package; `[TK]` items listed in the master prompt's questions section.
 
