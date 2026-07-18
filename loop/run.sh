@@ -21,7 +21,7 @@ LOOP=loop
 LOG="$LOOP/logs"
 mkdir -p "$LOG" "$LOOP/evidence"
 MAX_ITER=60
-STOP_AFTER="14:00"   # local; no NEW iterations after this (extended for the 07-18 daytime run, owner present)
+STOP_AFTER="20:00"   # extended (owner present; finish the queue today)
 PROMISE="PF-V3-SHIPPED-COMPLETE-WITH-EVIDENCE-9f3a"
 ITER=0
 
