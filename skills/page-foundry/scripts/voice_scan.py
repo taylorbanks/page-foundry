@@ -175,6 +175,50 @@ def scan_structural(copy):
     return warns
 
 
+KICKER_PAIR = re.compile(
+    # A label element directly before a section heading. The body group refuses
+    # to cross its own closing tag or any block/heading boundary, so a long
+    # paragraph sitting before the real kicker cannot backtrack-swallow it.
+    r"<(p|span|div|small)\b([^>]*)>"
+    r"((?:[^<]|<(?!/\1\s*>|/?(?:p|div|small|h[1-6])\b)[^>]*>)*)"
+    r"</\1\s*>\s*<h([234])\b[^>]*>(.*?)</h\4\s*>",
+    re.S | re.I)
+
+
+def scan_html_kickers(raw):
+    """Repeated section kickers, absorbed from impeccable's detector (rule
+    repeated-section-kickers) under the v3.0 capability-ownership split: a short
+    uppercase label element sitting directly before an h2/h3/h4, three or more
+    times on a page, is AI editorial scaffolding. Impeccable gates on computed
+    font-size and letter-spacing; a static scanner cannot, so this gates on the
+    source-level tells instead: literal ALL-CAPS text, an `uppercase` utility
+    class or inline transform, or an eyebrow/kicker class name. Pairs split by
+    an intermediate wrapper element are invisible to this regex; the design
+    detect gate (impeccable detect, when installed) sees those with real styles.
+    WARN-level, threshold 3 per page, matching the source rule's advisory
+    severity and its 'once is fine; the pattern is the tell' doctrine."""
+    candidates = []
+    for m in KICKER_PAIR.finditer(raw):
+        attrs = m.group(2).lower()
+        kicker = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", m.group(3))).strip()
+        heading = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", m.group(5))).strip()
+        if not (2 <= len(kicker) <= 34) or len(heading) < 3:
+            continue
+        if re.match(r"step\s*\d+", kicker, re.I) or re.fullmatch(r"\d{1,2}", kicker):
+            continue
+        allcaps = re.search(r"[A-Z]", kicker) and not re.search(r"[a-z]", kicker)
+        styled = "uppercase" in attrs or "eyebrow" in attrs or "kicker" in attrs
+        if not (allcaps or styled):
+            continue
+        line_no = raw.count("\n", 0, m.start()) + 1
+        candidates.append((line_no, kicker, "h" + m.group(4), heading))
+    if len(candidates) < 3:
+        return []
+    return [(ln, "repeated section kickers ('%s' before %s, %d on page)"
+             % (kick, tag, len(candidates)), head[:80])
+            for ln, kick, tag, head in candidates]
+
+
 def scan_file(path, banned, judgment, patterns, cfg):
     fails, warns = [], []
     raw = path.read_text(encoding="utf-8", errors="replace")
@@ -196,6 +240,8 @@ def scan_file(path, banned, judgment, patterns, cfg):
             if dash in line and cfg.get(key) != "off":
                 (fails if cfg.get(key) == "fail" else warns).append((i, label, ctx))
     warns += scan_structural(copy)
+    if path.suffix.lower() in (".html", ".htm"):
+        warns += scan_html_kickers(raw)
     bangs = copy.count("!")
     if bangs > cfg.get("max_exclamations", 1):
         fails.append((0, f"{bangs} exclamation points (max {cfg.get('max_exclamations', 1)} per page)", ""))

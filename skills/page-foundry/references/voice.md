@@ -172,6 +172,8 @@ Patterns to kill on sight (from Wikipedia's "Signs of AI writing" and the seo-au
 - **Terse noun-pair fragments.** "Seven phases, eight gates." A punchy fragment pairing two counts. Make it a sentence.
 - **Three parallel verb-clauses.** "It runs the skills, gates the result, and hands back a page." Three present-tense verb clauses in a row read as generated. Break the rhythm: two sentences, or vary the verbs and shapes. (Caught by the `three parallel verb-clauses` regex.)
 - **Parallel-list uniformity.** A list where every item opens the same way ("Finds... / Pulls... / Structures... / Writes..."). Uniform openings across a set read as machine-made even when each item is fine alone. Vary the grammatical shape item to item. (The scanner flags a plain prose run of these; a list spread across separate DOM elements with labels is beyond regex, which is why the humanizer pass is a hard gate, not a suggestion.)
+- **Aphoristic contrast.** `Not a feature. A platform.` Two clipped sentences manufacturing a contrast. One on a page can be a choice; the cadence is the tell, and three or more is a rewrite, not a review. (Caught by the `aphoristic contrast` regex.)
+- **Aphoristic rebuttal.** A sentence answered by a short `No ...` or `Just ...` sentence: `You ship the page. No guessing.` Same threshold: once reads as voice, a page that keeps landing on the rebuttal reads as generated. The scanner flags every instance; Phase 3 applies the three-per-page line when deciding rewrite versus accept-with-reason. (Caught by the `aphoristic rebuttal` regex.)
 
 <!-- scan:patterns -->
 # AI language patterns, WARN-level. Format: NAME|||REGEX (case-insensitive). Reviewed and fixed in Phase 3.
@@ -183,6 +185,9 @@ authority trope|||\b(the point is|what really matters|the real question is|the h
 significance inflation|||\b(marks|marking|represents|signals) a (pivotal|key|defining|turning|significant) (moment|point|shift|role)\b
 superficial -ing|||,\s+(highlighting|underscoring|emphasizing|showcasing|reflecting|symbolizing|ensuring|fostering|cultivating)\b
 three parallel verb-clauses|||\b[a-z]+s\b[^,.;:!?]{2,60},\s+[a-z]+s\b[^,.;:!?]{2,60},\s+(?:and|then)\s+[a-z]+s\b
+# The two aphoristic patterns keep their case sensitivity inside (?-i:...) because sentence casing is the signal.
+aphoristic contrast|||(?-i:\bNot an? [a-z][^.!?]{1,40}[.!]\s+[A-Z][^.!?]{1,60}[.!])
+aphoristic rebuttal|||(?-i:\b[A-Z][^.!?]{4,80}[.!]\s+(?:No|Just)\s+[a-z][^.!?]{2,60}[.!])
 <!-- /scan:patterns -->
 
 ## Replacement strategy
@@ -201,4 +206,4 @@ After the mechanical scan passes, read the page top to bottom once and ask of ea
 
 ---
 
-_Provenance: banned and judgment lists reconciled 2026-07-07 against marketingskills 2.3.0 (copywriting, copy-editing) and the seo-audit ai-writing-detection list, which copywriting itself defers to. Re-reconcile when those companions change; keep this list a superset of the AI-writing-detection vocabulary._
+_Provenance: banned and judgment lists reconciled 2026-07-07 against marketingskills 2.3.0 (copywriting, copy-editing) and the seo-audit ai-writing-detection list, which copywriting itself defers to. The two aphoristic patterns and the scanner's repeated-section-kicker check are absorbed from impeccable 3.2.1's detector (rules `aphoristic-cadence` and `repeated-section-kickers`) under the v3.0 capability-ownership split: voice_scan owns the mechanical text scan, so these fire with or without impeccable installed. Re-reconcile when those companions change; keep this list a superset of the AI-writing-detection vocabulary._
