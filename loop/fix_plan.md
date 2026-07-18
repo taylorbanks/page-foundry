@@ -10,7 +10,7 @@ One item per iteration, top-most unchecked first. Items are sized to finish insi
 ## WS1 — conversion contracts (#11)
 
 - [x] (cc7d546) 11a: archetypes.md head rewrite — replace "archetype fixes section order" doctrine with the six-block contract schema (Goal / Buyer entry states / Jobs / Proof requirements / CTA policy / Ordering constraints) + the ~10 ordering invariants extracted verbatim from conversion-rules; shared rules updated so rule 4 and rule 11 now WIN. Phase 2 text in SKILL.md updated to compile-a-contract language.
-- [ ] 11b: Convert oss-project, saas-homepage, campaign-landing to contracts (every load-bearing rule from plans/research/pf-archetypes.md §1 survives as constraint or job; slot numbers die; awareness-state notes added).
+- [x] (5d54185) 11b: Convert oss-project, saas-homepage, campaign-landing to contracts (every load-bearing rule from plans/research/pf-archetypes.md §1 survives as constraint or job; slot numbers die; awareness-state notes added).
 - [ ] 11c: Convert mobile-app, course-sales, membership-community to contracts (same standard).
 - [ ] 11d: Convert newsletter-capture, personal-home to contracts; promote the thank-you page requirement into a shared cross-archetype reference stub (full contract comes in 12a).
 - [ ] 11e: Mapper → contract compiler — +awareness state +price/decision weight inputs; output is a filled contract; straddle = merge (union of jobs, conversion owner sets goal, strictest policy); nothing-fits = hand-filled contract; reads foundry-log to adjust axis defaults. Micro-dogfood: compile a contract for a sample brief (a dev-tool + a course) and commit both outputs to loop/evidence/.
