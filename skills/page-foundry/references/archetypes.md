@@ -62,15 +62,15 @@ Every goal in this file drops the converted reader somewhere: a confirmation scr
 - The moment delivers something immediately: the promised artifact, the best of what they signed up for, or the first concrete step already underway.
 - It sets expectations for what arrives when: the first issue, the onboarding email, the reply to their application.
 
-When the next screen is a page this skill can build (a thank-you page, as opposed to a store listing or checkout flow the platform owns), build it in the same pass; the conversion is not done at the form.
+When the next screen is a page this skill can build (a thank-you page, as opposed to a store listing or checkout flow the platform owns), build it in the same pass, to the `thank-you-post-conversion` contract below; the conversion is not done at the form.
 
 ## The contract compiler
 
-Current archetypes: `oss-project`, `saas-homepage`, `campaign-landing`, `mobile-app`, `course-sales`, `membership-community`, `newsletter-capture`, `personal-home`.
+Current archetypes: `oss-project`, `saas-homepage`, `campaign-landing`, `mobile-app`, `course-sales`, `membership-community`, `newsletter-capture`, `personal-home`, `pricing-page`, `comparison-alternatives`, `thank-you-post-conversion`.
 
 The compiler turns a Phase 1 brief into a filled contract. It runs for every page, whether or not the user named an archetype: naming one skips classification, never compilation. Answer five questions from the brief (ask only for what the brief does not settle, and state every inferred answer):
 
-1. **What is the conversion?** Install/star → oss-project. Trial/demo → saas-homepage. One-time purchase of a defined offer → campaign-landing or course-sales. Recurring subscription to people + content → membership-community. Email address → newsletter-capture. Store install → mobile-app. "Know who I am, then one action" → personal-home.
+1. **What is the conversion?** Install/star → oss-project. Trial/demo → saas-homepage. One-time purchase of a defined offer → campaign-landing or course-sales. Recurring subscription to people + content → membership-community. Email address → newsletter-capture. Store install → mobile-app. "Know who I am, then one action" → personal-home. Tier selection into checkout, trial, or upgrade → pricing-page. The parent product's conversion reached through switch intent from a named competitor → comparison-alternatives. Activating a reader who just converted → thank-you-post-conversion, usually compiled in the parent page's pass per the post-conversion section above rather than classified from a fresh brief.
 2. **Is the relationship one-time or ongoing?** One-time purchases sell a transformation with an endpoint (course-sales, campaign-landing). Ongoing subscriptions sell a living thing and must prove it is alive (membership-community, saas-homepage, newsletter-capture).
 3. **Where does the traffic come from?** A single controlled source with one intent pushes toward campaign-landing's contract (no nav, message match binding) regardless of what is being sold. Mixed/organic traffic pushes toward homepage contracts (nav, fuller story).
 4. **What awareness state dominates?** Unaware, problem-aware, solution-aware, or product-aware, from the brief's traffic answer. Every contract's entry-states block conditions jobs on this; the compiler keeps or strikes each awareness-conditional job accordingly and records which state it compiled for. The first three questions pick the contract; this one decides what survives inside it, and it chooses the narrative-shape axis.
@@ -341,4 +341,103 @@ This archetype tolerates the most aesthetic risk on the whole list; the page is 
 
 ---
 
-_Provenance: reconciled 2026-07-07 against marketingskills 2.3.0 (copywriting page templates, cro, product-marketing). The archetype structures are page-foundry's own opinionated superset; the integrations, built-for, and enterprise/B2B patterns were added from copywriting's copy-frameworks. Re-reconcile when those companions change._
+## pricing-page
+
+For a dedicated pricing page on a product with public pricing. The reader arrives closer to a decision than on any other page the funnel owns; the page's job is to end deliberation, not to restart the pitch.
+
+**Goal.** Tier selection: the reader picks a plan and starts the checkout, trial, or upgrade that plan defines.
+
+**Buyer entry states.** Nobody lands here cold, but the states differ in what they are deciding. Evaluators arrive from the homepage or the nav, sold enough to ask what it costs, carrying the which-tier-is-me question. Cross-shoppers arrive solution-aware from a comparison or a search, checking the price against a shortlist before investing attention anywhere else; for them the prices are the first content, not the conclusion. Existing customers arrive at a plan limit with upgrade intent, asking what the next tier adds and whether anything they built breaks on the way up. The spec states the mix; the upgrade state in particular adds jobs the other two never raise.
+
+**Jobs the page must do.**
+
+- Show the tiers within the first scroll: name, price, billing unit, who each tier is for, and the recommended tier visually marked (good-better-best; see Pricing psychology in `references/conversion-rules.md`). A pricing page that opens with a manifesto before showing a price fights the intent that brought the reader.
+- Say who each tier is for in one line per tier, before what it includes. Buyers self-select by situation faster than by feature count, and a tier that names its buyer answers which-tier-is-me where it arises (shared constraint 6).
+- Anchor before the ask: the higher tier, or the cost of the problem, is visible before or beside the target price so the target reads as reasonable against it.
+- Make adjacent tiers legibly different: the one or two capabilities that move a buyer up a tier, stated plainly. The exhaustive feature matrix serves the completeness reader below the cards or behind a toggle; it never substitutes for the legible difference.
+- Answer the billing mechanics inline, because they are this page's standing objections: monthly versus annual and the real saving if one exists, what counts as a seat, what happens at a limit, proration on upgrade, and the downgrade and cancel path stated plainly. Ease of leaving is a buying factor for recurring offers.
+- Name the free path plainly if one exists: free tier, trial length, what requires a card and what does not, what ends when the trial ends.
+- For the upgrade state: what the next tier adds over the reader's current one, and confirmation that nothing they carry is lost on the way up.
+- State the sales path honestly when one exists: "talk to sales" replaces a price only when pricing is genuinely quote-based, and a hidden price on a page of public prices carries its stated reason (volume, procurement, compliance) beside it.
+- Reverse the risk at the cards: trial terms, refund terms, cancel-anytime, in or immediately beside the tier cards rather than in a distant section (shared constraint 5: the cards are the moment of commitment).
+- Collect the leftovers: procurement questions for B2B (invoicing, purchase orders, security review), edge-case plan questions, and the honest answer to what happens when a buyer outgrows or shrinks out of a tier.
+
+**Proof requirements.** The tier cards are the ask, so proof rides in their viewport (shared constraint 2). The strongest form is a quote that names value at a specific tier, or the moment that justified an upgrade; a creditable customer count or logo row supports. Cost framing (per day, per seat, against the manual alternative) counts as proof only when the reference number is real. No decoy tiers that do not exist, no fake strikethroughs, no invented savings percentages: the integrity gate reads this page closely, because pricing is where fabrication pays best.
+
+**CTA policy.** One primary action per tier, the same verb-first label pattern on every card, the recommended tier's button visually leading. The sales path on a quote-based tier is that tier's action, not a competitor to the others. Navigation: standard; this page lives in the site nav and readers route through it mid-evaluation.
+
+**Ordering constraints.** Adds to the shared set:
+
+- Tier cards land within the first scroll. Shared constraint 4 reads at funnel scope here: the mechanism lives on the pages that route to this one, and a single what-this-is line in the hero restates it for the reader who arrived direct, instead of a mechanism section pushing prices below the fold.
+- The anchor is visible before or beside the target price, never after it.
+- Billing mechanics are answered before the final CTA repetition; a reader who reaches the last button still wondering what a seat costs at renewal is carrying this page's most common objection.
+
+On this archetype the pricing companion's Phase 2 output also drafts `/pricing.md`, the machine-readable file Gate 6 checks at the site root: a pricing page for human buyers ships one for agentic buyers beside it.
+
+---
+
+## comparison-alternatives
+
+For pages that capture switch intent: "COMPETITOR alternative" pages, "COMPETITOR alternatives" list pages, "product versus COMPETITOR" pages, and third-party comparisons of two products the site owner sells against. The reader already uses or has shortlisted a named competitor; the page meets a comparison already running in their head.
+
+**Goal.** The parent product's primary conversion (trial, demo, install), reached through switch or shortlist intent. The page is measured on that conversion, not on time spent in a table.
+
+**Buyer entry states.** The most solution-aware traffic any archetype receives: the reader knows the category, knows the competitor, and usually arrives from a search whose phrasing names the intent (an "alternative" search is switch intent; a "versus" search is diligence on a shortlist). Two temperatures share that state. The frustrated switcher carries a specific grievance, a price change, a missing capability, a support experience, and wants to know quickly whether this product fixes it. The diligent evaluator is pre-purchase, comparing before committing anywhere, and reads the table closely. Message match binds doubly here (shared constraint 8): to the search phrasing that sent the reader, and to the competitor's own vocabulary, because that vocabulary is the language the reader currently thinks in. Map the competitor's real feature names to ours honestly; renaming their concepts reads as evasion.
+
+**Jobs the page must do.**
+
+- Name the comparison plainly in the hero: which products, for which reader, and whose page this is. Feigned neutrality on a vendor's own domain fails the integrity gate; the honest frame (here is where we win, here is where they do) earns the credibility the rest of the page spends.
+- Lead with the wedge: the two or three differences that actually drive switching for this buyer, before any exhaustive matrix. Feature parity is table stakes; the wedge is why the page exists.
+- Compare honestly, with the concessions in the table: what the competitor genuinely does better stays in, stated plainly. Conceded weaknesses buy credibility for the claimed strengths (the oss-project concession rule, generalized, and it binds harder here: this page's readers use the competitor and can verify every row).
+- Keep every competitor claim current and verifiable: their pricing, plan limits, and features as of a stated check date that rides with the table. A stale row or a strawman comparison fails the integrity gate the moment a reader spots it, and these readers are the ones equipped to.
+- Answer the switching cost, the load-bearing objection of switch intent: the migration path, what imports and what does not, time to reach parity with today's setup, what maps to what. A reader convinced by the wedge but silent-treated on migration has not been answered (shared constraint 6).
+- Show proof from switchers: testimonials from buyers who made this exact move, with the grievance that moved them named.
+- Draw the stays line: the cases where the competitor remains the right choice. It is the not-for list wearing comparison clothes; it turns away only readers this product would fail (no collision with shared constraint 9), and it is the strongest single honesty signal a comparison page can carry.
+- When price is compared, compare true cost: tiers, limits, overages, and the migration itself, never a cherry-picked pair of sticker numbers.
+
+**Proof requirements.** Switcher testimonials are the heaviest proof and sit immediately before the ask (shared constraint 3). The table's rows are proof only as far as they are verifiable and dated. Third-party numbers (review-site ratings, category reports) appear only when real, current, and attributed as the source displays them.
+
+**CTA policy.** Default policy, with the parent product's primary conversion as the action. Navigation: standard; these pages ride the main site and route evaluators deeper into it.
+
+**Ordering constraints.** Adds to the shared set:
+
+- The wedge precedes the exhaustive table: why to switch comes before row-by-row completeness. A reader who meets forty rows before one reason to care reads the page as homework.
+- The hero frame matches the arrival phrasing: an "alternative" search lands on an alternative frame, a "versus" search on a comparison frame (shared constraint 8, applied to the page's own title and hero).
+- The migration answer precedes the final ask, and the concessions live in or beside the table, never quarantined below the last CTA.
+
+Seam note: competitor-profiling owns the competitive frame at intake (Phase 0/1); the competitors companion owns these sections' structure and copy in Phase 2/3. This archetype consumes both, and the check date on the table is refreshed per run, not inherited from the last one.
+
+---
+
+## thank-you-post-conversion
+
+For the page a just-converted reader lands on: the signup confirmation, the checkout success, the application-received screen. Every archetype in this file has this moment (the shared post-conversion section above binds them all), and it is the highest-trust moment the funnel ever produces. When the parent page's next screen is a page this skill can build, it is built to this contract in the same pass.
+
+**Goal.** Make the conversion stick, then spend the moment once: the next action that turns a signup into a subscriber who reads, a purchase into a first use, an application into a kept appointment. Pick one as primary, derived from the parent page's goal.
+
+**Buyer entry states.** One state, unique in this file: converted. The reader just handed over an email, money, or an application, and arrives carrying two questions in order: did it work, and what happens now. Paid conversions add a third, the remorse window: the quiet did-I-make-a-mistake that opens the moment the card is charged. Awareness states do not apply; the parent conversion defines the sub-state (just-subscribed, just-purchased, just-applied, just-booked), and each changes what making it stick means. The spec names the parent page and the sub-state.
+
+**Jobs the page must do.**
+
+- Confirm the conversion unambiguously in the first line: what just happened, stated as fact. Every other job waits until the did-it-work anxiety is dead.
+- Deliver something immediately: the promised artifact, the best of what they signed up for, or the first concrete step already underway. This is the shared section's second obligation and this page's center; a thank-you page that only thanks is a dead end wearing manners.
+- Set expectations for what arrives when, and from whom: the first issue, the onboarding email, the reply to the application, named specifically enough that the reader recognizes it when it lands and notices when it does not.
+- Name the single next action and make it the page's one CTA: the confirm click for double opt-in flows, the calendar add, the first-run step, the install.
+- Spend the moment's trust on at most one honest ask beyond the next action, when one worth making exists: a one-question survey (what nearly stopped you feeds `voc.md` with the objection map's ground truth), a share, or a genuinely related next offer. At most one; the moment is easily overspent, and a thank-you page with four asks converts none of them.
+- For paid conversions, close the remorse window: restate the guarantee or refund terms and say when and how support answers. Reassurance is cheap here and expensive later, in a refund request.
+
+**Proof requirements.** The lightest in this file: the conversion already happened, and proof serves only whatever ask this page makes. An upsell ask carries proof adjacency like any CTA (shared constraint 2); an activation ask's proof is the product doing the thing. Padding this page with trust signals the reader no longer needs reads as insecurity after the sale.
+
+**CTA policy.** One primary next action. In double opt-in flows the confirm instruction IS the hero and the only call to action above the fold, because an unconfirmed signup is a conversion the funnel already lost; every other ask waits below it. Navigation: minimal or none; the page's job is forward motion, not a return to browsing.
+
+**Ordering constraints.** Adds to the shared set:
+
+- Confirmation precedes everything, including delivery and any ask; a reader unsure whether the purchase worked buys nothing else.
+- Delivery precedes any additional ask: give before asking again.
+- On paid conversions the remorse-window jobs (guarantee restatement, support path) appear before any upsell.
+
+The 5-second test (shared constraint 1) translates naturally here: what just happened, what you get, what to do next, readable at a glance by someone whose only question is whether it worked.
+
+---
+
+_Provenance: reconciled 2026-07-07 against marketingskills 2.3.0 (copywriting page templates, cro, product-marketing). The archetype structures are page-foundry's own opinionated superset; the integrations, built-for, and enterprise/B2B patterns were added from copywriting's copy-frameworks. pricing-page, comparison-alternatives, and thank-you-post-conversion added 2026-07-18 from the v3.0 catalog audit (`plans/research/pf-archetypes.md` section 4). Re-reconcile when those companions change._

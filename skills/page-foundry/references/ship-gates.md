@@ -58,7 +58,7 @@ Handoff mode: gates 1, 2, and 8 run before the package is delivered; gates 3, 4,
 - [ ] `llms.txt` present at the site root (template below).
 - [ ] `robots.txt` does not `Disallow` the AI crawlers that drive citations: `GPTBot`, `ChatGPT-User`, `PerplexityBot`, `ClaudeBot`, `anthropic-ai`, `Google-Extended`, `Bingbot`. Blocking one loses that engine's citation; only `CCBot` is safe to block. An AI-discovery gate that passes while `ClaudeBot` is disallowed is a false pass.
 - [ ] Page copy is machine-extractable: the answer block the Phase 2 spec placed survived the build as a self-contained 40 to 60 word block near the top, key facts are in real text (not baked into images), and comparisons/FAQs use plain markup. This gate verifies the spec's block; discovering at ship time that no block was specced is a Phase 2 defect, not something to retrofit here.
-- [ ] For archetypes with public pricing (saas-homepage, course-sales, membership-community), the machine-readable `/pricing.md` (or `/pricing.txt`) the Phase 2 spec drafted is present for agentic buyers.
+- [ ] For archetypes with public pricing (pricing-page, saas-homepage, course-sales, membership-community), the machine-readable `/pricing.md` (or `/pricing.txt`) the Phase 2 spec drafted is present for agentic buyers.
 - [ ] `<title>` and meta description written to the same standard as page copy (voice rules apply), and short enough not to truncate.
 - [ ] Open Graph + Twitter card meta complete, with a real OG image (1200x630).
 - [ ] Canonical URL set; favicon present.
