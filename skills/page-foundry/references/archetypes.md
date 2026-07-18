@@ -1,6 +1,32 @@
 # Page Archetypes
 
-Pick exactly one archetype per page. The archetype fixes section order, CTA policy, navigation policy, and proof placement. Deviate only when the user asks, and record the deviation in the page spec.
+An archetype is a conversion contract, not a template. It fixes what the page must accomplish for its buyer: the goal, the jobs, the proof, the CTA policy, and the constraints any legal section order must satisfy. It does not fix where sections sit. Section order is computed fresh for every page from the Phase 1 objection map, inside the ordering constraints below; two pages honoring the same contract should differ in structure whenever their buyers differ. The page spec records which order the objection map produced and why, so the gates audit constraints, not slot positions.
+
+## The contract schema
+
+Every archetype in this file is written as six blocks:
+
+1. **Goal.** The single conversion the page type exists for.
+2. **Buyer entry states.** The awareness and temperature states this page must serve, keyed to the Phase 1 brief. This input generates section order.
+3. **Jobs the page must do.** Obligations without positions. Every job appears on the page; no job owns a slot. A skipped job is a spec defect, not a style choice.
+4. **Proof requirements.** The proof types the goal demands, with placement constraints.
+5. **CTA policy.** The primary action, repetition rules, navigation policy, and form budget. Default for every contract: one primary CTA per page, the same action every time it appears, never competing; secondary actions stay visually quiet (text links, ghost buttons; conversion rule 3).
+6. **Ordering constraints.** Archetype-specific additions to the shared invariants below. Any order satisfying the full set is legal; the objection map chooses among legal orders.
+
+## Shared ordering constraints
+
+These ten bind every page this skill builds. A contract's own Ordering constraints block adds to the set; nothing subtracts from it. Rule numbers cite `references/conversion-rules.md`, which holds the evidence.
+
+1. The hero comes first and passes the 5-second test: what it is, who it is for, what to do next, readable in five seconds by someone who has never heard of the product (rule 1).
+2. Proof sits beside the claim it supports, and every CTA instance has a proof element within one viewport (rule 4).
+3. The heaviest proof on the page sits immediately before the ask.
+4. The mechanism is established before the price is asked.
+5. Risk reversal lands at the moment of commitment, not before it.
+6. Objections are answered where they arise; an FAQ collects the leftovers and never substitutes for answering the load-bearing objections in place (rule 11).
+7. The mobile single-column order reaches proof before any form (rule 8).
+8. Message match binds single-source traffic: the hero mirrors the language of the ad, post, or email that sent the reader (rule 5).
+9. No qualified reader is disqualified before reaching a CTA (rule 10).
+10. Sections appear in the order THIS buyer raises objections, taken from the Phase 1 objection map. Where constraints 1 through 9 leave several legal orders, the objection map decides; where the map is silent, the spec states the assumption it made.
 
 ## Archetype mapper
 
@@ -10,18 +36,11 @@ When the right archetype is not obvious, ask (or infer from the brief) three que
 
 1. **What is the conversion?** Install/star → oss-project. Trial/demo → saas-homepage. One-time purchase of a defined offer → campaign-landing or course-sales. Recurring subscription to people + content → membership-community. Email address → newsletter-capture. Store install → mobile-app. "Know who I am, then one action" → personal-home.
 2. **Is the relationship one-time or ongoing?** One-time purchases sell a transformation with an endpoint (course-sales, campaign-landing). Ongoing subscriptions sell a living thing and must prove it is alive (membership-community, saas-homepage, newsletter-capture).
-3. **Where does the traffic come from?** A single controlled source with one intent pushes toward campaign-landing structure (no nav, message match binding) regardless of what is being sold. Mixed/organic traffic pushes toward homepage structure (nav, fuller story).
+3. **Where does the traffic come from?** A single controlled source with one intent pushes toward campaign-landing's contract (no nav, message match binding) regardless of what is being sold. Mixed/organic traffic pushes toward homepage contracts (nav, fuller story).
 
-**Composition rules.** When a page straddles two archetypes, take the structure (section order, nav and CTA policy) from the archetype matching the CONVERSION, and borrow individual sections from the other. Examples: a paid workshop sold from one ad campaign = campaign-landing structure + the curriculum and instructor sections from course-sales. A paid newsletter = newsletter-capture structure + the pricing and what-you-get sections from membership-community. Record every borrowed section and deviation in the page spec so the gates audit the right rules.
+**Straddling.** A page straddling two archetypes gets a merged contract: the union of both jobs lists, the goal from the archetype matching the CONVERSION, and the strictest applicable CTA and navigation policy. A paid workshop sold from one ad campaign merges campaign-landing and course-sales: campaign-landing's goal and no-nav policy, plus the curriculum and instructor jobs. A paid newsletter merges newsletter-capture and membership-community the same way. Record the merge in the page spec so the gates audit the right constraints.
 
-**Nothing fits.** Build a custom spec from the shared rules below plus the conversion rules file, state explicitly that the page is off-archetype, and consider adding the new archetype to this file afterward using the same format (audience, conversion goal, numbered sections, nav policy).
-
-Shared rules for every archetype:
-
-- The hero must pass the 5-second test: what it is, who it is for, what to do next, readable in five seconds by someone who has never heard of the product.
-- One primary CTA per page. It may repeat down the page, but it is the same action every time. Secondary actions are visually quiet (text links, ghost buttons).
-- Proof lives next to the claim it supports, and within one viewport of every CTA instance.
-- Sections appear in the order a skeptical reader raises objections, not the order the builder is proud of features.
+**Nothing fits.** The shared constraints plus `references/conversion-rules.md` already amount to a contract; fill the six blocks by hand, state in the spec that the page is off-archetype, and when the same hand-filled contract recurs across runs, promote it into this file using the schema above.
 
 ---
 
