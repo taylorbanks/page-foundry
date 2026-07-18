@@ -84,6 +84,8 @@ The compiler turns a Phase 1 brief into a filled contract. It runs for every pag
 
 **The log moves the defaults.** Before filling anything, read `foundry-log.md` for this property (Phase 0 already loaded it). Its `conversion data` and `learnings` lines move the axis defaults the compiler would otherwise recommend: a density that underperformed at this price point stops being the default; a proof strategy that produced signups is not overridden without saying so. When the log moves a default, the filled contract names the log line that moved it; when a log exists and moves nothing, the contract says why, the same discipline the pipeline demands of Phases 1 through 3. No log means the defaults stand, and the contract says that too.
 
+The log's `skeleton` lines cut the other way. Each run closes by recording the structure it shipped (job order plus axis settings), and Gate 1's anti-template check compares every new page against the property's recent ones: a repeated skeleton with conversion data behind it stands, a repeated skeleton without data gets flagged (`references/ship-gates.md`, Gate 1). Converged because it converts is fine; converged because the last run did it that way is the template trap wearing a contract's clothes.
+
 ---
 
 ## oss-project

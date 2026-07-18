@@ -211,6 +211,7 @@ Close every run by appending a record to `foundry-log.md` beside the page output
 ```
 ### {YYYY-MM-DD} · {mode} · {archetype}
 - headline: {shipped H1}
+- skeleton: {job order, comma-separated} · {narrative shape}/{hero form}/{proof strategy}/{density}
 - meclabs: C={n} (M{n} V{n} I{n} F{n} A{n})
 - gates: {pass/fail/N-A summary}
 - companions: {active this run, with versions where known}
@@ -220,7 +221,7 @@ Close every run by appending a record to `foundry-log.md` beside the page output
 - learnings: {one line per lesson worth carrying forward}
 ```
 
-The log is memory, not a receipt. Phase 0 reads it and treats two fields as binding inputs: unresolved `open items` become spec and gate checks for this run, and `learnings` adjust defaults (a headline pattern that converted poorly is not re-shipped; a section that produced signups is not cut without saying so). When `conversion data` exists, Phases 1 through 3 must state explicitly how it changed at least one decision, or state that it changed nothing and why. The `companions` field makes quality attributable: when two runs differ, check what was installed before blaming the pipeline.
+The log is memory, not a receipt. Phase 0 reads it and treats two fields as binding inputs: unresolved `open items` become spec and gate checks for this run, and `learnings` adjust defaults (a headline pattern that converted poorly is not re-shipped; a section that produced signups is not cut without saying so). When `conversion data` exists, Phases 1 through 3 must state explicitly how it changed at least one decision, or state that it changed nothing and why. The `skeleton` line records the structure the page shipped with (the job order and the four axis settings from the spec), and Gate 1's anti-template check reads it: a new page repeating the property's recent skeletons without conversion data behind the repeat gets flagged. The `companions` field makes quality attributable: when two runs differ, check what was installed before blaming the pipeline.
 
 ## Integrity rules
 

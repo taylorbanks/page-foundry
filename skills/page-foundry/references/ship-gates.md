@@ -14,6 +14,7 @@ Handoff mode: gates 1, 2, and 8 run before the package is delivered; gates 3, 4,
 - [ ] Forms: every field beyond name/email has a written justification in the spec.
 - [ ] MECLABS heuristic scored (rubric in conversion-rules.md); flagged factors (M/V/I low, F/A high) addressed or explicitly accepted.
 - [ ] Red-team read: one simulated skeptical reader per segment x entry state from the brief walks the page; every reader must reach the CTA. Any "not for me" exit by a qualified reader is a failure (conversion rule 10). Log bounce points and fix.
+- [ ] Anti-template check: this page's skeleton (the job order plus axis settings the spec records) compared against the `skeleton` lines of the property's last three runs in `foundry-log.md`. A match backed by `conversion data` on the matched run passes: converged because it converts. A match with no conversion data behind it is flagged, and the flag resolves one of two ways: the spec shows why this buyer's objection map landed on the same structure, or the skeleton goes back to Phase 2. No prior log for the property: N/A.
 
 ## Gate 2: Voice
 
