@@ -39,7 +39,7 @@ One item per iteration, top-most unchecked first. Items are sized to finish insi
 ## WS4 — handoff 3.0 (#17)
 
 - [x] (872c238) 17a: handoff.md rewrite — manifest 00–06 (+assets/manifest geometry), five non-negotiables + explicit creative-license grant in 00, fabrication ban verbatim, 01 image slots with dimensions/aspect ratios, 04 from a FIXED criteria template with criterion-ID↔gate-ID map incl. Gates 6+7, 05 voice-rules excerpt, 06 return-spec + revision-request format.
-- [ ] 17b: design.md projection — generation rules (deterministic compilation from 00–05, published 8-section spec, version alpha pinned, never hand-edited, regenerate on change) + `npx @google/design.md lint` wiring when available + per-tool packaging table (attachments / single-prompt / repo). Close #17.
+- [x] (fe62776) 17b: design.md projection — generation rules (deterministic compilation from 00–05, published 8-section spec, version alpha pinned, never hand-edited, regenerate on change) + `npx @google/design.md lint` wiring when available + per-tool packaging table (attachments / single-prompt / repo). Closed #17 with evidence.
 - [ ] REVIEW-4: audit WS4; tag v3-night-4 on green.
 
 ## WS1b + WS2c — new archetypes and catalog integration (#12, #21)
