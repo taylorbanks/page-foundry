@@ -64,13 +64,17 @@ Every goal in this file drops the converted reader somewhere: a confirmation scr
 
 When the next screen is a page this skill can build (a thank-you page, as opposed to a store listing or checkout flow the platform owns), build it in the same pass, to the `thank-you-post-conversion` contract below; the conversion is not done at the form.
 
+## The 404 page
+
+The 404 is not an archetype; it is too small to earn six blocks and too real to skip. Every property this skill ships eventually serves one, and a default server page is a dead end with the site's name on it. The page's one job is salvaging misrouted intent: say plainly that the page does not exist, in the property's own voice, and put the likeliest right destinations one click away: search when the site has it, the pages misrouted readers most often wanted (home, docs, pricing, the newest post), and a way to report the broken link when someone can act on the report. No conversion ask, and no joke so elaborate the reader must decode it before recovering. The 5-second rule holds here too: what happened, where to go. Build it in the property's first run and it never needs a second thought.
+
 ## The contract compiler
 
-Current archetypes: `oss-project`, `saas-homepage`, `campaign-landing`, `mobile-app`, `course-sales`, `membership-community`, `newsletter-capture`, `personal-home`, `pricing-page`, `comparison-alternatives`, `docs-dev-tool-landing`, `waitlist-coming-soon`, `event-webinar`, `thank-you-post-conversion`.
+Current archetypes: `oss-project`, `saas-homepage`, `campaign-landing`, `mobile-app`, `course-sales`, `membership-community`, `newsletter-capture`, `personal-home`, `pricing-page`, `comparison-alternatives`, `docs-dev-tool-landing`, `waitlist-coming-soon`, `event-webinar`, `agency-services`, `ecommerce-product`, `changelog-launch-post`, `thank-you-post-conversion`.
 
 The compiler turns a Phase 1 brief into a filled contract. It runs for every page, whether or not the user named an archetype: naming one skips classification, never compilation. Answer five questions from the brief (ask only for what the brief does not settle, and state every inferred answer):
 
-1. **What is the conversion?** Install/star → oss-project. Trial/demo → saas-homepage. One-time purchase of a defined offer → campaign-landing or course-sales. Recurring subscription to people + content → membership-community. Email address for a recurring publication that exists → newsletter-capture. Email address for early access to a product that does not exist yet → waitlist-coming-soon. Store install → mobile-app. A practitioner's first successful call on a commercial developer tool → docs-dev-tool-landing. Registration against a real date → event-webinar. "Know who I am, then one action" → personal-home. Tier selection into checkout, trial, or upgrade → pricing-page. The parent product's conversion reached through switch intent from a named competitor → comparison-alternatives. Activating a reader who just converted → thank-you-post-conversion, usually compiled in the parent page's pass per the post-conversion section above rather than classified from a fresh brief.
+1. **What is the conversion?** Install/star → oss-project. Trial/demo → saas-homepage. One-time purchase of a defined offer → campaign-landing or course-sales. Recurring subscription to people + content → membership-community. Email address for a recurring publication that exists → newsletter-capture. Email address for early access to a product that does not exist yet → waitlist-coming-soon. Store install → mobile-app. A practitioner's first successful call on a commercial developer tool → docs-dev-tool-landing. Registration against a real date → event-webinar. "Know who I am, then one action" → personal-home. Tier selection into checkout, trial, or upgrade → pricing-page. The parent product's conversion reached through switch intent from a named competitor → comparison-alternatives. A booked qualified call for a services engagement → agency-services. Add-to-cart on a product that lives in a store → ecommerce-product (the same product sold from one campaign source to one audience compiles campaign-landing; the store context, with its nav, siblings, and cart, is what selects this contract). Re-engaging existing users around a shipped release → changelog-launch-post. Activating a reader who just converted → thank-you-post-conversion, usually compiled in the parent page's pass per the post-conversion section above rather than classified from a fresh brief.
 2. **Is the relationship one-time or ongoing?** One-time purchases sell a transformation with an endpoint (course-sales, campaign-landing). Ongoing subscriptions sell a living thing and must prove it is alive (membership-community, saas-homepage, newsletter-capture).
 3. **Where does the traffic come from?** A single controlled source with one intent pushes toward campaign-landing's contract (no nav, message match binding) regardless of what is being sold. Mixed/organic traffic pushes toward homepage contracts (nav, fuller story).
 4. **What awareness state dominates?** Unaware, problem-aware, solution-aware, or product-aware, from the brief's traffic answer. Every contract's entry-states block conditions jobs on this; the compiler keeps or strikes each awareness-conditional job accordingly and records which state it compiled for. The first three questions pick the contract; this one decides what survives inside it, and it chooses the narrative-shape axis.
@@ -339,6 +343,8 @@ For a person: consultant, builder, speaker, writer. The reader arrived from a ta
 
 This archetype tolerates the most aesthetic risk on the whole list; the page is the person, and a distinctive direction (see design-direction.md) does more work here than anywhere else.
 
+A portfolio site compiles this contract, not a new one: the proof-of-work job promotes to the hero (the proof-led opening above), the hero form goes product-in-hero with the work itself as the visual, and the primary action is usually read-the-work or book-a-call. That the strongest portfolio move is a pair of axis settings here is the contract model working as intended: the structure moved, the obligations did not.
+
 ---
 
 ## pricing-page
@@ -509,6 +515,97 @@ Boundary: a paid ticket makes this a purchase against a date; merge with campaig
 
 ---
 
+## agency-services
+
+For agencies, consultancies, studios, and productized services. The buyer is hiring judgment and process, delivered by people, and the sale closes in a conversation, not a cart; the page's job is to book that conversation with the right buyers and to cost the wrong ones as little of everyone's time as it can.
+
+**Goal.** A booked qualified call. Qualified carries the weight: a services roster has a capacity ceiling a product never hits, so a calendar of wrong-fit calls costs more than a quiet one, and this page deliberately trades raw volume for fit.
+
+**Buyer entry states.** Referrals dominate services traffic: the reader arrives warm from a name they trust, pre-sold on credibility and checking fit, process, and price posture. Search and directory arrivals are solution-aware comparers with a shortlist of firms open in other tabs; for them the wedge is the firm's specific judgment, shown in the work. Both states usually carry a committee behind the visitor: the person on the page sells the engagement internally before anyone books, so the page arms them with the case for this firm in sendable form. The spec states which arrival dominates.
+
+**Jobs the page must do.**
+
+- Say who the firm serves and what an engagement changes for them, in outcome terms: the positioning line names the client and the result, not the service list.
+- Show the work as decisions: case studies that walk the problem the client brought, the calls the firm made and why, and what happened, with a number where one can be shared. For a services firm the case study is the product demo; a logo without a story is a claim, not proof.
+- Name the process: what an engagement looks like from first call to delivered work, the stages and their rough durations, who actually does the work (the partner on this page or a team behind them), and what the client is expected to bring. Process legibility is how a buyer of judgment estimates risk.
+- Draw the fit line explicitly: engagement minimums, the problems taken and the problems referred out, the client stage served. The membership not-for rule generalized, and it binds harder here, because qualification on the page is what keeps the goal's qualified honest. (No collision with shared constraint 9: the line turns away readers the engagement would fail.)
+- State the pricing posture plainly: minimums or typical ranges when they can be said; when engagements are genuinely quote-shaped, say that and say why. A page that hides every number recruits the calls the fit line was built to prevent.
+- Establish the people the client will actually work with: proof-dense bios of the real staffing, not a founder gallery in front of delegated work. Misrepresenting who shows up is this archetype's quiet integrity failure.
+- Make the ask the call, and let the form qualify: the booking asks what the first conversation needs to be worth having (company, the problem in a sentence, budget band, timeline).
+
+**Proof requirements.** Case studies with named clients and specific outcomes are the heaviest proof and sit immediately before the ask (shared constraint 3). Testimonials name the engagement and the result, not the firm's virtues. Logo rows support; they never substitute for one walked decision. Client names appear within what confidentiality allows, and an anonymized case says it is anonymized rather than implying permission.
+
+**CTA policy.** One action: book the call. This is the contract that inverts the form-budget rule (rule 7) on purpose: qualification fields (company, role, problem, budget band, timeline) are sanctioned because their cost is their function, filtering wrong-fit bookings before they spend a roster slot. The inversion keeps its own discipline: every field must change whether or how the first call happens, and a field that only feeds a CRM goes. The spec records each field's qualifying purpose. Navigation: standard (work, services, people, contact).
+
+**Ordering constraints.** Adds to the shared set:
+
+- The fit line and the pricing posture precede the booking form: a call booked before the reader has met the minimums is the exact cost this page exists to avoid.
+- The process is established before the pricing posture (shared constraint 4 in services form: a reader who hears the minimum before the engagement's shape prices judgment against nothing).
+- The people who do the work appear before the final ask; the client is buying them.
+
+---
+
+## ecommerce-product
+
+For a product page in a store: physical goods, and one-time purchases that ship or download. The price and the button are visible from arrival, so persuasion is not the work; the work is killing the four anxieties that stall a ready buyer: will it fit, when will it arrive, can I send it back, and is it really what the photos show.
+
+**Goal.** Add-to-cart, or buy-now where the store's flow skips the cart. One product, one buy box.
+
+**Buyer entry states.** Search and ad arrivals land product-aware, wanting confirmation, price, and logistics, not a pitch. Category browsers arrive from the store's own collection pages mid-comparison against sibling products, and the differentiation that matters is against those siblings, not against other stores. Returners come back to a considered cart or a saved item, usually blocked on one unanswered anxiety. Message match binds ad traffic to the exact variant advertised (shared constraint 8): the color in the ad is the color the page opens on.
+
+**Jobs the page must do.**
+
+- Show the product as it is: multiple angles, honest scale (in hand, on body, in the room), zoom that survives inspection, and customer photos beside the studio shots. The gallery is this page's demonstration, and a render or composite is labeled as one; a render passing as a photograph fails the integrity gate.
+- Run the buy box plainly: price, variant selection (size, color, model) that truthfully updates price, photos, and availability, and the stock state as it is.
+- Answer the logistics beside the box, not at checkout: shipping cost and time to the reader's region, the return window and who pays return shipping, and warranty terms. A shipping cost first revealed at checkout is the classic abandonment this contract exists to prevent.
+- Answer fit where fit is the anxiety: size charts, fit notes sourced from reviews ("runs small" from buyers outranks the brand's own chart), and the model's size on the photo.
+- Show the reviews with their volume, recency, and photos, negatives included: a review section filtered to praise fails the integrity gate as surely as an invented count.
+- State the facts that prevent the return: dimensions, materials, compatibility, care. The return this page fails to prevent costs more than the sale it was afraid to lose.
+- Name what makes it different from its siblings and its category when the store carries alternatives; a browser mid-comparison needs the one-line answer to why this one.
+
+**Proof requirements.** Review volume with customer photos is the heaviest proof on the page: buyers trust other buyers' photographs over anything the store produces. Counts and ratings appear exactly as the store's system computes them. Stock and scarcity claims are real (a stock counter with no inventory system behind it fails the integrity gate), and strikethrough pricing follows the pricing-psychology rules: never faked.
+
+**CTA policy.** The buy box is the primary CTA; a sticky repeat of it on scroll is sanctioned on long pages, because the box is the page's one action, not a competitor to it. Save-for-later and wishlist stay visually quiet. Navigation: the store's standard nav; a product page lives inside a store, and hiding the store reads as a trap.
+
+**Ordering constraints.** Adds to the shared set:
+
+- Price, variants, and availability are visible in the first viewport with the box. There is no mechanism to establish before the price here (shared constraint 4 reads trivially): the product is the mechanism, and hiding its price behind story reads as apology.
+- Shipping and returns are answered before the last buy-box repetition.
+- Review content is reachable within one interaction of the box, and on long pages the heaviest review material sits before the final repetition (shared constraint 3 in review form).
+
+Schema note: Gate 6's JSON-LD templates include `Product` for this archetype (offers, availability, and ratings with real values only); the machine-readable price for agentic buyers rides the schema, since a per-product page has no site-root `/pricing.md` to carry it.
+
+---
+
+## changelog-launch-post
+
+For release announcements, launch posts, and changelog entries that a launch drives traffic to: the page a newsletter, a social post, or a launch thread lands on the day something ships. The primary reader is unique in this file: an existing customer deciding whether the update matters to them. Launch-day strangers arrive too, and the page serves them second.
+
+**Goal.** Re-engagement of existing users: the update tried, the feature adopted, or the upgrade started; pick one per release. The stranger's conversion (the product's own primary goal) is the page's secondary route, never the lead.
+
+**Buyer entry states.** The existing customer is product-aware of the product and unaware of the release: they know the tool, not the news, and some have gone quiet since they last looked, so the post reads as a re-introduction as much as an announcement. Launch traffic is single-source by nature and message match binds (shared constraint 8): the post that sent the reader promised a specific thing, and the hero delivers that thing, not the quarter's roadmap. The spec states the release's goal and which affected segments exist (gated tiers, breaking-change cohorts).
+
+**Jobs the page must do.**
+
+- Lead with what changed and what it lets the reader do now, in outcome terms; the version number rides along, it does not lead. A reader who last opened the product months ago gets enough context to care without a homepage detour.
+- Show the change working: a real screenshot or short clip of the feature doing the thing. The demonstration rule carries from every other contract, and it binds hardest here: a mockup of an unshipped state fails the integrity gate on a page whose whole claim is that this shipped.
+- State who gets it and on what terms: which plans or tiers, rollout timing if staged, and anything breaking or migrating, stated to the affected reader before any ask reaches them. An upgrade-gated feature says so plainly instead of letting the reader discover the gate in-product.
+- Give the shortest try-it path: a deep link to where the feature lives in the product, not a generic login link. The CTA's job is to collapse the distance between reading and using.
+- Serve the stranger with one block, placed after the update story: what the product is, who it is for, and the route to the homepage or signup. The launch-day landing job, honestly sized.
+- Keep the changelog's honesty: known limits, what is not in this release, and fixes alongside features. A changelog that reads like a press release spends the trust that makes changelogs worth subscribing to.
+
+**Proof requirements.** The lightest proof burden after thank-you-post-conversion: the demonstration is the proof, and the reader can verify it in the product within a minute. Adoption or usage numbers appear only when real and creditable. Early-access user quotes follow the standard attribution rules.
+
+**CTA policy.** One primary action per the release's goal: try it, turn it on, or upgrade. For upgrade-gated releases the CTA carries the tier delta plainly (what the reader's plan lacks, what the next one adds). The stranger's route stays visually quiet. Navigation: standard; this page lives on the product's site and often in its docs.
+
+**Ordering constraints.** Adds to the shared set:
+
+- The change is established before any upgrade ask (shared constraint 4 in release form: the feature is the mechanism, and an upgrade priced before the reader knows what changed prices nothing).
+- Breaking changes and migration notes reach affected readers before the try-it ask; a reader who meets the migration in production because the post buried it is this page's worst outcome.
+- The stranger block never precedes the update story: leading a release post with a product pitch tells the existing customer the page is marketing wearing a changelog's clothes.
+
+---
+
 ## thank-you-post-conversion
 
 For the page a just-converted reader lands on: the signup confirmation, the checkout success, the application-received screen. Every archetype in this file has this moment (the shared post-conversion section above binds them all), and it is the highest-trust moment the funnel ever produces. When the parent page's next screen is a page this skill can build, it is built to this contract in the same pass.
@@ -540,4 +637,4 @@ The 5-second test (shared constraint 1) translates naturally here: what just hap
 
 ---
 
-_Provenance: reconciled 2026-07-07 against marketingskills 2.3.0 (copywriting page templates, cro, product-marketing). The archetype structures are page-foundry's own opinionated superset; the integrations, built-for, and enterprise/B2B patterns were added from copywriting's copy-frameworks. pricing-page, comparison-alternatives, and thank-you-post-conversion added 2026-07-18 from the v3.0 catalog audit (`plans/research/pf-archetypes.md` section 4); docs-dev-tool-landing, waitlist-coming-soon, and event-webinar added 2026-07-18 from the same audit. Re-reconcile when those companions change._
+_Provenance: reconciled 2026-07-07 against marketingskills 2.3.0 (copywriting page templates, cro, product-marketing). The archetype structures are page-foundry's own opinionated superset; the integrations, built-for, and enterprise/B2B patterns were added from copywriting's copy-frameworks. pricing-page, comparison-alternatives, and thank-you-post-conversion added 2026-07-18 from the v3.0 catalog audit (`plans/research/pf-archetypes.md` section 4); docs-dev-tool-landing, waitlist-coming-soon, and event-webinar added 2026-07-18 from the same audit; agency-services, ecommerce-product, and changelog-launch-post added 2026-07-18, completing the audit's ranked list, with the 404 page and the portfolio settings landing as notes per its verdict that neither earns a full contract. Re-reconcile when those companions change._

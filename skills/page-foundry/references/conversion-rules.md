@@ -46,7 +46,7 @@ Record the per-factor scores and the computed C in the gate report. There is no 
 
 ## Pricing psychology
 
-For archetypes with a pricing block (saas-homepage, course-sales, membership-community, campaign-landing offers, docs-dev-tool-landing, paid event-webinar tickets, and pricing-page, where the whole page is the block), apply these levers, honestly:
+For archetypes with a pricing block (saas-homepage, course-sales, membership-community, campaign-landing offers, docs-dev-tool-landing, paid event-webinar tickets, ecommerce-product at the buy box, and pricing-page, where the whole page is the block), apply the levers that fit the block's shape, honestly (a single-product buy box has no tiers to guide, but anchoring, framing, and price endings still apply):
 
 - **Anchor before the ask.** Show the higher tier or the cost-of-the-problem first, so the target price reads as reasonable against it.
 - **Three tiers, guide the choice.** Good-better-best with the recommended tier visually marked reduces choice paralysis; a genuinely weaker decoy tier steers toward the target. The tiers must be real.

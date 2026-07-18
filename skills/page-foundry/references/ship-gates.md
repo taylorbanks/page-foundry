@@ -199,6 +199,34 @@ FAQ schema must mirror the visible page content exactly; do not add schema-only 
 
 Omit `endDate` and `offers` fields you cannot fill with real values; never invent a date, price, or seat count.
 
+**ecommerce-product** (`Product`; the buy box's machine-readable twin; the Phase 2 spec supplies real values only):
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{Product}",
+  "description": "{factual one-liner}",
+  "image": ["{real product photo urls}"],
+  "sku": "{sku}",
+  "brand": { "@type": "Brand", "name": "{Brand}" },
+  "offers": {
+    "@type": "Offer",
+    "price": "{price}",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "url": "{product url}"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{real only}",
+    "reviewCount": "{real only}"
+  }
+}
+```
+
+Omit `aggregateRating` unless the store's review system produced the numbers; `availability` states the actual stock state, and the schema price always matches the visible buy box.
+
 **homepage / personal-home** (optional, add alongside the primary type): a `WebSite` with `potentialAction` SearchAction when the site has search, and a standalone `Organization` (name, url, logo, sameAs social links) so the brand resolves as an entity.
 
 ### Gate report format
