@@ -148,16 +148,28 @@ Length: long-form for cold traffic and heavy decisions, compressed for warm sour
 
 For iOS/Android apps. The page's job is to bridge to the store listing, and to serve desktop visitors who cannot install right now.
 
-Conversion goal: store install (mobile visitors) or send-to-phone (desktop visitors).
+**Goal.** Store install. For desktop visitors the same conversion routes through send-to-phone (QR code or badge link): one goal with a device-conditional path, never a second competing action.
 
-1. **Hero.** What the app does and for whom, store badges (App Store / Google Play) above the fold, device-framed screenshot or short screen recording of the core loop. On desktop viewports, add a QR code next to the badges.
-2. **Ratings proof.** Star rating and review count if creditable; pull one or two short review quotes (real ones, attributed as the store displays them).
-3. **Core loop in screens.** 3 or 4 screenshot-led blocks walking the primary use case. Captions in outcome language. Keep copy aligned with the ASO keyword set (use the aso skill if installed) so the page and the listing reinforce each other.
-4. **Differentiator block.** The one thing competing apps in the category do not do. For privacy-forward apps, the privacy posture goes here, stated plainly: what is collected, what is not, where data lives.
-5. **Platform and requirements.** OS versions, offline behavior, account requirements, price/IAP model. Answering this on the page prevents store-page bounce.
-6. **Final CTA.** Badges and QR again, one line restating the outcome.
+**Buyer entry states.** Two dimensions decide the order here, and only one of them is awareness. Single-source traffic from an ad or a post arrives product-aware, and message match binds (shared constraint 8). Category browsers arrive solution-aware, already comparing apps, and raise "why this one over the others" first; in a crowded category the differentiator belongs in or immediately after the hero, not mid-page. The second dimension is device: a mobile visitor can convert this minute, while a desktop visitor cannot install at all, so for them the page's whole job is the send-to-phone bridge. The spec states which awareness state and which device mix dominate.
 
-Navigation: minimal (Support, Privacy). Keep total page weight very low; most traffic is mobile.
+**Jobs the page must do.**
+
+- State what the app does and for whom, with store badges (App Store / Google Play) and a device-framed screenshot or short screen recording of the core loop. On desktop viewports, a QR code sits next to the badges.
+- Walk the primary use case in screenshot-led blocks with captions in outcome language. Keep copy aligned with the ASO keyword set (use the aso skill if installed) so the page and the listing reinforce each other.
+- Name the differentiator: the one thing competing apps in the category do not do. For privacy-forward apps this is the privacy posture, stated plainly: what is collected, what is not, where data lives.
+- Answer platform and requirements: OS versions, offline behavior, account requirements, price and IAP model. Answering this on the page prevents store-page bounce.
+
+**Proof requirements.** Ratings proof when creditable: star rating, review count, one or two short review quotes, real ones, attributed as the store displays them. After ratings, the strongest proof is the product itself: the core-loop recording shows the app doing the thing, and carries the page when ratings are still thin. Cut thin proof rather than pad it.
+
+**CTA policy.** Default policy, with the store badges as the primary CTA; the desktop QR is the same action's device path, not a competitor. Badges (and the desktop QR) repeat at the close with one line restating the outcome. Navigation: minimal (Support, Privacy).
+
+**Ordering constraints.** Adds to the shared set:
+
+- Store badges land above the fold in the hero; on desktop viewports the QR code lands with them.
+- For solution-aware traffic in a crowded category, the differentiator appears in or immediately after the hero.
+- Platform and requirements are answered before the last badge repetition; an answer the reader meets after the final ask prevents nothing.
+
+Page weight: very low, total. Most traffic is mobile.
 
 ---
 
@@ -165,24 +177,36 @@ Navigation: minimal (Support, Privacy). Keep total page weight very low; most tr
 
 For courses, workshops, cohorts, and other paid training with a defined start and end. The reader is buying a transformation, not a curriculum; pages that describe the course lose to pages that sell the outcome.
 
-Conversion goal: enrollment (or application, for high-ticket cohorts).
+**Goal.** Enrollment, or application for high-ticket cohorts.
 
-Length scales with price: under roughly $200, a focused page converts; above roughly $500, buyers expect a full long-form treatment with a detailed curriculum breakdown. Well-built course pages convert in the 5 to 15 percent range from warm traffic; cold-traffic expectations are far lower.
+**Buyer entry states.** Problem-aware is the classic state: the reader owns the gap and has tried effort alone, so the full arc (gap, failed paths, method) has to land before an offer means anything. Solution-aware readers are comparing courses and paths; they start at the method and the curriculum, and the gap compresses to a sentence. Product-aware traffic, usually the instructor's own audience on a launch list, arrives because of the person: the instructor may open the page, the arc compresses to method, results, and logistics, and message match binds to the launch emails (shared constraint 8). The spec states which state dominates and which arc jobs it strikes.
 
-1. **Hero.** The transformation, named, with the timeframe if honest ("from overlooked to short-listed in eight weeks" beats "an 8-module career course"). Who it is for. Primary CTA. Next cohort date if cohort-based.
-2. **The gap.** Where the reader is now versus where they want to be, in their words, and why effort alone has not closed it. This is the problem section reframed for education: the obstacle is usually missing structure or missing feedback, not missing motivation.
-3. **Why existing paths fail.** Free YouTube, certifications that did not move the needle, generic advice. Concede what those are good for; position the course against their real gaps.
-4. **The method.** The named mechanism that produces the transformation. For an instructor with deep field history, the method carries the credibility; the resume supports it, not the reverse.
-5. **Curriculum as outcomes.** Module-by-module, framed as "after this module you can X", not lesson counts and video minutes. Include format logistics: live vs recorded, duration, time commitment per week, tools required.
-6. **Instructor.** Short, proof-dense, written in third person or first consistently. Years, named employers/clients within what can be said, student results.
-7. **Student results.** The heaviest proof on the page, placed immediately before the offer. Named testimonials with specific outcomes; video testimonials when available. `[TK]` and cut if none exist yet; first-cohort pages substitute the instructor's own results and a founding-cohort framing.
-8. **The offer.** Everything included, itemized (modules, calls, community access, templates, recordings), with the price framed against the cost of staying stuck. Payment plans materially lift conversion for prices above a few hundred dollars; offer one when economics allow.
-9. **Guarantee.** 30 days is the floor expectation; longer signals confidence. State the exact terms. High-ticket application-based offers may replace the guarantee with the application itself as risk filter; say so plainly.
-10. **Honest urgency.** Cohort start dates and real seat caps are legitimate urgency; use them. Evergreen self-paced courses skip this section rather than faking it.
-11. **FAQ.** Time commitment, prerequisites, refund terms, "what if I fall behind", "is this for me if [edge case]".
-12. **Final CTA block.** Transformation restated, strongest single proof element, button.
+**Jobs the page must do.** The arc jobs are awareness-conditional; the spec says which apply and why.
 
-Navigation: none (treat as campaign-landing). Forms: enrollment goes straight to checkout; applications ask the minimum to qualify.
+- Name the transformation, with the timeframe if honest ("from overlooked to short-listed in eight weeks" beats "an 8-module career course"), and who it is for. Include the next cohort date if cohort-based.
+- Establish the gap: where the reader is now versus where they want to be, in their words, and why effort alone has not closed it. The obstacle is usually missing structure or missing feedback, not missing motivation. (Chiefly problem-aware traffic; later states compress it.)
+- Name why existing paths fail: free YouTube, certifications that did not move the needle, generic advice. Concede what those are good for; position the course against their real gaps. (Problem-aware traffic; solution-aware readers have already concluded this.)
+- Name the method: the mechanism that produces the transformation. The method carries the credibility; the resume supports it, not the reverse.
+- Present the curriculum as outcomes, module by module: "after this module you can X", never lesson counts and video minutes. Include format logistics: live vs recorded, duration, time commitment per week, tools required.
+- Establish the instructor: short, proof-dense, third or first person consistently. Years, named employers and clients within what can be said, student results. For product-aware audience traffic the instructor is the hook and may open the page.
+- Show student results (the heaviest proof; see Proof requirements). If none exist yet, do not fabricate: first-cohort pages substitute the instructor's own results and a founding-cohort framing.
+- Itemize the offer: everything included (modules, calls, community access, templates, recordings), with the price framed against the cost of staying stuck. Payment plans materially lift conversion for prices above a few hundred dollars; offer one when economics allow.
+- Reverse the risk: a guarantee with exact terms. 30 days is the floor expectation; longer signals confidence. High-ticket application-based offers may replace the guarantee with the application itself as risk filter; say so plainly.
+- Apply honest urgency: cohort start dates and real seat caps are legitimate; evergreen self-paced courses skip urgency rather than faking it.
+- Collect the leftover objections: time commitment, prerequisites, refund terms, "what if I fall behind", "is this for me if [edge case]".
+- Close with the transformation restated, the strongest single proof element, and the button.
+
+**Proof requirements.** Student results are the heaviest proof on the page: named testimonials with specific outcomes, video when available, placed immediately before the offer. Fabricated or borrowed results fail the integrity gate; the honest first-cohort substitute is the instructor's own results under a founding-cohort framing. Instructor credibility is supporting proof: it backs the method, and it stops standing in for student results once those exist.
+
+**CTA policy.** Campaign-landing's policy applies whole: one action, identical wording each repetition, no site navigation, no footer link farm. Enrollment goes straight to checkout; applications ask the minimum needed to qualify.
+
+**Ordering constraints.** Adds to the shared set:
+
+- Whatever subset of gap, failed paths, method, and curriculum the awareness state keeps appears in that relative order. The arc prunes from the front; it never runs backward.
+- Student results sit immediately before the offer (shared constraint 3, made specific: on this page the heaviest proof is always student results, or their first-cohort substitute).
+- The offer is not itemized before the method is established (shared constraint 4; a reader who hears the price before the mechanism prices it against nothing).
+
+Length: under roughly $200, a focused page converts; above roughly $500, buyers expect a full long-form treatment with a detailed curriculum breakdown. Well-built course pages convert in the 5 to 15 percent range from warm traffic; cold-traffic expectations are far lower. Price and awareness state set the density, not the archetype.
 
 ---
 
@@ -190,19 +214,30 @@ Navigation: none (treat as campaign-landing). Forms: enrollment goes straight to
 
 For paid communities, memberships, and subscription groups (Skool, Circle, Discord-based, or self-hosted). The product is access to people plus ongoing material; the page must prove the thing is alive, because the reader's core fear is paying for a ghost town.
 
-Conversion goal: join (or join waitlist / apply, for curated communities).
+**Goal.** Join. Curated communities may make it join-waitlist or apply.
 
-1. **Hero.** Who gathers here and what membership changes for them. Member count and activity only if creditable. Primary CTA.
-2. **Who it is for, who it is not for.** An explicit not-for list (wrong stage, wrong goals, wrong expectations) qualifies buyers, reduces churn, and reads as confidence. This section earns more trust than any superlative could.
-3. **Inside the community.** Real screenshots of real threads, wins, and calls (redact member details as needed). Show the artifact, not an illustration of "community". A short screen recording of scrolling the feed outperforms any copy here.
-4. **What membership includes.** Itemized: the community itself, calls and their cadence, courses or classroom content, templates, events, direct access to the founder and at what level. Be precise about cadence; "monthly calls" is a promise the page is making.
-5. **The founder.** Why this person's room is worth being in: field history, what they share inside, how present they actually are. Presence claims must be honest; "I answer every post" is verifiable by members within a week.
-6. **Member outcomes.** Named member wins with specifics (the role landed, the raise, the first client). Place before pricing.
-7. **Pricing.** Monthly and/or annual, what each includes, founding-member pricing only if real and time-bound. Cancel-anytime stated plainly; for recurring offers, ease of leaving is a buying factor.
-8. **FAQ.** Time required to get value, lurker-friendliness, refund/cancel mechanics, platform logistics, privacy of what members post.
-9. **Final CTA.** One line on what changes the week they join, button.
+**Buyer entry states.** Every state arrives skeptical of ghost towns; that fear organizes this page regardless of awareness. Problem-aware readers know something is missing but not that this room exists; the who-gathers-here story has to land before any inventory of inclusions can matter. Solution-aware readers are comparing communities and raise aliveness and fit first, so the artifact proof and the not-for line move early. Product-aware readers come for the founder (a podcast appearance, a following); the founder job moves forward, and the page must still prove the room is alive without them in it, because a room that is only its founder is a newsletter with extra steps. The spec states which state dominates.
 
-Navigation: none or minimal. Integrity note: activity proof must be current; a screenshot of a busy week eight months ago fails the integrity gate if the room has gone quiet.
+**Jobs the page must do.**
+
+- Say who gathers here and what membership changes for them. Member count and activity numbers appear only if creditable.
+- Draw the not-for line explicitly: wrong stage, wrong goals, wrong expectations. It qualifies buyers, reduces churn, and reads as confidence; it earns more trust than any superlative could. (No collision with shared constraint 9: the not-for list turns away readers the room would fail, not qualified ones.)
+- Prove the room is alive with artifacts: real screenshots of real threads, wins, and calls, member details redacted as needed. Show the artifact, not an illustration of "community"; a short screen recording of scrolling the feed outperforms any copy here. Aliveness proof may interleave beside claims across the page instead of sitting quarantined in one section.
+- Itemize what membership includes: the community itself, calls and their cadence, courses or classroom content, templates, events, direct access to the founder and at what level. Be precise about cadence; "monthly calls" is a promise the page is making.
+- Establish the founder: why this person's room is worth being in, their field history, what they share inside, how present they actually are. Presence claims must be honest; "I answer every post" is verifiable by members within a week.
+- Show member outcomes: named wins with specifics (the role landed, the raise, the first client).
+- Disclose pricing: monthly and/or annual, what each includes, founding-member pricing only if real and time-bound. State cancel-anytime plainly; for recurring offers, ease of leaving is a buying factor.
+- Collect the leftover objections: time required to get value, lurker-friendliness, refund and cancel mechanics, platform logistics, privacy of what members post.
+- Close with one line on what changes the week they join.
+
+**Proof requirements.** The artifact is the proof: screenshots and recordings of the actual room, and they must be current. A screenshot of a busy week eight months ago fails the integrity gate if the room has since gone quiet. Named member outcomes with specifics carry the commitment decision; member counts appear only when creditable.
+
+**CTA policy.** Default policy. Navigation: none or minimal.
+
+**Ordering constraints.** Adds to the shared set:
+
+- The reader sees the room alive (artifact proof, not counts) before pricing is disclosed. The ghost-town fear is this page's load-bearing objection, and shared constraint 6 answers it where it arises: early, in place, never left to the FAQ.
+- Member outcomes precede the pricing disclosure.
 
 ---
 
