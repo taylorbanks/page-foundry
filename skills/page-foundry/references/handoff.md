@@ -23,11 +23,13 @@ handoff/<product>/
 ├── 04-acceptance-criteria.md Filled from the fixed template below; IDs map to gate IDs
 ├── 05-voice-rules.md         Excerpt of references/voice.md; governs tool-generated text
 ├── 06-return-spec.md         What comes back, and the revision-request format
+├── DESIGN.md                 The design system projected into the published design.md
+│                             format; generated from the files above, never hand-edited
 └── assets/                   theme.css, manifest.md (geometry), llms.txt, schema.jsonld,
                               logos, screenshots, captures. Real artifacts only.
 ```
 
-Files `00` through `06` ship in every package. A file with nothing run-specific to say for this product still ships and says why (a greenfield property's `03` opens with the propose-then-lock instruction instead of tokens); a missing file reads as an oversight, and the tool fills oversights with defaults.
+Files `00` through `06` ship in every package, and so does the generated `DESIGN.md` (under propose-then-lock it carries no token values, and that absence is deliberate; the projection section below says why). A file with nothing run-specific to say for this product still ships and says why (a greenfield property's `03` opens with the propose-then-lock instruction instead of tokens); a missing file reads as an oversight, and the tool fills oversights with defaults.
 
 ### 00-master-prompt.md
 
@@ -124,6 +126,30 @@ Ownership across rounds: revisions go to the tool, and the tool's project stays 
 - `llms.txt` and `schema.jsonld`: pre-filled with the product's real values from the templates in `references/ship-gates.md`, shipped as files so the build embeds them instead of retyping them; criteria G6.1 and G6.2 check byte-identity.
 - Logos, product screenshots, captures of live properties. Real artifacts only; no placeholder or generated stand-in enters the package.
 
+### DESIGN.md: the generated projection
+
+The package root carries a `DESIGN.md`: the package's design-system layer projected into the published design.md format (the open spec behind Google Stitch, shipped on npm as `@google/design.md`). It exists for consumers the file layout cannot reach otherwise: tools that read the format natively, and agents that discover a root `DESIGN.md` by the format's own convention. The canonical files stay the source of truth. The projection is generated from them, never edited by hand, and regenerated whenever `00` through `05`, `theme.css`, or the property's design system changes; an edit that seems to belong in the projection belongs in a source file, so make it there and regenerate.
+
+Two files share this name, and they are different things. The property's `DESIGN.md` at the product repo root is the durable design system Phase 4 step 6 persists; it outlives any single page and is an input to this package (its content rides in `03`). The package's `DESIGN.md` is run-scoped output, derived from the package files. They never merge and neither overwrites the other.
+
+**Generation rules.** The projection is a deterministic compilation: the same package produces the same file, every line traces to a named package source, and nothing in it is new thinking. Target the published spec: eight body sections in their fixed order (omitting an empty one is legal, reordering is not), `version: alpha` pinned in the frontmatter so a future spec bump surfaces as a diff. The eight-versus-six profile question is settled in Phase 4 step 6; the projection follows the same ruling.
+
+| design.md part | Compiled from |
+|---|---|
+| Frontmatter (`colors`, `typography`, `rounded`, `spacing`, `components`) | Locked regime: the token values from `theme.css` and `03`, keeping the property's own token names so every value traces back; the accent role also lands under the name `primary`, the one name the linter checks for, and the CTA button enters `components` with its background and text colors. Propose-then-lock: `name` and `version` only. Token values are exactly what the license grant hands the tool, and a projection that invents them decides what `00` said the tool would decide. |
+| `## Overview` | The orientation paragraph from `00` plus the chosen-direction sentences from `03`. |
+| `## Colors` | The palette roles from `03` as prose (what each color is for; values stay in the frontmatter). Propose-then-lock: the OKLCH seed when Phase 4 produced one, and the brief's aesthetic constraints as the region to propose within. |
+| `## Typography` | The type pairing and scale from `03`. |
+| `## Layout` | The spacing rhythm and density setting from `02` and `03`. Never the section order: page structure is `02`'s contract, and design.md is a style contract with no concept of a page. |
+| `## Elevation & Depth` | `03`'s treatment, stated explicitly even when the answer is flat; borders and tonal layers are a chosen strategy, not an omission. |
+| `## Shapes` | The radius and border language from the tokens. |
+| `## Components` | Button, input, and card treatments from `theme.css` and `03`, inside the spec's eight component properties. |
+| `## Do's and Don'ts` | The anti-slop list carried in `03`, verbatim; the CTA policy's styling consequence (one action styled as primary); and the design-facing line of the fabrication ban: no logo strips, star ratings, avatar rows, or count badges that are not in the package. |
+
+The projection carries no copy, no section order, no conversion contract, no acceptance criteria, and no voice enforcement, which is why it never travels alone as a build brief: a consumer holding only this file styles well and builds blind. The per-tool table below draws the consequence.
+
+**Lint.** After every regeneration, when `npx` can reach it, run `npx @google/design.md lint <package>/DESIGN.md`. A `broken-ref` finding is the linter's one error and blocks delivery; warnings go into the gate report, each with a disposition. Two are expected and accepted by design: `missing-primary` under propose-then-lock (the frontmatter deliberately carries no palette) and `orphaned-tokens` when tokens exist for the tool's use rather than for cross-reference. When the linter cannot run, the package still ships and the gate report says the projection went out unlinted; delivery is not hostage to npm being reachable, but an unrecorded skip is a suppressed check.
+
 ## The acceptance criteria template (fixed)
 
 ```markdown
@@ -191,12 +217,23 @@ criteria append under their gate with the next free number. The return log answe
   analytics}
 ```
 
+## Per-tool packaging
+
+One package, three delivery shapes. Which shape a tool gets follows from what it can receive, and the middle row is priced honestly.
+
+| Tool class | What ships | How it enters, and what the seam costs |
+|---|---|---|
+| Attachment-capable: Claude Design, a human designer, any tool that takes files | The full package | Paste `00-master-prompt.md`, attach everything else. Nothing is lost; the gate split below applies as written. |
+| Single-prompt or design.md-aware: Stitch, one-box generators | `DESIGN.md`, plus the page ask distilled from `00` where the tool takes a prompt at all | Import or paste the projection as the style contract. This seam cannot carry the verbatim copy, the criteria, or the return spec, so what comes back is a styled draft, never a build of record: reaching a shippable page means re-entering Phase 5 with the draft as design input and running every gate in full. Say so to the user before choosing this seam, not after the draft arrives. |
+| Repo-based: Claude Code, Codex, any agent working in a checkout | The package directory | Point the agent at `00-master-prompt.md` as the entry file; `DESIGN.md` at the package root is found by the format's own convention. The return spec applies as written. |
+
 ## Gate split in handoff mode
 
 Run BEFORE delivering the package (these gate the package itself):
 
 - Gate 1, conversion audit: runs against the spec and copy (5-second test, CTA policy, headline budget, proof adjacency). The MECLABS score of record comes from a fresh agent given the package's verbatim copy and the brief, per Gate 1's mechanics in `references/ship-gates.md`.
-- Gate 2, voice: `voice_scan.py` at zero FAILs across the package's prose files (`00` through `06`); the pattern pass and the humanizer already ran in Phase 3 on the copy itself.
+- Gate 2, voice: `voice_scan.py` at zero FAILs across the package's prose files (`00` through `06`, and the generated `DESIGN.md` with them); the pattern pass and the humanizer already ran in Phase 3 on the copy itself.
+- The projection check: `DESIGN.md` regenerated from the current package files, then linted per the projection section (`broken-ref` blocks; warnings dispositioned in the gate report; an unlinted projection recorded as unlinted).
 - Gate 8, integrity: no fabricated proof anywhere in the package; `[TK]` items listed in the master prompt's questions section.
 
 Run AFTER the built asset comes back:
@@ -210,4 +247,4 @@ A handoff is not done at package delivery; it is done when the returned asset pa
 
 ---
 
-_Provenance: page-foundry-native (no direct companion source). The Claude Design capability description reflects Anthropic Labs as of 2026-07; re-verify it if the tool's inputs or outputs change. Gate IDs, the criteria template, and the embedded-file checks stay in sync with `references/ship-gates.md`; the `05` excerpt with `references/voice.md`; the anti-slop list with `references/design-direction.md`._
+_Provenance: page-foundry-native (no direct companion source). The Claude Design capability description reflects Anthropic Labs as of 2026-07; re-verify it if the tool's inputs or outputs change. The `DESIGN.md` projection targets the published design.md spec (`google-labs-code/design.md`, `version: alpha`, linter `@google/design.md` 0.3.0, both verified 2026-07); if the spec leaves alpha, revisit the pinned version and the section list. Gate IDs, the criteria template, and the embedded-file checks stay in sync with `references/ship-gates.md`; the `05` excerpt with `references/voice.md`; the anti-slop list with `references/design-direction.md`; the profile ruling with Phase 4 step 6 in `SKILL.md`._

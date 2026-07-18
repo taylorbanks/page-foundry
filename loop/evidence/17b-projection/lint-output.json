@@ -1,0 +1,43 @@
+{
+  "findings": [
+    {
+      "severity": "warning",
+      "path": "colors.red",
+      "message": "'red' is defined but never referenced by any component."
+    },
+    {
+      "severity": "warning",
+      "path": "colors.ink-2",
+      "message": "'ink-2' is defined but never referenced by any component."
+    },
+    {
+      "severity": "warning",
+      "path": "colors.panel",
+      "message": "'panel' is defined but never referenced by any component."
+    },
+    {
+      "severity": "warning",
+      "path": "colors.wash",
+      "message": "'wash' is defined but never referenced by any component."
+    },
+    {
+      "severity": "warning",
+      "path": "colors.dim",
+      "message": "'dim' is defined but never referenced by any component."
+    },
+    {
+      "severity": "info",
+      "message": "Design system defines 8 colors, 3 typography scales, 1 rounding level, 4 components."
+    },
+    {
+      "severity": "info",
+      "path": "spacing",
+      "message": "No 'spacing' section defined. Layout spacing will fall back to agent defaults."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 5,
+    "infos": 2
+  }
+}
