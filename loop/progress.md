@@ -32,3 +32,4 @@ iter 31 · 13g customer-research Mode 2 authorization · done · 40f2e57 · real
 iter 32 · 13h voc.md ranked-theme synthesis layer · done · 1d22a6b · real 2-probe HN dogfood; field placement recorded as autonomous decision
 iter 33 · 13i meta title/description into the voice chain + Gate 6 snapshot diff · done · f3ce132 · closed the gap behind handoff G6.5; both mechanics proven in evidence
 iter 34 · 13j rewrite-path diagnosis before re-derivation · done · 9da1dcd · real dogfood on docs/index.html surfaced two 19b findings
+iter 35 · 13k grid spec + recomposition notes into the token plan, Gate 5 check · done · 5126fa9 · static half dogfooded; screenshot half lands in DOGFOOD-FULL
