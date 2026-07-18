@@ -24,7 +24,7 @@ One item per iteration, top-most unchecked first. Items are sized to finish insi
 - [x] (081f952) 13b: Run artifact directory `.agents/foundry/<product>/` (voc.md, persuasion-map.md, message-architecture.md, page-spec.md, conversion-audit.md, tokens/, copy/) wired through every phase: each phase names what it reads and writes. Phase 0 adopts v2.x artifacts (old .agents/product-marketing.md, foundry-log) — this is #19's migration piece, do it here.
 - [x] (531dd3f) 13c: Gate-report evidence lines per companion (humanizer-style) + VOC provenance schema (every quote carries a source; Gate 2 tracing + Gate 8 become mechanical checks against voc.md).
 - [x] (a3dbf69) 13d: Independent MECLABS audit (Gate 1 scored by a fresh subagent given only rendered page + brief; divergence recorded) + multi-candidate generation (hero candidates by objection framing; frontend-design always 2–3 token plans; selection reasons logged to artifacts).
-- [ ] 13e: Timing fixes — ai-seo answer-block + analytics conversion event into Phase 2 spec; customer-research during intake; competitor-profiling into Phase 0/1 (competitors stays archetype-side); pricing output generates /pricing.md. Close #13 with evidence. TESTS entries 13a–e.
+- [x] (0d8b42d) 13e: Timing fixes — ai-seo answer-block + analytics conversion event into Phase 2 spec; customer-research during intake; competitor-profiling into Phase 0/1 (competitors stays archetype-side); pricing output generates /pricing.md. Close #13 with evidence. TESTS entries 13a–e.
 - [ ] REVIEW-2: audit WS2 vs #13 acceptance; tag v3-night-2 on green.
 
 ## WS3 — impeccable (#15, #16)
