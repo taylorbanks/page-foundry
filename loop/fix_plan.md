@@ -16,7 +16,7 @@ One item per iteration, top-most unchecked first. Items are sized to finish insi
 - [x] (f966ae8) 11e: Mapper → contract compiler — +awareness state +price/decision weight inputs; output is a filled contract; straddle = merge (union of jobs, conversion owner sets goal, strictest policy); nothing-fits = hand-filled contract; reads foundry-log to adjust axis defaults. Micro-dogfood: compile a contract for a sample brief (a dev-tool + a course) and commit both outputs to loop/evidence/.
 - [x] (711fa66) 11f: Composition axes (narrative shape / hero form / proof strategy / density) + section-shape lexicon (3+ shapes per job) as a new reference section; Phase 2 multi-skeleton generation (2–3 constraint-satisfying candidates, MECLABS pre-read, pick at spec sign-off). Dependency from 11e: once the axes section exists, extend the compiler's output paragraph so the filled contract recommends a setting per axis with one reasoning line each (plan lines 25–26); 11e wrote the log-moves-defaults rule in plain language awaiting these defined terms.
 - [x] (40f6283) 11g: Anti-template check — foundry-log gains skeleton line (job order + axes); Gate 1 check comparing to the property's last N pages; converged-without-data flagged. TESTS.md entries for 11a–g. Close #11 with evidence.
-- [ ] REVIEW-1: fresh audit of everything since start vs #14/#11 acceptance + TESTS.md; reopen failures at top; tag v3-night-1 on green.
+- [x] (dfbc496) REVIEW-1: fresh audit of everything since start vs #14/#11 acceptance + TESTS.md; reopen failures at top; tag v3-night-1 on green. GREEN — audit record in loop/evidence/review-1.md; tagged v3-night-1.
 
 ## WS2 — evidence-based orchestration (#13)
 
