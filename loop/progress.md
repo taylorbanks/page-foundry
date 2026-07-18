@@ -37,3 +37,4 @@ iter 36 · 13l form design into the spec's form entry, Gate 1 form audit · done
 iter 37 · 13m named-capabilities invocation text · done · 5d40dff · brief-template gains the two consumed sections; Gate 1 red-team aligned with the phase walk
 iter 38 · 13n site-context before compiler + PRODUCT.md at sign-off · done · 970d6f9 · table row pulled forward from 21a (recorded); stale archetype list synced
 iter 39 · 13o critique snapshot wired as polish backlog at Gate 5 · done · 37e8362 · storage CLI round trip observed in clean temp dir; deferral rule recorded as decision
+iter 40 · 13p OG image + favicon produced in Phase 5, Gate 6 mechanical · done · c3dd81c · Rule 9 debris from a killed prior 13p attempt adjudicated: handoff.md edit reverted (broke propose-then-lock), stray evidence dir removed
