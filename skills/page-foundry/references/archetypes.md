@@ -66,11 +66,11 @@ When the next screen is a page this skill can build (a thank-you page, as oppose
 
 ## The contract compiler
 
-Current archetypes: `oss-project`, `saas-homepage`, `campaign-landing`, `mobile-app`, `course-sales`, `membership-community`, `newsletter-capture`, `personal-home`, `pricing-page`, `comparison-alternatives`, `thank-you-post-conversion`.
+Current archetypes: `oss-project`, `saas-homepage`, `campaign-landing`, `mobile-app`, `course-sales`, `membership-community`, `newsletter-capture`, `personal-home`, `pricing-page`, `comparison-alternatives`, `docs-dev-tool-landing`, `waitlist-coming-soon`, `event-webinar`, `thank-you-post-conversion`.
 
 The compiler turns a Phase 1 brief into a filled contract. It runs for every page, whether or not the user named an archetype: naming one skips classification, never compilation. Answer five questions from the brief (ask only for what the brief does not settle, and state every inferred answer):
 
-1. **What is the conversion?** Install/star → oss-project. Trial/demo → saas-homepage. One-time purchase of a defined offer → campaign-landing or course-sales. Recurring subscription to people + content → membership-community. Email address → newsletter-capture. Store install → mobile-app. "Know who I am, then one action" → personal-home. Tier selection into checkout, trial, or upgrade → pricing-page. The parent product's conversion reached through switch intent from a named competitor → comparison-alternatives. Activating a reader who just converted → thank-you-post-conversion, usually compiled in the parent page's pass per the post-conversion section above rather than classified from a fresh brief.
+1. **What is the conversion?** Install/star → oss-project. Trial/demo → saas-homepage. One-time purchase of a defined offer → campaign-landing or course-sales. Recurring subscription to people + content → membership-community. Email address for a recurring publication that exists → newsletter-capture. Email address for early access to a product that does not exist yet → waitlist-coming-soon. Store install → mobile-app. A practitioner's first successful call on a commercial developer tool → docs-dev-tool-landing. Registration against a real date → event-webinar. "Know who I am, then one action" → personal-home. Tier selection into checkout, trial, or upgrade → pricing-page. The parent product's conversion reached through switch intent from a named competitor → comparison-alternatives. Activating a reader who just converted → thank-you-post-conversion, usually compiled in the parent page's pass per the post-conversion section above rather than classified from a fresh brief.
 2. **Is the relationship one-time or ongoing?** One-time purchases sell a transformation with an endpoint (course-sales, campaign-landing). Ongoing subscriptions sell a living thing and must prove it is alive (membership-community, saas-homepage, newsletter-capture).
 3. **Where does the traffic come from?** A single controlled source with one intent pushes toward campaign-landing's contract (no nav, message match binding) regardless of what is being sold. Mixed/organic traffic pushes toward homepage contracts (nav, fuller story).
 4. **What awareness state dominates?** Unaware, problem-aware, solution-aware, or product-aware, from the brief's traffic answer. Every contract's entry-states block conditions jobs on this; the compiler keeps or strikes each awareness-conditional job accordingly and records which state it compiled for. The first three questions pick the contract; this one decides what survives inside it, and it chooses the narrative-shape axis.
@@ -409,6 +409,106 @@ Seam note: competitor-profiling owns the competitive frame at intake (Phase 0/1)
 
 ---
 
+## docs-dev-tool-landing
+
+For commercial developer tools: APIs, SDKs, hosted infrastructure, developer platforms. The reader is a practitioner who will decide in the docs, not on the marketing page; the page's job is to get them to a first successful call before the polish can be doubted.
+
+**Goal.** First successful call: a key obtained, the quickstart run, real output seen. Time-to-hello-world is the number this page lives or dies on. Signup is instrumental (it gates the key), never the finish line; a signup that stalls before the first call is this funnel's silent churn.
+
+**Buyer entry states.** Practitioners, in two states. Solution-aware evaluators own the problem, are comparing approaches and vendors, and will open the docs in a second tab before believing anything on the landing page; for them the page competes with its own documentation and wins by getting out of the way. Product-aware arrivals come from a changelog, a colleague, or another tool's docs, half-sold and reaching for the quickstart. Behind the practitioner often stands an economic buyer who approves the invoice; material for that reader (security, compliance, SLA) exists on the page and never leads it. The spec states the mix.
+
+**Jobs the page must do.**
+
+- State what the tool does and what it takes off the reader's plate, in one sentence a practitioner can evaluate for fit. No marketing adjectives; this audience reads them as noise at best and as cover at worst (the oss-project rule, carried whole).
+- Show working code within the first scroll: a real request and its real response, in the languages the audience writes, tabbed when there is more than one. For this reader the code block is the product visual, and a fabricated response fails the integrity gate exactly as a fabricated testimonial would.
+- Run the quickstart from key to first successful call in the fewest real steps: where the key comes from, what the free tier allows without a card, real commands with real output. The oss-project screen rule carries: a hello-world longer than one screen is an onboarding problem the page cannot fix.
+- Put the docs one click from everywhere, starting in the hero region. The docs are this page's deep proof (see Proof requirements); a dev-tool page that hides them behind a demo form has disqualified its most qualified readers (shared constraint 9).
+- Show how it works for the trust-evaluating reader: architecture at a glance, data handling, latency and reliability posture, stated plainly. Status page and SLA live here when they exist.
+- Disclose pricing: the free tier and its limits, the unit the paid tiers meter, the rough point where the first invoice arrives. Practitioners disqualify silently on hidden pricing, and a page whose only route is a sales call reads as expensive before any price is seen.
+- Answer the will-it-last objection: versioning and deprecation policy, who runs it in production, how long it has been running. A practitioner adopting a dependency is underwriting its future.
+- Close by repeating the key-and-quickstart action with one line restating the first-call outcome.
+
+**Proof requirements.** The working call is the heaviest proof: real request, real response, runnable when the product allows it. Named production adopters and creditable usage numbers support it. Docs quality is proof this buyer samples directly, so the docs link is this contract's taste-it move (the newsletter-capture rule, generalized). Cut thin proof rather than pad it; the oss-project desperation rule applies unchanged.
+
+**CTA policy.** Default policy, with get-a-key / run-the-quickstart as the primary action. Navigation: standard and docs-forward (Docs, Pricing, Status, Changelog). The enterprise or sales route stays visually quiet beside the self-serve path.
+
+**Ordering constraints.** Adds to the shared set:
+
+- Working code appears within the first scroll; for this audience the 5-second test is passed by code, not by a headline about code.
+- The pricing model is disclosed before the final ask (the saas-homepage rule, unchanged).
+- The sales route never precedes the self-serve quickstart path; routing a practitioner to a call before a key reads as a tool built for procurement, not for them.
+
+Boundary: an open source core with a hosted commercial tier straddles this contract and oss-project; merge per the compiler (union of jobs, the goal from whichever conversion the page is measured on, strictest policy). A dev tool whose buyer is not its user compiles the saas-homepage enterprise variant instead.
+
+---
+
+## waitlist-coming-soon
+
+For pre-launch pages: the product is being built, gated in a private beta, or announced but not shippable. The page asks for trust before there is a product to earn it, which makes it the purest test of the integrity rules in this file.
+
+**Goal.** A qualified email before the product exists. Qualified is the word doing the work: a waitlist of the mildly curious is a launch-day unsubscribe list, and the honest jobs below cost some signups on purpose so the ones that remain are worth having.
+
+**Buyer entry states.** Almost always single-source: a founder's post, a launch thread, a podcast mention, an early press hit; message match binds (shared constraint 8). Two temperatures arrive from the same source. The intrigued browser spends an email the way pocket change is spent, cheap to give and quick to forget. The pain-carrier has been waiting for someone to build exactly this, and reads the page checking whether these builders understand the problem. The page is written for the pain-carrier; the browser is welcome but never courted with inflation.
+
+**Jobs the page must do.**
+
+- State what is coming, for whom, and the honest state of the product in the hero: building, in private beta, launching on a date. A date appears only when it is real; "coming soon" with no date is more honest than a date that will slip (the urgency doctrine, applied before launch).
+- Name the problem and the mechanism: with no product to demonstrate, the reasoning is the pitch. Say why this approach will work where the existing ones have not, concretely enough to be falsifiable. Vague vision copy recruits vague signups.
+- Show what actually exists, labeled as what it is: a mockup captioned as a mockup, a prototype clip captioned as a prototype, a build-in-public changelog. A render styled to pass as a shipping product fails the integrity gate; on this page the gate reads hardest, because nothing exists yet for a false impression to be checked against.
+- Establish the builders: what they have shipped before, linked and real, and why they own this problem. With zero product proof the founder history carries the page (see Proof requirements).
+- Report traction only when creditable: a waitlist count that is real, design partners named with permission, nothing otherwise. A page that shows zero momentum honestly outranks one that manufactures some; manufactured momentum is this archetype's signature fabrication.
+- State the exchange plainly: what joining gets (early access, founding pricing, progress updates and their cadence) and when the reader hears next.
+- Specify the post-conversion moment: the confirmation delivers something now (the design memo, the demo clip, the first update) and names when the next contact lands, per the shared section and the `thank-you-post-conversion` contract.
+
+**Proof requirements.** The unique problem of this contract: product proof does not exist, and nothing may pretend to be it. The honest inventory is founder history (real and linked), the mechanism's reasoning, artifacts of building (prototype clips, changelog, commits) labeled as artifacts of building, creditable waitlist counts, and named design partners with permission. Everything on that list is checkable, which is the point: this page earns trust by being verifiable at the exact moment lying would be easiest.
+
+**CTA policy.** Default policy; the form takes an email (rule 7). Qualification fields are the one sanctioned addition, and only when access is genuinely limited and selection genuinely happens; say so beside the field. Navigation: none or minimal; there is nowhere else worth sending them yet.
+
+**Ordering constraints.** Adds to the shared set:
+
+- The product's honest state (building, beta, date) is stated before the form is reached; a signup that believed it was getting a product today is a churn already booked.
+- The mechanism precedes any founding-pricing ask (shared constraint 4 in pre-launch form: reasoning before commitment).
+- Traction proof, when it exists, rides in the form's viewport; when none exists, the founder proof takes that seat (shared constraint 2, satisfied with the thinnest inventory in this file).
+
+Boundary: a newsletter page sells a recurring thing that already exists and can be tasted; this page sells access to a thing that cannot be tasted yet. When a pre-launch page also runs a content list (building-in-public updates as the draw), merge with newsletter-capture per the compiler.
+
+---
+
+## event-webinar
+
+For registration pages against a real date: webinars, live workshops, launch events, conference sessions, live demos. Free registration is the default frame; a paid ticket merges campaign-landing's offer jobs (see the boundary note).
+
+**Goal.** Registration: a name and an email committed against a date. The goal behind the goal is attendance; a registration that never shows up converted nothing, so this contract treats the calendar add and the reminder path as part of the conversion, not as aftercare.
+
+**Buyer entry states.** Single-source traffic dominates (an email to a list, a post, a partner's newsletter), and message match binds (shared constraint 8). Two states share it. Host-led arrivals come for the person or the brand, are mostly sold, and need the logistics fast: when, how long, what happens live. Topic-led arrivals come for the problem the session covers and need the payoff made concrete before they will trade a calendar slot for it. Distance to the date changes the page: weeks out, the session's value does the selling; days out, the date itself is the urgency, and it is honest by nature.
+
+**Jobs the page must do.**
+
+- Pass the 5-second test with the date in it: what the session is, who it is for, when (date, start time, named timezone), how long, on what platform, with registration in view. On this page the when is part of the what.
+- Sell the session, not the topic: what an attendee walks away with, stated concretely ("leave with your first detection rule running" outranks "learn about detection engineering"). The transformation framing from course-sales, scaled to an hour.
+- Say why live beats the recording for this session: the Q&A, the live teardown, the thing that only happens in the room. This is the load-bearing objection for the busy reader deciding whether to attend or wait for the replay (shared constraint 6: answer it in place).
+- State the replay policy plainly, whichever way it goes. A page that hides an existing replay to force attendance spends trust it will want back at the next event; a page with no replay says so and lets that be the honest urgency it is.
+- Establish the presenter in proof-dense terms: why this person, on this topic, is worth the hour.
+- Apply the urgency that is native here: the date is real, a capacity cap when one exists, a registration deadline when one is real. This is the one archetype where urgency is structural rather than applied, and it still must be checkable; a seats-remaining counter with no cap behind it fails the integrity gate.
+- Answer the logistics objections where they arise: cost if any, what is needed to attend, whether cameras are on, whether the session is recorded, who else will be in the room when that matters.
+- Specify the post-conversion moment: the confirmation lands the calendar file (.ics or provider add-link) as the immediate deliverable and names what arrives by email and when, per the shared section and the `thank-you-post-conversion` contract. The registration is not done until the session is on the calendar.
+
+**Proof requirements.** Presenter credibility carries the ask. The strongest artifact is a clip from a past session (the taste-it move again: let the reader sample the room). Attendee quotes and outcomes appear when real and attributed; a creditable registered-or-attended count supports. First-session pages substitute the presenter's own body of work, the course-sales first-cohort rule scaled down.
+
+**CTA policy.** Default policy, with registration as the single action. The form takes a name and an email as the baseline; every added field costs registrations (rule 7), and a qualification field is sanctioned only for capacity-capped sessions that genuinely select. Navigation: none for single-source campaign traffic, minimal otherwise.
+
+**Ordering constraints.** Adds to the shared set:
+
+- Date, time, and duration appear in the hero; a reader who scrolls to learn when the event is has been made to work for the page's most basic fact.
+- The replay policy is stated before the final ask; the attend-or-wait decision is this page's standing objection and may not be left to the confirmation email.
+- For paid tickets, campaign-landing's constraint carries: the offer is not itemized before the session's mechanism (what happens live and why it works) is established.
+
+Schema note: Gate 6's JSON-LD templates include `Event`; the Phase 2 spec supplies its real values (startDate and endDate with timezone, attendance mode, location URL, offers when the ticket is paid) so the schema mirrors the visible page exactly, per the ship-gates rule that forbids schema-only content and invented dates, prices, or seat counts.
+
+Boundary: a paid ticket makes this a purchase against a date; merge with campaign-landing per the compiler (registration stays the goal, the offer and risk-reversal jobs join, and the strictest CTA policy wins, which here means campaign-landing's no-nav rule). A recurring session series with no fixed date is a different promise; it compiles newsletter-capture or saas-homepage instead. This contract exists for a real date.
+
+---
+
 ## thank-you-post-conversion
 
 For the page a just-converted reader lands on: the signup confirmation, the checkout success, the application-received screen. Every archetype in this file has this moment (the shared post-conversion section above binds them all), and it is the highest-trust moment the funnel ever produces. When the parent page's next screen is a page this skill can build, it is built to this contract in the same pass.
@@ -440,4 +540,4 @@ The 5-second test (shared constraint 1) translates naturally here: what just hap
 
 ---
 
-_Provenance: reconciled 2026-07-07 against marketingskills 2.3.0 (copywriting page templates, cro, product-marketing). The archetype structures are page-foundry's own opinionated superset; the integrations, built-for, and enterprise/B2B patterns were added from copywriting's copy-frameworks. pricing-page, comparison-alternatives, and thank-you-post-conversion added 2026-07-18 from the v3.0 catalog audit (`plans/research/pf-archetypes.md` section 4). Re-reconcile when those companions change._
+_Provenance: reconciled 2026-07-07 against marketingskills 2.3.0 (copywriting page templates, cro, product-marketing). The archetype structures are page-foundry's own opinionated superset; the integrations, built-for, and enterprise/B2B patterns were added from copywriting's copy-frameworks. pricing-page, comparison-alternatives, and thank-you-post-conversion added 2026-07-18 from the v3.0 catalog audit (`plans/research/pf-archetypes.md` section 4); docs-dev-tool-landing, waitlist-coming-soon, and event-webinar added 2026-07-18 from the same audit. Re-reconcile when those companions change._
