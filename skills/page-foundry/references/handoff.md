@@ -156,7 +156,7 @@ The projection carries no copy, no section order, no conversion contract, no acc
 # Acceptance criteria: {product}
 
 Copied from the fixed template in page-foundry's references/handoff.md. IDs are stable and
-the prefix names the owning ship gate (G3 accessibility, G4 performance, G5 design, G6 AI
+the prefix names the owning ship gate (G3 accessibility, G4 performance, G5 render review, G6 AI
 discovery, G7 measurement). {slots} are filled per run. Inapplicable criteria are marked
 N/A with the reason on the line; nothing is reworded, renumbered, or deleted. Run-specific
 criteria append under their gate with the next free number. The return log answers every ID.
@@ -177,23 +177,28 @@ criteria append under their gate with the next free number. The return log answe
   status changes use aria-live. {N/A when the page has no form}
 - G3.9 No step forces a memory or transcription test without an easier alternative.
   {N/A when the page has no auth}
+- G3.10 Every interactive element has a hover state as well as a focus state; nothing is
+  hover-only, and no state change signals by color alone.
 
 ## G4 · Performance
 - G4.1 Total transfer under {budget, default 1MB}; CSS plus JS under {budget, default 200KB}.
 - G4.2 Images sized to the display dimensions in assets/manifest.md, WebP or AVIF, lazy-loaded
   below the fold.
-- G4.3 Fonts: system stack, or at most two self-hosted files, preloaded, font-display: swap.
+- G4.3 Fonts: system stack, or at most two self-hosted files, preloaded, font-display: swap
+  with a metric-matched fallback so the swap shifts no layout.
 - G4.4 No render-blocking third-party scripts; analytics loads deferred.
 - G4.5 LCP under about 2 seconds on a mid-range phone; the LCP element is the hero image or
   text block, not a script-injected element.
 
-## G5 · Design
+## G5 · Render review
 - G5.1 Fully usable at 390px width with the primary CTA above the fold; composed, not
   stretched, at 1440px.
 - G5.2 {locked regime: only the palette, type, and radii in 03-design-direction.md and
   theme.css appear on the page} {propose-then-lock regime: the proposed token system is
   applied consistently and returned as CSS custom properties}
 - G5.3 Nothing on the anti-slop list in 03-design-direction.md appears on the page.
+- G5.4 Blurred, the primary element, the secondary element, and the groupings still read
+  within 2 seconds (the squint test), the hero first.
 
 ## G6 · AI discovery and meta
 - G6.1 llms.txt from assets/ placed at the site root, byte-identical.
