@@ -4,7 +4,7 @@ One item per iteration, top-most unchecked first. Items are sized to finish insi
 
 ## P0 — v2.x defects (small, independent; ship first)
 
-- [ ] 14a (#14): Phase 3 ordering fix in SKILL.md — any edit after the pattern pass (cuts, red-team fixes) re-triggers scan + humanizer; copy-editing outputs a changelog; collapse the redundant only-cuts pass into copy-editing. Add the humanizer meaning-preservation guardrail from the issue comment (proposes/arbitrates, one pass, accepted-WARN-with-reason, claim-changing rewrite = defect). TESTS.md entry.
+- [x] (98b7bc3) 14a (#14): Phase 3 ordering fix in SKILL.md — any edit after the pattern pass (cuts, red-team fixes) re-triggers scan + humanizer; copy-editing outputs a changelog; collapse the redundant only-cuts pass into copy-editing. Add the humanizer meaning-preservation guardrail from the issue comment (proposes/arbitrates, one pass, accepted-WARN-with-reason, claim-changing rewrite = defect). TESTS.md entry.
 - [ ] 14b (#14): Build-mode verbatim-copy protection — SKILL.md Phase 5 + Gate 2: snapshot approved copy at end of Phase 3 (artifact file), diff rendered text after any builder, drift fails Gate 2. TESTS.md entry. Close #14 with evidence.
 
 ## WS1 — conversion contracts (#11)
