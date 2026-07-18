@@ -40,3 +40,4 @@ iter 39 · 13o critique snapshot wired as polish backlog at Gate 5 · done · 37
 iter 40 · 13p OG image + favicon produced in Phase 5, Gate 6 mechanical · done · c3dd81c · Rule 9 debris from a killed prior 13p attempt adjudicated: handoff.md edit reverted (broke propose-then-lock), stray evidence dir removed
 iter 41 · AUDIT-F1a shape selection hoisted to Phase 2, Phase 4 confirm-or-override · done · 4a0776a · F1b snapshot-move scope untouched; evidence routed to tracking #20 (no dedicated audit-F issue)
 iter 42 · AUDIT-F1b copy-fit pass + snapshot move to post-form · done · 7adedb0 · real+fixture dual walk; docs meta WARN routed to #19; F2 grafts the comp next
+iter 43 · AUDIT-F2 Phase 4.5 comp stage + Gate 5 comp-record line · done · 4ab14b7 · dogfood exposed headless-Chrome 500px window floor; capture warning shipped into Gate 5
