@@ -42,3 +42,4 @@ iter 41 · AUDIT-F1a shape selection hoisted to Phase 2, Phase 4 confirm-or-over
 iter 42 · AUDIT-F1b copy-fit pass + snapshot move to post-form · done · 7adedb0 · real+fixture dual walk; docs meta WARN routed to #19; F2 grafts the comp next
 iter 43 · AUDIT-F2 Phase 4.5 comp stage + Gate 5 comp-record line · done · 4ab14b7 · dogfood exposed headless-Chrome 500px window floor; capture warning shipped into Gate 5
 iter 44 · AUDIT-DOCS plan record + walkthrough regeneration · done · baaa1aa · two pre-existing em-dash FAILs in v3.0.md fixed in passing
+iter 45 · 21a seo-audit + ab-testing contracts, site-arch seam, profiling cross-ref · done · 14eae08 · docs meta-truncation finding routed to 19b
