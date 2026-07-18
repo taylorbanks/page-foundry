@@ -1,0 +1,12 @@
+== built-drift.html
+   snapshot sentences missing/paraphrased: 2
+     DRIFT: One scan maps your exposed services in 20 minutes.
+     DRIFT: Start the first scan free.
+   rendered prose not in snapshot (unscanned): 2
+     NEW:   One scan maps your exposed services in about 20 minutes.
+     NEW:   Get started today
+   verdict: Gate 2 FAIL (drift)
+== built-clean.html
+   snapshot sentences missing/paraphrased: 0
+   rendered prose not in snapshot (unscanned): 0
+   verdict: verbatim diff clean
