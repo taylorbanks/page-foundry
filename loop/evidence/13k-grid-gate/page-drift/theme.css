@@ -1,0 +1,17 @@
+:root {
+  --container-max: 1240px;
+  --grid-cols: 12;
+  --gutter: 30px;
+}
+.container { max-width: var(--container-max); margin: 0 auto; }
+.grid { display: grid; grid-template-columns: repeat(var(--grid-cols), 1fr); gap: var(--gutter); }
+.hero { display: grid; grid-template-columns: 6fr 6fr; gap: var(--gutter); }
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); }
+@media (max-width: 1023px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero .visual { order: 2; }
+  .hero .cta { width: 100%; }
+}
+@media (max-width: 480px) {
+  .features { grid-template-columns: 1fr; }
+}

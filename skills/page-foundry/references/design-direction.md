@@ -4,7 +4,7 @@ The design phase has one job: make a page that could only belong to this propert
 
 ## One property, one theme
 
-Each property (each product, each brand under the holding company) gets exactly one token set: 4 to 6 named palette colors, a display/body type pairing, spacing scale, radius and border conventions, and the signature element. Persist it as `theme.css` with custom properties; that file is the durable per-property token store. Every subsequent page for that property reuses the tokens unchanged. Distinctiveness between properties, consistency within one.
+Each property (each product, each brand under the holding company) gets exactly one token set: 4 to 6 named palette colors, a display/body type pairing, spacing scale, a layout grid (container max-widths, column count, gutters per breakpoint), radius and border conventions, and the signature element. Persist it as `theme.css` with custom properties; that file is the durable per-property token store. Every subsequent page for that property reuses the tokens unchanged. Distinctiveness between properties, consistency within one.
 
 ## Choosing a direction
 
@@ -64,6 +64,15 @@ Two commitments that cost one short paragraph in the Phase 4 design direction an
 
 - A scene sentence plus named anchors. The scene sentence is one sentence of physical context for the page: who is reading it, where, under what ambient light, in what mood. It forces the dark-versus-light call; if it does not, it needs more detail. Alongside it, 2 or 3 named anchor references: specific products, brands, objects, never adjectives like "modern" or "clean". (impeccable: `shape.md`)
 - Identity lock for existing properties: before restyling anything the property already ships, write one factual sentence of its current identity, actual hex values, actual font names, layout topology, copy tone, no aesthetic adjectives. Every candidate must read as the same brand next to the live page; departure is legitimate only when the brief asks for it. The persistent `theme.css` is this sentence in token form, so iterations start from it. (impeccable: `live.md`)
+
+## The grid and the breakpoints
+
+The spacing scale governs vertical rhythm; horizontal structure needs its own commitment, and a page built without one reads placed rather than arranged. Two artifacts close that gap. Both belong to the token plan, and Gate 5 verifies the built page against both.
+
+- **A layout grid spec.** Container max-widths, column count, and gutter width, stated per breakpoint, with gutters drawn from the 4pt scale. Every candidate token plan carries one; plans may legitimately differ on grid, since the density axis often forces it, but a plan that states palette and type while leaving the grid to the build is incomplete. The winning grid persists in `theme.css` as custom properties beside the palette (`--container-max`, `--grid-cols`, `--gutter`), so every later page on the property composes on the same grid, and it is the substance of the `## Layout` section when `DESIGN.md` is persisted.
+- **Per-breakpoint recomposition notes for the hero and the densest section.** Breakpoints are content-driven, set where the design breaks; these notes are where each named breakpoint gets designed rather than merely survived. For the hero and for the page's densest section (the spec's job order plus the shape picks identify it), write one note per named breakpoint stating how the composition re-forms there: what re-stacks and in what order, which elements drop or collapse, how the hero visual crops, where the primary CTA lands. The notes are written after the shape picks, because density follows shape, and they land in the winning token plan file in `tokens/`.
+
+"Fully usable at 390px" is a floor. A recomposition note is a design decision, and the render gate checks that the decision was executed at the breakpoint it names, screenshotting that width when it falls between the standard pair. In handoff mode the external tool owns the grid within the manifest geometry (`references/handoff.md` grants it), so the spec and notes above apply to what this skill builds itself.
 
 ## Marketing-page specifics
 
