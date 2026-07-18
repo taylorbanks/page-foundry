@@ -30,3 +30,4 @@ iter 29 · 12b docs/waitlist/event contracts · done · 891f536 · three fixture
 iter 30 · 12c agency/ecommerce/changelog contracts + 404/portfolio notes + TESTS 40-43 · done · 7020a26 · #12 closed; owner queued 13h-13p mid-iteration, no conflict
 iter 31 · 13g customer-research Mode 2 authorization · done · 40f2e57 · real HN probe as dogfood; test 37 closing line updated with the doctrine
 iter 32 · 13h voc.md ranked-theme synthesis layer · done · 1d22a6b · real 2-probe HN dogfood; field placement recorded as autonomous decision
+iter 33 · 13i meta title/description into the voice chain + Gate 6 snapshot diff · done · f3ce132 · closed the gap behind handoff G6.5; both mechanics proven in evidence
