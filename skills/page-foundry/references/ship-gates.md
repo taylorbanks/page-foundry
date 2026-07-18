@@ -22,7 +22,7 @@ Handoff mode: gates 1, 2, and 8 run before the package is delivered; gates 3, 4,
 - [ ] Pattern pass done: every `AI language pattern` WARN resolved or accepted with a recorded reason (negative parallelism "not X, it's Y", copula avoidance "serves as", tailing negation "no X, no Y", significance inflation, authority trope, three-verb-clause runs, parallel-list uniformity). The patterns are deliberately WARN, not FAIL; an accepted WARN carries its reason on the `humanizer` line. **The humanizer skill was invoked once on the final copy, the rewrites that survived meaning arbitration applied, and that is recorded on the `humanizer` line below.** Humanizer proposes; meaning arbitrates: a rewrite that changes what a sentence claims is a defect, not a fix, and a second humanizer pass chasing zero tells is over-processing, not rigor. The scanner passing is necessary but not sufficient: structural uniformity across separate elements (a parallel roster) is beyond regex, so a scanner PASS with no humanizer pass is an incomplete Gate 2, not a clean one. Final copy means final: any copy edit after the pattern pass (a red-team fix from Gate 1, a build-time cut, a late rewrite) re-triggers the scan and the humanizer on the edited sections before this gate reports PASS.
 - [ ] Verbatim-copy diff done: the built page's rendered text diffed against the approved-copy snapshot (build mode: `copy-approved.md`, written at the end of Phase 3; handoff mode: the package's `01-copy.md`, when the built asset comes back). Every snapshot sentence appears in the build verbatim; any wording change went back through the Phase 3 re-trigger and the snapshot was rewritten from the re-scanned copy; prose the build introduced (button labels, microcopy, alt text) was scanned the same way. Drift that ships, or a snapshot edited to match a drifted build, fails this gate.
 - [ ] Read-aloud pass done: no sentence the owner would not say to a client across a table.
-- [ ] No fabricated specificity: every number, name, and quote traces to the proof inventory.
+- [ ] No fabricated specificity: every number and name traces to the proof inventory, and every quote is checked by search, not by memory. Extract each quoted string and testimonial from the rendered page and search `voc.md` for it: the quote must appear character for character in the Verbatim section, or in the brief's proof inventory for proof the buyer handed over directly. A quote the search cannot find does not go on the page.
 
 ## Gate 3: Accessibility (WCAG 2.2 AA spot checks)
 
@@ -70,7 +70,7 @@ Note: Google does not consume `llms.txt`; it helps ChatGPT, Claude, and Perplexi
 
 ## Gate 8: Integrity
 
-- [ ] Zero fabricated testimonials, logos, counts, or statistics.
+- [ ] Zero fabricated testimonials, logos, counts, or statistics. For quotes this check is mechanical: rerun the Gate 2 search with integrity's question. A page quote matching a `voc.md` Paraphrase entry is a paraphrase wearing quotation marks; a quote matching nothing was invented. Both are fabricated attribution, whoever wrote the words.
 - [ ] Zero fabricated technical artifacts or staged scenarios: (a) every command, terminal output, code snippet, config, and file path is real and runnable exactly as shown, or removed; and (b) every terminal, screenshot, console, or UI depicts a real action the user takes and real output they see. Real data in a styled card (the page's own gate report) is fine; a terminal of a script the user never runs is not, even if the script is real. A demo of the product is held to this.
 - [ ] All `[TK]` placeholders resolved: filled with real material, or the section cut.
 - [ ] Any urgency element (deadline, cap) verified real with the user.
@@ -216,9 +216,21 @@ Omit `endDate` and `offers` fields you cannot fill with real values; never inven
 | Measurement | PASS | {conversion event, UTM, analytics or declined} |
 | Integrity | PASS | {n} TK items resolved/cut |
 
-Humanizer: {invoked once on final copy — yes/no; one line on what it changed (e.g. "broke two three-verb runs, varied a 6-item roster"); accepted WARNs, each with its reason; re-runs triggered by post-pass edits, if any; or "not run" which makes Gate 2 incomplete}
+Companion evidence — one line per companion in scope this run, each filling the EVIDENCE
+column of its table row: what ran, the artifact it wrote, what changed because of it.
+A companion with no line here and no artifact on disk was not invoked, whatever the
+transcript says. The seven core lines always appear; an overridden core companion's
+line reads "PARTIAL: overridden at preflight".
 
-Copy-editing: {changelog summary — what was cut, what was tightened; or "not run" (Phase 3 degraded)}
+- product-marketing: {invoked, brief written, fields the interview still had to supply}
+- customer-research: {invoked, voc.md written, {n} verbatim quotes, every one carrying a source}
+- marketing-psychology: {invoked, persuasion-map.md written, levers applied and where}
+- cro: {invoked, conversion-audit.md written, spec changes applied}
+- copywriting: {invoked, sections drafted, headline candidates scored}
+- frontend-design: {invoked, tokens persisted, alternatives considered}
+- humanizer: {invoked once on final copy — yes/no; one line on what it changed (e.g. "broke two three-verb runs, varied a 6-item roster"); accepted WARNs, each with its reason; re-runs triggered by post-pass edits, if any; or "not run" which makes Gate 2 incomplete}
+- copy-editing: {changelog summary — what was cut, what was tightened; or "skipped (degraded)"}
+- {one line per enhancer whose seam was in scope: analytics, ai-seo, schema, web-design-guidelines (live ruleset or frozen fallback), remotion, gstack (which commands ran), and the archetype companions (pricing, competitors, aso, launch, lead-magnets, popups, signup) when their section is on the page. In scope but skipped reads "skipped (degraded: missing)" or "skipped (declined at preflight)"}
 
 Degraded phases: {any phase that ran on a reference-file fallback because its companion was missing or declined, named with the companion it lacked; core-tier overrides prefixed PARTIAL:; "none, all companions present" otherwise. A degraded run is a partial execution, and the owner is told which skill would improve it.}
 

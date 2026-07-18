@@ -184,6 +184,22 @@ From the brief, produce a short message architecture document (under a page), wr
 
 **Invoke customer-research** on every input the brief points to (reviews, interview transcripts, support tickets, competitor reviews, Reddit or forum sources, any voice-of-customer material) to surface the buyer's verbatim language and the real objections; its quotes land in `voc.md`, each carrying its source, and the message hierarchy and objection map are written in the words of that file, not the builder's. **Invoke marketing-psychology** to choose the persuasion levers that fit this buyer and offer (anchoring, loss aversion, social proof placement, commitment and consistency); `persuasion-map.md` records each chosen lever and where it lands (claim order, objection answers, CTA framing), and Phases 2 and 3 apply the levers by reading it. If either is missing, derive the message architecture from the brief alone, mark Phase 1 degraded, and tell the user the objection map and buyer language are weaker without customer-research and the persuasion sequencing is weaker without marketing-psychology.
 
+`voc.md` keeps what buyers said apart from what the researcher concluded, because only the first may be quoted. In exactly this format:
+
+```
+## Verbatim
+> The quote, character for character as the buyer wrote or said it.
+— {source} · {speaker, as far as known} · {date if known}
+
+## Paraphrase
+- {condensed or synthesized observation} ({source})
+
+## Recurring language
+- "{buyer word or phrase}" — {which sources it keeps appearing in}
+```
+
+A source is a pointer the owner can open and check: the review URL or ID, the transcript file and line, the ticket number, the forum permalink. "Customer interviews" or "G2" names a genre, not a source, and does not qualify; a quote whose source cannot be produced goes under Paraphrase until it can. Page copy quotes only from the Verbatim section or the brief's proof inventory, and a Paraphrase entry never appears inside quotation marks or testimonial styling, however close the wording. This split is what makes quote integrity mechanical downstream: Gate 2 searches every page quote against Verbatim, and Gate 8 fails any quote that matches a Paraphrase entry or matches nothing.
+
 ## Phase 2: Page spec
 
 Goal: a section-by-section blueprint, with conversion rules applied before a word of final copy is written.
@@ -257,7 +273,7 @@ Artifacts: reads the run directory (the spec, the copy snapshot, `voc.md` for qu
 
 Read `references/ship-gates.md` and run the full checklist (in handoff mode, run the pre-handoff subset now and the rest when the built asset comes back). Summary: conversion audit with MECLABS score, voice scan at zero FAILs plus the pattern pass and the verbatim-copy diff against `copy-approved.md`, WCAG 2.2 AA spot checks, performance budget, schema + llms.txt + robots + meta, measurement, integrity. **Invoke the companion that owns each gate as the primary path**: **cro** for the conversion audit and MECLABS score (its audit lands in `conversion-audit.md`), **web-design-guidelines** for the accessibility and render review, **ai-seo** for the AI-discovery gate (robots.txt crawler allowlist, content extractability, llms.txt), **schema** for the JSON-LD, and **analytics** for the measurement gate. Add gstack **/design-review** and **/qa** as extra checks. Any gate run on the `references/ship-gates.md` fallback because its companion was missing is marked degraded in the report. The voice scan (Gate 2) and integrity (Gate 8) are always page-foundry's own and are never waived by a companion.
 
-Report results as a pass/fail table with the MECLABS score. A failed gate means fix and re-run, not ship with a caveat.
+Report results as a pass/fail table with the MECLABS score, followed by the companion evidence block from the gate report format in `references/ship-gates.md`: one line per companion in scope this run, each filling the EVIDENCE column of its table row with what ran, the artifact it wrote, and what changed because of it. A failed gate means fix and re-run, not ship with a caveat.
 
 Close every run by appending a record to the run artifact directory's `foundry-log.md`, in exactly this format so future runs can parse it:
 
