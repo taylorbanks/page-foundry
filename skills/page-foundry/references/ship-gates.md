@@ -12,7 +12,8 @@ Handoff mode: gates 1, 2, and 8 run before the package is delivered; gates 3, 4,
 - [ ] Every CTA instance has a proof element within one viewport.
 - [ ] campaign-landing only: no site navigation, hero language matches the traffic source.
 - [ ] Forms: every field beyond name/email has a written justification in the spec.
-- [ ] MECLABS heuristic scored (rubric in conversion-rules.md); flagged factors (M/V/I low, F/A high) addressed or explicitly accepted.
+- [ ] MECLABS heuristic scored independently. The builder records its own score first, from full context. The score of record then comes from a fresh agent given exactly two inputs: the page as a visitor meets it (build mode: the rendered page; handoff mode: the package's verbatim copy pre-delivery, the returned build on the re-run) and the brief. Never the spec, the drafting context, or the self-score. The fresh agent invokes cro when installed, and scores from the rubric in conversion-rules.md otherwise; either way it works cold, which is the condition the visitor is in. `conversion-audit.md` records both scores and the divergence. A page that scores well only for its own author depends on context a cold visitor lacks, which is the exact failure the heuristic measures, so a wide gap is a finding about the page. When the environment offers no way to open a fresh context, the self-score stands and the Notes column says the audit was not independent.
+- [ ] Flagged factors in the independent score (M/V/I low, F/A high) addressed or explicitly accepted.
 - [ ] Red-team read: one simulated skeptical reader per segment x entry state from the brief walks the page; every reader must reach the CTA. Any "not for me" exit by a qualified reader is a failure (conversion rule 10). Log bounce points and fix.
 - [ ] Anti-template check: this page's skeleton (the job order plus axis settings the spec records) compared against the `skeleton` lines of the property's last three runs in `foundry-log.md`. A match backed by `conversion data` on the matched run passes: converged because it converts. A match with no conversion data behind it is flagged, and the flag resolves one of two ways: the spec shows why this buyer's objection map landed on the same structure, or the skeleton goes back to Phase 2. No prior log for the property: N/A.
 
@@ -207,7 +208,7 @@ Omit `endDate` and `offers` fields you cannot fill with real values; never inven
 
 | Gate | Result | Notes |
 |---|---|---|
-| Conversion audit | PASS | MECLABS C = {n} (M{n} V{n} I{n} F{n} A{n}) |
+| Conversion audit | PASS | MECLABS C = {n} (M{n} V{n} I{n} F{n} A{n}), independent; self C = {n}, divergence {n} |
 | Voice scan | PASS | 0 hits across {n} files |
 | Accessibility | PASS | |
 | Performance | PASS | {transfer size}, {LCP if measured} |
@@ -225,7 +226,7 @@ line reads "PARTIAL: overridden at preflight".
 - product-marketing: {invoked, brief written, fields the interview still had to supply}
 - customer-research: {invoked, voc.md written, {n} verbatim quotes, every one carrying a source}
 - marketing-psychology: {invoked, persuasion-map.md written, levers applied and where}
-- cro: {invoked, conversion-audit.md written, spec changes applied}
+- cro: {invoked at spec and at Gate 1; Gate 1 run in a fresh context on the rendered page and brief alone; conversion-audit.md written with both scores and the divergence; spec changes applied}
 - copywriting: {invoked, sections drafted, headline candidates scored}
 - frontend-design: {invoked, tokens persisted, alternatives considered}
 - humanizer: {invoked once on final copy — yes/no; one line on what it changed (e.g. "broke two three-verb runs, varied a 6-item roster"); accepted WARNs, each with its reason; re-runs triggered by post-pass edits, if any; or "not run" which makes Gate 2 incomplete}
