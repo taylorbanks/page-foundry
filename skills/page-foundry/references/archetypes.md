@@ -28,6 +28,16 @@ These ten bind every page this skill builds. A contract's own Ordering constrain
 9. No qualified reader is disqualified before reaching a CTA (rule 10).
 10. Sections appear in the order THIS buyer raises objections, taken from the Phase 1 objection map. Where constraints 1 through 9 leave several legal orders, the objection map decides; where the map is silent, the spec states the assumption it made.
 
+## The post-conversion moment
+
+Every goal in this file drops the converted reader somewhere: a confirmation screen, a thank-you page, a checkout success, a store listing, a first run. That moment is part of the page's contract, not an afterthought. Three obligations bind every archetype:
+
+- The page spec names what the converted reader sees next; leaving it unnamed means a platform default decides.
+- The moment delivers something immediately: the promised artifact, the best of what they signed up for, or the first concrete step already underway.
+- It sets expectations for what arrives when: the first issue, the onboarding email, the reply to their application.
+
+When the next screen is a page this skill can build (a thank-you page, as opposed to a store listing or checkout flow the platform owns), build it in the same pass; the conversion is not done at the form.
+
 ## Archetype mapper
 
 Current archetypes: `oss-project`, `saas-homepage`, `campaign-landing`, `mobile-app`, `course-sales`, `membership-community`, `newsletter-capture`, `personal-home`.
@@ -245,17 +255,28 @@ For paid communities, memberships, and subscription groups (Skool, Circle, Disco
 
 For mailing list and newsletter signups, free or as the top of a paid funnel. The entire page exists to make one exchange feel obviously worth it: an email address for a specific, recurring value.
 
-Conversion goal: email signup. Dedicated newsletter pages convert dramatically better than embedded forms; double-digit rates are achievable with matched traffic.
+**Goal.** Email signup. Dedicated newsletter pages convert dramatically better than embedded forms; double-digit rates are achievable with matched traffic.
 
-1. **Hero.** What the reader gets, how often, and who it is for, in one or two lines ("One exploitable misconfiguration, every Tuesday, for people who defend networks"). Email field plus button directly in the hero; the form IS the page. Single field only: email. Every additional field costs signups.
-2. **What is inside.** Three or four concrete bullets of the kind of thing a subscriber receives, written as specifically as the actual issues. Frequency and length expectations stated ("5 minutes, weekly") because inbox anxiety is the real objection.
-3. **Proof.** Subscriber count when creditable, reader quotes, recognizable readers or "read by people at X" only when real. A link to one or two best past issues is the strongest proof available: let them taste it.
-4. **About the writer.** Two or three lines; why this person's signal is worth inbox space.
-5. **Final form.** Repeat the field and button with the promise restated. State the privacy position in one line (no sharing, unsubscribe anytime).
+**Buyer entry states.** Warm to the writing, cold to the commitment, almost always: the reader just finished one piece, heard the writer on a podcast, or took a recommendation, and is deciding whether one good sample earns a recurring slot in their inbox. Content-led arrivals weigh that sample against inbox anxiety, this page type's load-bearing objection, so cadence and length expectations move early. Personality-led arrivals already follow the writer and come for the person; the writer job moves forward and may open the page. Lead-magnet traffic arrives for the artifact and takes the subscription as the exchange; message match binds to the promise that sent them (shared constraint 8). Every state shares the same fear, one more thing to keep up with, and the page answers it with honesty about frequency and length, not with enthusiasm.
 
-After signup, the confirmation/thank-you page is part of this archetype's spec: deliver something immediately (best-issue links or the promised lead magnet) and set expectations for what arrives when.
+**Jobs the page must do.**
 
-Navigation: none. Total page weight: minimal; this page gets linked from everywhere.
+- State the exchange in one or two lines: what the reader gets, how often, and who it is for ("One exploitable misconfiguration, every Tuesday, for people who defend networks"). The email field and button sit with it in the hero; the form IS the page.
+- Show what is inside: concrete samples of the kind of thing a subscriber receives, written as specifically as the actual issues. Vague category promises are what inbox anxiety feeds on.
+- State frequency and length expectations plainly ("5 minutes, weekly"). This is the load-bearing objection answered in place (shared constraint 6), not a formality.
+- Let them taste it: link one or two best past issues (the strongest proof available; see Proof requirements).
+- Establish the writer: a few lines on why this person's signal is worth inbox space. For personality-led traffic the writer is the hook and may open the page.
+- Close with the field and button again, the promise restated, and the privacy position in one line: no sharing, unsubscribe anytime.
+- Specify the post-conversion moment (the shared requirement above): the confirmation page delivers best-issue links or the promised lead magnet immediately and says when the first issue lands.
+
+**Proof requirements.** The strongest proof available is the writing itself: one or two best past issues, linked, let the reader taste exactly what they are subscribing to. Subscriber count when creditable; reader quotes and recognizable readers or "read by people at X" only when real. A proof element rides in the hero viewport with the form (see Ordering constraints).
+
+**CTA policy.** Default policy, with the signup form as the primary CTA; it appears in the hero and repeats at the close. The form takes a single field: email. Every additional field costs signups (rule 7). Navigation: none. Total page weight: minimal; this page gets linked from everywhere.
+
+**Ordering constraints.** Adds to the shared set:
+
+- The form lands in the hero, and a proof element lands in the same viewport with it. This is the one contract whose form precedes everything else, so shared constraints 2 and 7 can only be satisfied by proof that rides with the form rather than waiting below: a creditable count, a reader quote, or the taste-it link beside the field.
+- Frequency and length expectations are set before the final form repetition; a reader who reaches the close still wondering what this costs their attention is carrying the exact objection this page type generates most.
 
 ---
 
@@ -263,16 +284,26 @@ Navigation: none. Total page weight: minimal; this page gets linked from everywh
 
 For a person: consultant, builder, speaker, writer. The reader arrived from a talk, a post, a podcast, or a search of the name, and is answering one question: is this person worth my next ten minutes, and what do I do with that interest?
 
-Conversion goal: one primary next action. Pick it deliberately: book a call, subscribe, read the work, or follow. Everything else is secondary.
+**Goal.** One primary next action, picked deliberately: book a call, subscribe, read the work, or follow. Everything else is secondary.
 
-1. **Hero.** Name, and one positioning line that says who you help do what ("I help overlooked security engineers get paid like the people they outperform"). Not a job title list. Primary CTA.
-2. **Proof of work.** Selected, not exhaustive: 3 to 6 items spanning the work that matters now (projects, companies served, talks, things built, things written). Each item links somewhere real. Curate ruthlessly; a personal page is a portfolio of judgment.
-3. **Current focus.** What you are building or taking on now, which doubles as qualification for inbound ("currently advising X kind of company on Y").
-4. **Credibility narrative.** A short bio in the owner's actual voice, written like a person and not a LinkedIn summary. Years, the arc, the unusual parts. First or third person, consistently.
-5. **Routes.** The two or three standing offers: work with me, join the community, read the newsletter. Each one line plus link; the primary CTA visually leads.
-6. **Contact.** Direct and simple. State response expectations honestly.
+**Buyer entry states.** Two arrivals dominate, and they want different openings. Referred readers come from one artifact (the talk, the post, the episode) carrying one facet of the person and wanting the rest of the picture; the page connects to what sent them (shared constraint 8) and widens from there. Name-searchers are doing diligence: a prospective client, a hiring manager, a podcast booker checking that the person is substantial, and they reach for proof of work first. The chosen primary action shapes the order too: a book-a-call page fronts qualification and current focus; a read-the-work page fronts the work. The spec states which arrival dominates and which action was picked.
 
-Navigation: minimal (Work, Writing, Contact). This archetype tolerates the most aesthetic risk on the whole list; the page is the person, and a distinctive direction (see design-direction.md) does more work here than anywhere else.
+**Jobs the page must do.**
+
+- Open with the name and one positioning line that says who you help do what ("I help overlooked security engineers get paid like the people they outperform"). Not a job title list.
+- Show proof of work: selected, not exhaustive, spanning the work that matters now (projects, companies served, talks, things built, things written). Each item links somewhere real. Curate ruthlessly; a personal page is a portfolio of judgment.
+- State current focus: what you are building or taking on now, which doubles as qualification for inbound ("currently advising X kind of company on Y").
+- Tell the credibility narrative: a short bio in the owner's actual voice, written like a person and not a LinkedIn summary. Years, the arc, the unusual parts. First or third person, consistently.
+- Lay out the routes: the standing offers (work with me, join the community, read the newsletter), each one line plus link; the primary CTA visually leads.
+- Make contact direct and simple. State response expectations honestly.
+
+**Proof requirements.** The work is the proof. Real, linked artifacts outrank any claim about them; an item that links nowhere reads as padding and gets cut. Selection is itself the signal: what the owner chose to show is the judgment on display.
+
+**CTA policy.** Default policy, with the deliberately picked primary action leading everywhere it appears; the routes present the secondary offers quietly beside it. Navigation: minimal (Work, Writing, Contact).
+
+**Ordering constraints.** Adds nothing to the shared set. The shared ten already bind, and this page tolerates the widest range of legal orders on the list: a proof-led opening (work before narrative), a narrative-led opening, and a focus-led opening are all legal while the hero passes the 5-second test. The page is the person; which facet opens is a genuine choice, and the entry state makes it.
+
+This archetype tolerates the most aesthetic risk on the whole list; the page is the person, and a distinctive direction (see design-direction.md) does more work here than anywhere else.
 
 ---
 
