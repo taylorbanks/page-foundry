@@ -60,7 +60,7 @@ One tension is settled up front: impeccable's craft doctrine leans toward task-c
 
 ### Brief discipline
 
-Two commitments that cost one short paragraph in the Phase 4 design direction and pay for themselves in every shape confirmation that follows.
+Two commitments that cost one short paragraph in the Phase 4 design direction and pay for themselves in every shape confirmation that follows, then again at the comp stage, whose critique judges the rendered comp against exactly these two artifacts.
 
 - A scene sentence plus named anchors. The scene sentence is one sentence of physical context for the page: who is reading it, where, under what ambient light, in what mood. It forces the dark-versus-light call; if it does not, it needs more detail. Alongside it, 2 or 3 named anchor references: specific products, brands, objects, never adjectives like "modern" or "clean". (impeccable: `shape.md`)
 - Identity lock for existing properties: before restyling anything the property already ships, write one factual sentence of its current identity, actual hex values, actual font names, layout topology, copy tone, no aesthetic adjectives. Every candidate must read as the same brand next to the live page; departure is legitimate only when the brief asks for it. The persistent `theme.css` is this sentence in token form, so iterations start from it. (impeccable: `live.md`)
