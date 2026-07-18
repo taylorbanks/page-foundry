@@ -29,3 +29,4 @@ iter 28 · 12a three new contracts (pricing/comparison/thank-you) · done · f7d
 iter 29 · 12b docs/waitlist/event contracts · done · 891f536 · three fixture compiles in evidence; newsletter mapping sharpened for waitlist boundary
 iter 30 · 12c agency/ecommerce/changelog contracts + 404/portfolio notes + TESTS 40-43 · done · 7020a26 · #12 closed; owner queued 13h-13p mid-iteration, no conflict
 iter 31 · 13g customer-research Mode 2 authorization · done · 40f2e57 · real HN probe as dogfood; test 37 closing line updated with the doctrine
+iter 32 · 13h voc.md ranked-theme synthesis layer · done · 1d22a6b · real 2-probe HN dogfood; field placement recorded as autonomous decision
