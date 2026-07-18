@@ -32,6 +32,20 @@ Phase 0 output. Lives at `.agents/product-marketing.md` in the product's repo (o
 - **The mechanism:** (why this works where alternatives fail; the thing only this product/method does)
 - **Honest tradeoffs:** (what alternatives do better; will be conceded on comparison sections)
 
+## Objections & anti-persona
+
+- **Objections heard:** (the top reasons real prospects say no, in their words; Phase 1 orders and answers them in the objection map)
+- **Anti-persona:** (who is NOT a good fit and why; the page may turn away exactly these readers, and the Phase 3 red-team checks that it does)
+
+## Switching dynamics
+
+The four forces acting on a buyer weighing a move off their current alternative. Phase 1 turns Habit and Anxiety into objection-map entries or strikes them with a reason; the Phase 3 red-team walks each reader in carrying them.
+
+- **Push:** (what frustrates them about the current solution)
+- **Pull:** (what draws them to this one)
+- **Habit:** (what keeps them where they are: sunk setup, muscle memory, integrations)
+- **Anxiety:** (what worries them about switching: migration, lock-in, learning curve, data)
+
 ## Proof inventory
 
 List only what is real. Mark gaps as `[TK: what to collect]`.
