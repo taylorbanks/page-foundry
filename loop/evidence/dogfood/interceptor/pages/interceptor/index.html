@@ -91,7 +91,6 @@
     /* Quickstart: the densest section. */
     .caps { margin-top: var(--sp-6); padding-left: 1.2em; }
     @media (min-width: 720px) { .caps { columns: 2; column-gap: var(--sp-8); } }
-    pre.output .tk { color: var(--text-dim); }
     figcaption { color: var(--text-dim); font-family: var(--font-mono); margin: var(--sp-3) 0; }
 
     /* Safety callout: the one place the amber accent carries weight (1px rule). */
@@ -163,9 +162,18 @@
     <h2>The whole surface is one command</h2>
     <p class="measure">The whole surface is one command. <code>interceptor open &lt;url&gt;</code> returns a page's structure and its visible text together in a single call, so an agent takes in a page without a second round trip. <code>read</code>, <code>act</code>, and <code>inspect</code> follow the same shape.</p>
     <figure>
-      <figcaption>The command is one call. Real captured output goes here once the tool runs against a live page:</figcaption>
-      <pre class="code"><code>interceptor open &lt;url&gt;</code></pre>
-      <pre class="output"><span class="tk">[TK: real quickstart output, pending an unlocked-screen capture against a live page]</span></pre>
+      <figcaption>The command is one call. Here is its real output against <code>example.com</code>:</figcaption>
+      <pre class="code"><code>interceptor open https://example.com</code></pre>
+      <pre class="output">Tab: 1943086619 | https://example.com
+
+[e1] link "Learn more" href="https://iana.org/domains/example"
+
+---
+Example Domain
+
+This domain is for use in documentation examples without needing permission. Avoid use in operations.
+
+Learn more</pre>
     </figure>
     <p class="measure">There is more here than stealth. Interceptor also does passive network capture of fetch, XHR, SSE, and WebSocket traffic, record-and-replay of real sessions as scripts, a scene graph for canvas editors like Google Docs and Figma, and OS-level control through an optional macOS bridge.</p>
   </section>

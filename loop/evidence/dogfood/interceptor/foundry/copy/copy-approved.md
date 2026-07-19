@@ -19,7 +19,7 @@ The DOGFOOD-7a Gate 8 integrity audit then found copy that had drifted from the 
 - S1's independent-reproduction line held a `[TK]` placeholder. It is a plain statement now, that independent reproduction is not yet published, with the stealth checks still labeled vendor-stated.
 - S7's not-for line was refined to name the headless, no-desktop case rather than Linux or Windows, which the corrected matrix now supports.
 
-The S4 quickstart output stays `[TK]`, pending the unlocked-screen capture at DOGFOOD-7c.
+DOGFOOD-7c-1 then resolved the last `[TK]`: with the screen unlocked, it ran `interceptor open https://example.com` against the live tool and froze that real output into S4 below. The page body now carries no `[TK]` marker.
 
 ---
 
@@ -57,9 +57,24 @@ Most automation tools drive Chrome through the DevTools Protocol. That attached 
 
 The whole surface is one command. `interceptor open <url>` returns a page's structure and its visible text together in a single call, so an agent takes in a page without a second round trip. `read`, `act`, and `inspect` follow the same shape.
 
-The command is one call. Real captured output goes here once the tool runs against a live page:
+The command is one call. Here is its real output against `example.com`:
 
-`[TK: real quickstart output, pending an unlocked-screen capture against a live page]`
+```
+interceptor open https://example.com
+```
+
+```
+Tab: 1943086619 | https://example.com
+
+[e1] link "Learn more" href="https://iana.org/domains/example"
+
+---
+Example Domain
+
+This domain is for use in documentation examples without needing permission. Avoid use in operations.
+
+Learn more
+```
 
 There is more here than stealth. Interceptor also does passive network capture of fetch, XHR, SSE, and WebSocket traffic, record-and-replay of real sessions as scripts, a scene graph for canvas editors like Google Docs and Figma, and OS-level control through an optional macOS bridge.
 

@@ -1,0 +1,12 @@
+$ interceptor open https://example.com
+
+Tab: 1943086619 | https://example.com
+
+[e1] link "Learn more" href="https://iana.org/domains/example"
+
+---
+Example Domain
+
+This domain is for use in documentation examples without needing permission. Avoid use in operations.
+
+Learn more
