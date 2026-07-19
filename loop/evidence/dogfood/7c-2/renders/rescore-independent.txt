@@ -1,0 +1,18 @@
+Independent rendered MECLABS re-score of record. Produced by a fresh general-purpose agent
+(opus) given ONLY the built index.html, render-1440.png, render-390.png, and the brief
+(product-marketing.md). The spec, message architecture, persuasion map, drafting context,
+and both prior scores were withheld. Verbatim return:
+
+SCORES
+M: 4 — The hero ("Automate a real browser sites don't flag") and the failure block ("the run works on your machine, and then the real site flags it as a bot or logs it out") map precisely onto the strongest pre-existing entry state (agent/automation builders hitting bot detection on authenticated pages), though the page commits fully to that one state and only lists the QA/canvas/OS segments rather than matching them.
+V: 4 — The differentiated wedge is communicated clearly and credibly: the mechanism section plus before/after contrast explains "remove the CDP surface" vs "patch tells one at a time," and the real captured command output against example.com is concrete demonstrated value; capped below 5 because the load-bearing stealth claim is self-labeled vendor-stated/unreproduced and there is zero adoption proof (no stars, users, or testimonials).
+I: 2 — For a free open-source tool the page offers no distinct stimulus to act now rather than bookmark or star: no urgency, scarcity, bonus, or exclusive access, and "Why now" argues an industry trend rather than a personal reward for acting today.
+F: 3 — The on-page click is trivial, but the disclosed real action is a manual signed .pkg download from GitHub Releases plus dev-mode extension load, TCC permission grants, and a running browser window — and a build-from-source fallback on Windows/Linux — which is meaningful, honestly-stated setup effort for a technical audience.
+A: 3 — Radical honesty (vendor-stated labels, disclosed unauthenticated OS socket with browser-only mitigation, documented bugs, panic hotkey/denylist) strongly reduces doubt, but real residual risk remains at the moment of action: automation runs against your real logged-in accounts, the core undetectability claim is unverified, the license is non-standard ("Other"), and there is no social proof that anyone else trusts it.
+C: 20 (C = 4M + 3V + 2(I − F) − 2A = 4·4 + 3·4 + 2·(2 − 3) − 2·3 = 16 + 12 − 2 − 6 = 20)
+FLAGGED: I at 2 (no incentive to act now, so a motivated visitor stars/bookmarks instead of installing); F−A combine as a secondary drag from the manual install path and the unresolved license/verification/social-proof trust gaps.
+TOP FINDING: The page proves its mechanism unusually well (clear differentiation, honest framing, a real command-and-output demo) but never proves traction or independent verification, so the single claim the entire page rests on — that it passes detection — stays self-attested and the page itself flags "Independent reproduction is not yet published"; for the security-literate buyer this transparency builds trust yet leaves the load-bearing claim and "is anyone actually using this" unresolved, which is the main thing standing between a highly-motivated visitor and the download.
+
+Provenance: independent score by a fresh agent, page plus brief only. MECLABS rubric from
+skills/page-foundry/references/conversion-rules.md. The score is the heuristic's design
+diagnosis, not a claim about real product metrics.

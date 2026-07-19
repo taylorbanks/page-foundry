@@ -92,6 +92,14 @@
     .caps { margin-top: var(--sp-6); padding-left: 1.2em; }
     @media (min-width: 720px) { .caps { columns: 2; column-gap: var(--sp-8); } }
     figcaption { color: var(--text-dim); font-family: var(--font-mono); margin: var(--sp-3) 0; }
+    /* Terminal blocks soft-wrap instead of horizontal-scroll: the DOGFOOD-7c-2 render
+       showed theme.css's overflow-x:auto clipping the real output's longest line ("...
+       Avoid use in operations.") off the right edge at 1440 AND at 390, so the heaviest
+       oss-project proof was truncated. A real terminal soft-wraps long lines at the
+       column width, so pre-wrap is the faithful render and shows every character; short
+       structured lines (Tab:, [e1] link, ---) are unaffected. Text is identical, so the
+       Gate 2 verbatim snapshot still holds; this is a layout fix, not a copy change. */
+    pre.code, pre.output { white-space: pre-wrap; overflow-wrap: anywhere; }
 
     /* Safety callout: the one place the amber accent carries weight (1px rule). */
     .callout { border-left: 1px solid var(--signal); padding-left: var(--sp-4); margin: var(--sp-6) 0; }
