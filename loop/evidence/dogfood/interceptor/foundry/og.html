@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- OG card source (run state; only the 1200x630 capture in pages/interceptor/assets/og.png
+       deploys). canvas-design is absent this run, so this is the og.html capture path
+       (SKILL.md Phase 5, test 53). Tokens inlined from pages/interceptor/theme.css so the
+       headless capture is self-contained; fonts fall back to the mono/sans stacks, honest
+       for a card. Every word on the card appears in copy-approved.md: the product name and
+       the H1. No invented card prose, no product screenshot. -->
+  <style>
+    :root {
+      --ink: #0D1017; --surface: #151A22; --line: #2A3240;
+      --text: #E6EAF0; --text-dim: #9BA6B4; --signal: #F2A63C;
+      --font-display: ui-monospace, "SF Mono", Menlo, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1200px; height: 630px; }
+    body {
+      background: var(--ink); color: var(--text); font-family: var(--font-display);
+      padding: 72px 80px; display: flex; flex-direction: column; justify-content: space-between;
+      background-image: linear-gradient(var(--line) 1px, transparent 1px);
+      background-size: 100% 96px; background-position: 0 -1px;
+    }
+    .brand { font-size: 30px; letter-spacing: 0.02em; color: var(--text-dim); }
+    .brand .prompt { color: var(--signal); margin-right: 14px; }
+    .brand b { color: var(--text); font-weight: 600; }
+    h1 { font-size: 82px; line-height: 1.08; font-weight: 600; max-width: 20ch; letter-spacing: -0.01em; }
+    .rule { height: 4px; width: 132px; background: var(--signal); border-radius: 2px; }
+  </style>
+</head>
+<body>
+  <div class="brand"><span class="prompt">&#8250;</span><b>Interceptor</b></div>
+  <h1>Automate a real browser sites don't flag</h1>
+  <div class="rule"></div>
+</body>
+</html>

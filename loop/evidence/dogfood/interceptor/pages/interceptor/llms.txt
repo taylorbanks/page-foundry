@@ -1,0 +1,17 @@
+# Interceptor
+
+> An open-source Chrome extension that lets an AI agent or script drive your real, logged-in browser from inside the browser UI, with no CDP fingerprint.
+
+Interceptor works through the extension rather than the DevTools Protocol, so the browser carries no CDP fingerprint and keeps your existing sessions. A single CLI exposes compound commands (`interceptor open`, `read`, `act`, `inspect`) plus passive network capture, record-and-replay of sessions as scripts, a scene graph for canvas editors like Google Docs and Figma, and an optional macOS bridge for OS-level control. It is built for engineers automating authenticated, detection-sensitive work, not for large-scale headless crawling behind residential proxies. Its own limitations are documented in the open rather than hidden.
+
+## Links
+
+- [Source](https://github.com/Hacker-Valley-Media/Interceptor)
+- [Docs](https://github.com/Hacker-Valley-Media/Interceptor#readme)
+
+## Facts
+
+- Built by: Hacker Valley Media
+- Platform: Chrome or Brave extension on the desktop, plus a local CLI; distributed as source and signed macOS `.pkg` installers (a browser-only package and a full package that adds the native bridge)
+- License: a non-standard license the repo declares, which GitHub classifies as `Other`
+- Data handling: drives the browser you are already signed into, so cookies and sessions stay on your machine; a panic hotkey, sensitive-field masking, and a bundle-ID denylist guard it; the optional macOS bridge opens an unauthenticated local socket and ships only in the full package

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Interceptor">
+  <!-- The signature running mark reduced to a favicon: the amber command prompt chevron
+       on the dark instrument field. Drawn as a path, not a glyph, so it renders without a
+       font dependency. Colors are theme.css tokens: --ink field, --signal chevron. -->
+  <rect width="32" height="32" rx="6" fill="#0D1017"/>
+  <path d="M12 9 L20 16 L12 23" fill="none" stroke="#F2A63C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
