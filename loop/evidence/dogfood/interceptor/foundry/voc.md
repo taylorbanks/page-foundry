@@ -71,3 +71,7 @@ Provenance spot-check (this iteration): the GitHub and Stack Overflow permalinks
 - "flagged or banned" / "account safety" — haruharuha, the account-risk framing of the session theme (HN)
 - "residential proxies" as the next cost after stealth fails — andrew_zhong, plus helloworld4728 (HN)
 ```
+
+## Phase 1 finalization (2026-07-18)
+
+Phase 1 reviewed the theme ranking above and finalized it. `voc.md` was not thin: twelve verbatim quotes across Hacker News, GitHub, and Stack Overflow, five themes, three of them at High confidence with three or more independent unprompted sources. The Phase 1 discovery pass that a thin file would trigger was therefore not run, and no quote was added or reweighted. The ranking that ordered the message hierarchy in `message-architecture.md` is the one recorded above. Theme 1 (detection and blocking) leads. Theme 2 (CDP is the tell) is the mechanism claim. Theme 5 (session and login loss) stays out of the lead because it is Low confidence, despite carrying the newest quote.
