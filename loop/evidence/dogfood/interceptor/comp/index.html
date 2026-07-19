@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interceptor: real-browser automation, no CDP fingerprint</title>
+  <meta name="description" content="Interceptor drives your real, logged-in Chrome from inside the browser UI, with no CDP fingerprint, so sites don't flag your automation as a bot.">
+  <!-- Comp for Phase 4.5. Links the persisted Plan A tokens; fonts are self-hosted
+       at build (DOGFOOD-6), so this comp falls back to the fallback stacks, which is
+       honest for a comp. All copy is verbatim from foundry/copy/approved-draft.md;
+       [TK] slots render as labeled placeholders, never fabricated values. -->
+  <link rel="stylesheet" href="../pages/interceptor/theme.css">
+  <style>
+    /* Comp composition CSS: section layout and shapes on top of the theme tokens.
+       Not the design record; theme.css is. This positions the confirmed shapes. */
+    *, *::before, *::after { box-sizing: border-box; }
+    body { padding-bottom: var(--sp-24); }
+    a { color: var(--text); text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    /* Rhythm from space, not uniform ruled bands (round 1 finding): minor sections
+       64px, major pivots 96px; the answer block binds to the hero with no rule. */
+    .section { padding-block: var(--sp-16); border-top: var(--border); }
+    .section:first-of-type { border-top: 0; }
+    .section.major { padding-block: var(--sp-24); }
+    .section.answer { border-top: 0; padding-block: var(--sp-8) var(--sp-16); }
+    .measure { max-width: var(--measure); }
+    h2 { font-size: var(--fs-h2); font-family: var(--font-display); line-height: var(--lh-head); margin: 0 0 var(--sp-4); }
+    .lead { font-size: var(--fs-lead); color: var(--text); }
+    .dim { color: var(--text-dim); }
+    .kicker { font-family: var(--font-mono); font-size: var(--fs-body); color: var(--text-dim); letter-spacing: 0.01em; margin: 0 0 var(--sp-2); }
+
+    /* Hero */
+    .hero { padding-block: var(--sp-24) var(--sp-16); border-top: 0; }
+    .hero h1 { margin: 0 0 var(--sp-4); }
+    .hero .sub { font-size: var(--fs-lead); color: var(--text-dim); max-width: 40ch; margin: 0 0 var(--sp-8); }
+    .hero-grid { display: grid; gap: var(--sp-8); }
+    @media (min-width: 1025px) {
+      .hero-grid { grid-template-columns: 7fr 5fr; align-items: start; }
+    }
+    /* Install-command block: the CTA. The amber prompt marks it. */
+    .install { display: flex; align-items: center; gap: var(--sp-3); background: var(--surface);
+      border: var(--border); border-radius: var(--radius-code); padding: var(--sp-4);
+      font-family: var(--font-mono); margin-block: var(--sp-6); }
+    .install .prompt { color: var(--signal); }
+    .install code { flex: 1; min-width: 0; color: var(--text); overflow-x: auto; }
+    .install .tk { color: var(--text-dim); }
+    /* Status readout: real vendor-stated data, clearly labeled. */
+    .readout { background: var(--surface); border: var(--border); border-radius: var(--radius-panel);
+      padding: var(--sp-4); font-family: var(--font-mono); font-size: var(--fs-body); }
+    .readout .label { color: var(--text-dim); margin: 0 0 var(--sp-3); }
+    .readout-grid { display: grid; grid-template-columns: 1fr; gap: var(--sp-2); }
+    @media (min-width: 720px) and (max-width: 1024px) { .readout-grid { grid-template-columns: 1fr 1fr; } }
+    .readout-row .status-ok { margin-right: var(--sp-2); }
+    .readout .repro { color: var(--text-dim); margin: var(--sp-3) 0 0; font-size: var(--fs-body); }
+    .herolinks { display: flex; flex-wrap: wrap; gap: var(--sp-4); margin-top: var(--sp-6); font-family: var(--font-mono); }
+
+    /* Mechanism: before-and-after of the CDP surface. */
+    .contrast { display: grid; gap: var(--sp-6); margin-top: var(--sp-6); }
+    @media (min-width: 1025px) { .contrast { grid-template-columns: 1fr 1fr; } }
+    .contrast .col { border: var(--border); border-radius: var(--radius-panel); padding: var(--sp-4); background: var(--surface); }
+    .contrast .col h3 { margin-top: 0; font-size: var(--fs-body); color: var(--text-dim); font-family: var(--font-mono); }
+    .struck { text-decoration: line-through; color: var(--text-dim); font-family: var(--font-mono); }
+
+    /* Quickstart: the densest section. */
+    .caps { margin-top: var(--sp-6); padding-left: 1.2em; }
+    @media (min-width: 720px) { .caps { columns: 2; column-gap: var(--sp-8); } }
+    pre.output .tk { color: var(--text-dim); }
+    figcaption { color: var(--text-dim); font-family: var(--font-mono); margin: var(--sp-3) 0; }
+
+    /* Safety callout: the one place the amber accent carries weight (1px rule). */
+    .callout { border-left: 1px solid var(--signal); padding-left: var(--sp-4); margin: var(--sp-6) 0; }
+
+    /* Not-for + concessions lists */
+    ul.plain { padding-left: 1.2em; }
+    ul.plain li { margin-block: var(--sp-2); }
+
+    /* FAQ: plain disclosure, no accordion. */
+    .faq dt { font-weight: 500; margin-top: var(--sp-6); }
+    .faq dd { margin: var(--sp-2) 0 0; color: var(--text-dim); }
+
+    .status-line { font-family: var(--font-mono); color: var(--text-dim); }
+  </style>
+</head>
+<body>
+<main class="container">
+
+  <!-- S1 Hero -->
+  <header class="section hero">
+    <div class="hero-grid">
+      <div>
+        <h1>Automate a real browser sites don't flag</h1>
+        <p class="sub">Interceptor is a Chrome extension that drives your own logged-in browser from inside the browser UI, so your agents and scripts run with no CDP fingerprint and your real sessions stay intact.</p>
+      </div>
+      <div class="readout" aria-label="Stealth checks, vendor-stated">
+        <p class="label">Stealth checks, vendor-stated:</p>
+        <div class="readout-grid">
+          <div class="readout-row"><span class="status-ok">✓</span>BrowserScan: Normal</div>
+          <div class="readout-row"><span class="status-ok">✓</span>Pixelscan: Definitely Human</div>
+          <div class="readout-row"><span class="status-ok">✓</span>CreepJS: 0% headless</div>
+          <div class="readout-row"><span class="status-ok">✓</span>Fingerprint.com: notDetected</div>
+        </div>
+        <p class="repro">Independent reproduction is [TK].</p>
+      </div>
+    </div>
+    <div class="install">
+      <span class="prompt" aria-hidden="true">&#8250;</span>
+      <code class="tk">[TK: browser-only install command, confirmed against the repo README at build]</code>
+      <button class="btn-copy" type="button" aria-label="Copy install command">copy</button>
+    </div>
+    <nav class="herolinks" aria-label="Primary links">
+      <a href="#">Docs</a><a href="#">GitHub</a><a href="#">Community</a>
+    </nav>
+  </header>
+
+  <!-- Answer block, placed right after the hero -->
+  <section class="section answer">
+    <p class="lead measure">Interceptor is an open-source Chrome extension that lets an AI agent or script drive your real, logged-in browser from inside the browser UI. Because it works through the extension rather than the DevTools Protocol, the browser carries no CDP fingerprint and keeps your existing sessions. It is built for engineers automating authenticated, detection-sensitive work.</p>
+  </section>
+
+  <!-- S2 Problem -->
+  <section class="section">
+    <h2>The failure</h2>
+    <p class="measure">You automate an authenticated page, the run works on your machine, and then the real site flags it as a bot or logs it out.</p>
+  </section>
+
+  <!-- S3 Mechanism -->
+  <section class="section major">
+    <p class="kicker">&#8250; how it works</p>
+    <h2>It removes the surface, not the tell</h2>
+    <p class="measure">Most automation tools drive Chrome through the DevTools Protocol. That attached debugger is itself the signal detectors read, so connecting is already the tell. Interceptor works as an ordinary Chrome extension instead. Nothing attaches to the debugger and no automation flag is set, so the browser has no CDP surface for a site to fingerprint. It takes that surface away rather than patching over it one tell at a time. A patch that passes a detector today can fail after the next detector update, because it hides a tell instead of removing the surface those tells live on. That is why <code>playwright-stealth</code> and <code>undetected-chromedriver</code>, which still sit on CDP or WebDriver, keep needing upkeep.</p>
+    <div class="contrast">
+      <div class="col"><h3>A CDP framework</h3><p><span class="struck">cdp.surface</span> attached debugger, automation flag set, one tell per detector to patch.</p></div>
+      <div class="col"><h3>Interceptor</h3><p>An ordinary extension. No debugger attached, no automation flag, no CDP surface to fingerprint.</p></div>
+    </div>
+  </section>
+
+  <!-- S4 Quickstart (densest) -->
+  <section class="section major">
+    <p class="kicker">&#8250; quickstart</p>
+    <h2>The whole surface is one command</h2>
+    <p class="measure">The whole surface is one command. <code>interceptor open &lt;url&gt;</code> returns a page's structure and its visible text together in a single call, so an agent takes in a page without a second round trip. <code>read</code>, <code>act</code>, and <code>inspect</code> follow the same shape.</p>
+    <figure>
+      <figcaption>Here is the tool doing real work, command and output captured from the live build:</figcaption>
+      <pre class="code"><code>&#8250; interceptor open &lt;url&gt;</code></pre>
+      <pre class="output"><span class="tk">[TK: real quickstart command and its real output, captured at build (DOGFOOD-6)]</span></pre>
+    </figure>
+    <p class="measure">There is more here than stealth. Interceptor also does passive network capture of fetch, XHR, SSE, and WebSocket traffic, record-and-replay of real sessions as scripts, a scene graph for canvas editors like Google Docs and Figma, and OS-level control through an optional macOS bridge.</p>
+    <ul class="caps measure">
+      <li>Passive network capture of fetch, XHR, SSE, and WebSocket traffic</li>
+      <li>Record-and-replay of real sessions as scripts</li>
+      <li>A scene graph for canvas editors like Google Docs and Figma</li>
+      <li>OS-level control through an optional macOS bridge</li>
+    </ul>
+  </section>
+
+  <!-- S5 Data handling and safety -->
+  <section class="section major">
+    <h2>Data handling and safety</h2>
+    <p class="measure">Interceptor drives the browser you are already signed into, so your cookies and logged-in sessions stay on your machine and never move to a separate automated profile. There are real controls around that:</p>
+    <ul class="plain measure">
+      <li>A panic hotkey to stop a run</li>
+      <li>Masking on sensitive fields</li>
+      <li>A bundle-ID denylist that keeps automation away from Keychain, 1Password, System Settings, and banking apps</li>
+    </ul>
+    <p class="measure">Every macOS permission the tool takes is tracked.</p>
+    <div class="callout measure">
+      <p>One limit, stated plainly: the optional macOS bridge opens a local socket with no authentication, so any process running as you could drive OS-level input through it. The browser-only package ships without the bridge, so if you do not want OS-level control you never load that surface.</p>
+    </div>
+  </section>
+
+  <!-- S6 Honest comparison -->
+  <section class="section">
+    <h2>Honest comparison</h2>
+    <p class="measure">Against a CDP framework or a stealth patch, the difference is maintenance. There is no evasion patchset to keep current, because there is no CDP surface to hide. What you give up is real, and worth saying: Interceptor needs a real Chrome or Brave window open, the macOS bridge is Mac-centric, and the CI and headless story for the browser surface is [TK]. If your work is batch headless scraping at scale, a stealth patch or a proxy service is the better fit.</p>
+  </section>
+
+  <!-- S7 Not for -->
+  <section class="section">
+    <h2>Not for</h2>
+    <p class="measure">Interceptor is not for everyone. This is the wrong tool if you need:</p>
+    <ul class="plain measure">
+      <li>Large-scale multi-domain crawling</li>
+      <li>Batch headless scraping behind residential proxies</li>
+      <li>A pure Linux or Windows CI job with no desktop</li>
+    </ul>
+    <p class="measure">Interceptor's own docs point that work to Browser and BrightData. It is built for interactive, authenticated automation on a browser you actually use.</p>
+  </section>
+
+  <!-- S8 Why now -->
+  <section class="section">
+    <h2>Why now</h2>
+    <p class="measure">You are not the only one moving off CDP. A visible group of builders is now shipping non-CDP browser control on purpose, at the rendering-engine level and as in-browser extensions, because CDP is what gets detected. Examples raised in the same discussions include felarof's C++ rendering-engine APIs, Intuned, Browser Cash, and pydoll. Interceptor is one answer to a problem the field has started to name out loud.</p>
+  </section>
+
+  <!-- S9 Project status -->
+  <section class="section">
+    <h2>Project status</h2>
+    <p class="measure">Interceptor is open source and builds from source. The repo is public at <a href="https://github.com/Hacker-Valley-Media/slop-browser">github.com/Hacker-Valley-Media/slop-browser</a>, with open issues and current limitations documented in the open. That documented bug list is a credibility signal for a reader who checks the code first. Star count, release cadence, and contributor numbers are [TK] here, so this page does not quote them.</p>
+    <p class="status-line">repo: github.com/Hacker-Valley-Media/slop-browser · issues: open · stars: [TK]</p>
+  </section>
+
+  <!-- S10 FAQ -->
+  <section class="section">
+    <h2>FAQ</h2>
+    <dl class="faq measure">
+      <dt>The repo is named <code>slop-browser</code>. Is this a serious tool?</dt>
+      <dd>The name is self-deprecating; the code is open, and its own limitations (a scroll-position bug in screenshots, a broken <code>--clip</code>, <code>eval</code> blocked by strict CSP) are written down in the docs rather than hidden. You can read it and build it before you trust it.</dd>
+      <dt>Does it run on Windows or Linux, or in headless CI?</dt>
+      <dd>The browser-only surface targets Chrome or Brave on your desktop. Windows and Linux support and a headless CI mode are [TK] and not claimed here.</dd>
+      <dt>What is the license?</dt>
+      <dd>[TK: license identifier]. The repo is public; confirm the license in its <code>LICENSE</code> file before you depend on it.</dd>
+    </dl>
+  </section>
+
+  <!-- S11 Close -->
+  <section class="section major">
+    <h2>Point your automation at a real browser</h2>
+    <p class="measure">Point your automation at a real browser and stop fighting bot detection. The stealth checks and the quickstart above are the proof, and the install is one command.</p>
+    <div class="install">
+      <span class="prompt" aria-hidden="true">&#8250;</span>
+      <code class="tk">[TK: browser-only install command, confirmed against the repo README at build]</code>
+      <button class="btn-copy" type="button" aria-label="Copy install command">copy</button>
+    </div>
+    <nav class="herolinks" aria-label="Footer links">
+      <a href="#">Docs</a><a href="#">GitHub</a><a href="#">License</a><a href="#">Security</a>
+    </nav>
+  </section>
+
+</main>
+</body>
+</html>

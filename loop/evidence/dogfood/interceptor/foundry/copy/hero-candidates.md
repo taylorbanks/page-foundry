@@ -56,3 +56,13 @@ Six variants, each scored against the budget, message match with the buyer's lan
 3. **Browser automation that sites don't detect** (42). Clean and honest, but "detect" is one notch more generic than "flag as a bot", the phrase the buyer actually uses.
 
 **Chosen headline: variant 1, "Automate a real browser sites don't flag".** The subhead carries the "as a bot" detail and the mechanism, so the headline stays short and outcome-first. Recorded here so the next run and the copy-fit pass see the full candidate set and the reason, not just the survivor. The copy-fit pass (after Phase 4) re-picks the finalist against the real hero form, as AUDIT-F1b requires.
+
+## Copy-fit re-pick against the real hero form (DOGFOOD-5b)
+
+Per AUDIT-F1b, the copy-fit pass reopens the finalist with the hero form in hand as the comp actually renders it (`comp/index.html`, `comp/rounds.md`). The Phase 3 pick was scored on framing, message match, and budget, with no form to check against; this is a re-pick among the scored candidates, never new drafting.
+
+The comp form: a compressed monospace hero, the H1 and subhead in a left 7-of-12 band, the stealth-check readout in a 5-of-12 panel beside it, and the install-command block full width beneath. The H1 sits in a roughly 560px band, so a 40-character monospace headline wraps to three lines.
+
+**Decision: confirm Candidate 1, variant 1 (`Automate a real browser sites don't flag`).** It still wins the re-pick on the criteria that decide a hero: it leads with theme 1 (top-ranked, highest confidence) and it message-matches the buyer's verbatim language (`flag`, `real browser` from `voc.md`). No scored candidate beats it on those. Candidate 2's mechanism framing still belongs in S3, and Candidate 3 still leads on the Low-confidence theme 5. Promoting a weaker-message-match headline to solve a line break would trade the hero's highest-leverage property for its lowest.
+
+**The one fit item, routed from `comp/rounds.md` round 1:** in the comp the headline wraps so that `a real` and `browser sites` fall on separate lines, and `browser sites` reads as a false compound. This is a shape-level fit, not a copy defect, and it is resolved in the build, for two reasons. First, the comp renders with the fallback monospace stack because the self-hosted IBM Plex Mono lands at build (DOGFOOD-6); the real font's metrics move the wrap points, so fitting the break to the fallback font would fit the wrong font. Second, the fix is a controlled break at the phrase boundary (`Automate a real browser` then `sites don't flag`), a build-and-Gate-5 concern, with the words unchanged. The copy is confirmed as-is; the build sets the break and Gate 5 verifies the headline reads as one phrase at 390 and 1440.

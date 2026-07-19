@@ -137,7 +137,11 @@ pre.output{ background: var(--surface-2); border: var(--border); border-radius: 
   .readout-row:nth-child(2) { animation-delay: 50ms; }
   .readout-row:nth-child(3) { animation-delay: 100ms; }
   .readout-row:nth-child(4) { animation-delay: 150ms; }
-  @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  /* Transform-only: the hero readout is the in-viewport proof, so it must be
+     legible at first paint. The earned motion moment stays (a subtle rise); the
+     opacity fade was dropped in the DOGFOOD-5b comp round when the render showed
+     the proof invisible for up to 500ms after paint (comp/rounds.md, round 1). */
+  @keyframes rise { from { transform: translateY(6px); } to { transform: none; } }
 }
 
 /* Text children never shear on long content. */

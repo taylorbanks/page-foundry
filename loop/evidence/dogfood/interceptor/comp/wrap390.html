@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>390 wrapper for the Interceptor comp</title>
+  <!-- Renders the comp inside a real 390px-wide iframe so the mobile media queries
+       fire at a true 390 viewport. A naive headless "390 screenshot" floors the
+       window at 500 (lesson 27); the iframe's viewport is its own box, so the
+       queries honor 390 for real. The blank strip right of x=390 is this surround. -->
+  <style>
+    html, body { margin: 0; background: #000; }
+    iframe { width: 390px; height: 3200px; border: 0; display: block; }
+  </style>
+</head>
+<body>
+  <iframe src="index.html" title="Interceptor comp at 390px"></iframe>
+</body>
+</html>
