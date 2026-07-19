@@ -11,6 +11,16 @@ Every proof element is sourced to the brief or marked `[TK]`; no proof is fabric
 - The license `[TK]` resolved to the repo's declared non-standard license, which GitHub classifies as `Other`.
 - The quickstart output stayed `[TK]`. Capturing real output needs the live tool driving a live page, and the overnight screen was locked, which blocks window-server capture (lesson 35). The S4 figcaption was corrected so it no longer states output was captured. The unlocked-capture rerun at DOGFOOD-7 resolves both that output and the 390/1440 renders.
 
+The DOGFOOD-7a Gate 8 integrity audit then found copy that had drifted from the live repository since the DOGFOOD-1 snapshot, and this slice (DOGFOOD-7b) corrected it under the same re-verify-against-the-repo discipline, each claim re-checked against the live repo before re-freezing:
+
+- S5 listed masking on sensitive fields as a safety control. There is no such control: a repo-wide search finds only record-and-replay value masking in generated plans, not a live protection. The bullet was removed, leaving the two real controls, the panic hotkey and the frontmost-app denylist (README lines 1261 to 1262).
+- S10's FAQ said Windows and Linux support were `[TK]`. That was false. The browser-only build runs on macOS and Windows (README line 206), Linux browser-only support was contributed (README line 1323, PR 83), and the signed `.pkg` is macOS-only (README line 79), so Windows and Linux install from source. The answer now states that matrix.
+- S6 said the CI and headless story was `[TK]`. CI flow tests are a named browser-only use case (README line 79), and there is no headless mode without a window by design, because the tool drives a real browser. S6 now states both.
+- S1's independent-reproduction line held a `[TK]` placeholder. It is a plain statement now, that independent reproduction is not yet published, with the stealth checks still labeled vendor-stated.
+- S7's not-for line was refined to name the headless, no-desktop case rather than Linux or Windows, which the corrected matrix now supports.
+
+The S4 quickstart output stays `[TK]`, pending the unlocked-screen capture at DOGFOOD-7c.
+
 ---
 
 **`<title>`:** Interceptor: real-browser automation, no CDP fingerprint
@@ -27,7 +37,7 @@ Interceptor is a Chrome extension that drives your own logged-in browser from in
 
 Install: download the signed `Interceptor-Browser` package from GitHub Releases and double-click.
 
-Stealth checks, vendor-stated: BrowserScan Normal, Pixelscan Definitely Human, CreepJS 0% headless, Fingerprint.com notDetected. Independent reproduction is `[TK]`.
+Stealth checks, vendor-stated: BrowserScan Normal, Pixelscan Definitely Human, CreepJS 0% headless, Fingerprint.com notDetected. Independent reproduction is not yet published.
 
 Docs · GitHub · Community
 
@@ -58,7 +68,6 @@ There is more here than stealth. Interceptor also does passive network capture o
 Interceptor drives the browser you are already signed into, so your cookies and logged-in sessions stay on your machine and never move to a separate automated profile. There are real controls around that:
 
 - A panic hotkey to stop a run
-- Masking on sensitive fields
 - A bundle-ID denylist that keeps automation away from Keychain, 1Password, System Settings, and banking apps
 
 Every macOS permission the tool takes is tracked.
@@ -67,7 +76,7 @@ One limit, stated plainly: the optional macOS bridge opens a local socket with n
 
 ## S6. Honest comparison
 
-Against a CDP framework or a stealth patch, the difference is maintenance. There is no evasion patchset to keep current, because there is no CDP surface to hide. What you give up is real, and worth saying: Interceptor needs a real Chrome or Brave window open, the macOS bridge is Mac-centric, and the CI and headless story for the browser surface is `[TK]`. If your work is batch headless scraping at scale, a stealth patch or a proxy service is the better fit.
+Against a CDP framework or a stealth patch, the difference is maintenance. There is no evasion patchset to keep current, because there is no CDP surface to hide. What you give up is real, and worth saying: Interceptor needs a real Chrome or Brave window open, the macOS bridge is Mac-centric, and there is no headless mode without a window, because the tool drives a real browser. CI flow tests against that window are a supported use case. If your work is batch headless scraping at scale, a stealth patch or a proxy service is the better fit.
 
 ## S7. Not for
 
@@ -75,7 +84,7 @@ Interceptor is not for everyone. This is the wrong tool if you need:
 
 - Large-scale multi-domain crawling
 - Batch headless scraping behind residential proxies
-- A pure Linux or Windows CI job with no desktop
+- A headless CI job with no desktop browser
 
 Interceptor's own docs point that work to Browser and BrightData. It is built for interactive, authenticated automation on a browser you actually use.
 
@@ -91,7 +100,7 @@ Interceptor is open source and builds from source. The repo is public at github.
 
 **How do I know it works before I install?** The code is open and builds from source, and its own limitations (a screenshot that ignores scroll position, a broken `--clip` flag, `eval` blocked on strict-CSP sites) are written down in its docs rather than hidden. You can read it and build it before you trust it.
 
-**Does it run on Windows or Linux, or in headless CI?** The browser-only surface targets Chrome or Brave on your desktop. Windows and Linux support and a headless CI mode are `[TK]` and not claimed here.
+**Does it run on Windows or Linux, or in headless CI?** The browser-only build runs on macOS and Windows, and Linux browser-only support was contributed by the community. The signed `.pkg` installer is macOS-only, so on Windows and Linux you build from source. There is no headless mode without a window, because the tool drives a real browser, so a machine with no desktop is out of scope.
 
 **What is the license?** The repo declares a non-standard license, which GitHub classifies as `Other`. It is public; read the `LICENSE` file and confirm the terms before you depend on it.
 

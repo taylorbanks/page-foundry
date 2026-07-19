@@ -124,7 +124,7 @@
           <div class="readout-row"><span class="status-ok" aria-hidden="true">&#10003;</span>CreepJS 0% headless</div>
           <div class="readout-row"><span class="status-ok" aria-hidden="true">&#10003;</span>Fingerprint.com notDetected</div>
         </div>
-        <p class="repro">Independent reproduction is [TK].</p>
+        <p class="repro">Independent reproduction is not yet published.</p>
       </div>
     </div>
     <div class="install">
@@ -176,7 +176,6 @@
     <p class="measure">Interceptor drives the browser you are already signed into, so your cookies and logged-in sessions stay on your machine and never move to a separate automated profile. There are real controls around that:</p>
     <ul class="plain measure">
       <li>A panic hotkey to stop a run</li>
-      <li>Masking on sensitive fields</li>
       <li>A bundle-ID denylist that keeps automation away from Keychain, 1Password, System Settings, and banking apps</li>
     </ul>
     <p class="measure">Every macOS permission the tool takes is tracked.</p>
@@ -188,7 +187,7 @@
   <!-- S6 Honest comparison -->
   <section class="section">
     <h2>Honest comparison</h2>
-    <p class="measure">Against a CDP framework or a stealth patch, the difference is maintenance. There is no evasion patchset to keep current, because there is no CDP surface to hide. What you give up is real, and worth saying: Interceptor needs a real Chrome or Brave window open, the macOS bridge is Mac-centric, and the CI and headless story for the browser surface is [TK]. If your work is batch headless scraping at scale, a stealth patch or a proxy service is the better fit.</p>
+    <p class="measure">Against a CDP framework or a stealth patch, the difference is maintenance. There is no evasion patchset to keep current, because there is no CDP surface to hide. What you give up is real, and worth saying: Interceptor needs a real Chrome or Brave window open, the macOS bridge is Mac-centric, and there is no headless mode without a window, because the tool drives a real browser. CI flow tests against that window are a supported use case. If your work is batch headless scraping at scale, a stealth patch or a proxy service is the better fit.</p>
   </section>
 
   <!-- S7 Not for -->
@@ -198,7 +197,7 @@
     <ul class="plain measure">
       <li>Large-scale multi-domain crawling</li>
       <li>Batch headless scraping behind residential proxies</li>
-      <li>A pure Linux or Windows CI job with no desktop</li>
+      <li>A headless CI job with no desktop browser</li>
     </ul>
     <p class="measure">Interceptor's own docs point that work to Browser and BrightData. It is built for interactive, authenticated automation on a browser you actually use.</p>
   </section>
@@ -222,7 +221,7 @@
       <dt>How do I know it works before I install?</dt>
       <dd>The code is open and builds from source, and its own limitations (a screenshot that ignores scroll position, a broken <code>--clip</code> flag, <code>eval</code> blocked on strict-CSP sites) are written down in its docs rather than hidden. You can read it and build it before you trust it.</dd>
       <dt>Does it run on Windows or Linux, or in headless CI?</dt>
-      <dd>The browser-only surface targets Chrome or Brave on your desktop. Windows and Linux support and a headless CI mode are [TK] and not claimed here.</dd>
+      <dd>The browser-only build runs on macOS and Windows, and Linux browser-only support was contributed by the community. The signed <code>.pkg</code> installer is macOS-only, so on Windows and Linux you build from source. There is no headless mode without a window, because the tool drives a real browser, so a machine with no desktop is out of scope.</dd>
       <dt>What is the license?</dt>
       <dd>The repo declares a non-standard license, which GitHub classifies as <code>Other</code>. It is public; read the <code>LICENSE</code> file and confirm the terms before you depend on it.</dd>
     </dl>
@@ -235,9 +234,11 @@
     <div class="install">
       <p>Install: download the signed <a class="dl" href="https://github.com/Hacker-Valley-Media/Interceptor/releases"><code>Interceptor-Browser</code> package from GitHub Releases</a> and double-click.</p>
     </div>
-    <nav class="herolinks" aria-label="Footer links">
-      <a href="https://github.com/Hacker-Valley-Media/Interceptor#readme">Docs</a> <span aria-hidden="true">&#183;</span> <a href="https://github.com/Hacker-Valley-Media/Interceptor">GitHub</a> <span aria-hidden="true">&#183;</span> <a href="https://github.com/Hacker-Valley-Media/Interceptor">License</a> <span aria-hidden="true">&#183;</span> <a href="https://github.com/Hacker-Valley-Media/Interceptor/security">Security</a>
-    </nav>
+    <footer>
+      <nav class="herolinks" aria-label="Footer links">
+        <a href="https://github.com/Hacker-Valley-Media/Interceptor#readme">Docs</a> <span aria-hidden="true">&#183;</span> <a href="https://github.com/Hacker-Valley-Media/Interceptor">GitHub</a> <span aria-hidden="true">&#183;</span> <a href="https://github.com/Hacker-Valley-Media/Interceptor">License</a> <span aria-hidden="true">&#183;</span> <a href="https://github.com/Hacker-Valley-Media/Interceptor/security">Security</a>
+      </nav>
+    </footer>
   </section>
 
 </main>
